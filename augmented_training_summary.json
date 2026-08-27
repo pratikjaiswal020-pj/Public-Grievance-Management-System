@@ -1,0 +1,41 @@
+{
+  "best_model": "SVM (LinearSVC)",
+  "augmented_training_size": 10110,
+  "all_models": {
+    "Logistic Regression": {
+      "val_acc": 1.0,
+      "val_f1": 1.0,
+      "holdout_acc": 0.7280130293159609,
+      "holdout_f1_weighted": 0.7171775975471296,
+      "holdout_f1_macro": 0.7253700372698239
+    },
+    "Random Forest": {
+      "val_acc": 1.0,
+      "val_f1": 1.0,
+      "holdout_acc": 0.6807817589576547,
+      "holdout_f1_weighted": 0.6762569701542644,
+      "holdout_f1_macro": 0.6759980142018334
+    },
+    "SVM (LinearSVC)": {
+      "val_acc": 1.0,
+      "val_f1": 1.0,
+      "holdout_acc": 0.752442996742671,
+      "holdout_f1_weighted": 0.7353845327711427,
+      "holdout_f1_macro": 0.7442096862189994
+    },
+    "Naive Bayes": {
+      "val_acc": 0.998681608437706,
+      "val_f1": 0.9986813822985015,
+      "holdout_acc": 0.6726384364820847,
+      "holdout_f1_weighted": 0.6458989460276796,
+      "holdout_f1_macro": 0.6574081249222495
+    },
+    "XGBoost": {
+      "val_acc": 0.997363216875412,
+      "val_f1": 0.9973627496998282,
+      "holdout_acc": 0.6433224755700325,
+      "holdout_f1_weighted": 0.6158639376900091,
+      "holdout_f1_macro": 0.6171749394611645
+    }
+  }
+}

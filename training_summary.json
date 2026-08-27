@@ -1,0 +1,43 @@
+{
+  "best_model": "Logistic Regression",
+  "holdout_accuracy": 0.46579804560260585,
+  "holdout_f1_macro": 0.42019869135050353,
+  "holdout_f1_weighted": 0.40508679482189713,
+  "all_models": {
+    "Logistic Regression": {
+      "val_accuracy": 1.0,
+      "val_f1_macro": 1.0,
+      "val_f1_weighted": 1.0,
+      "val_precision": 1.0,
+      "val_recall": 1.0
+    },
+    "Random Forest": {
+      "val_accuracy": 1.0,
+      "val_f1_macro": 1.0,
+      "val_f1_weighted": 1.0,
+      "val_precision": 1.0,
+      "val_recall": 1.0
+    },
+    "SVM (LinearSVC)": {
+      "val_accuracy": 1.0,
+      "val_f1_macro": 1.0,
+      "val_f1_weighted": 1.0,
+      "val_precision": 1.0,
+      "val_recall": 1.0
+    },
+    "Naive Bayes": {
+      "val_accuracy": 1.0,
+      "val_f1_macro": 1.0,
+      "val_f1_weighted": 1.0,
+      "val_precision": 1.0,
+      "val_recall": 1.0
+    },
+    "XGBoost": {
+      "val_accuracy": 0.9935691318327974,
+      "val_f1_macro": 0.9931087304332371,
+      "val_f1_weighted": 0.9935387352932857,
+      "val_precision": 0.9938844487302708,
+      "val_recall": 0.9935691318327974
+    }
+  }
+}

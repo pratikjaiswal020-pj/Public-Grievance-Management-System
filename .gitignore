@@ -1,0 +1,4 @@
+"*.pkl" 
+"__pycache__/" 
+"*.pyc" 
+"implementation_plan.md" 

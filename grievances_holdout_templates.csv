@@ -1,0 +1,615 @@
+grievance_id,text,category
+GRVH900075,"Sir/Madam, Patna mein bijli two weeks se gayab h, transformer kharab ho gaya lagta hai. कृपया जल्द कार्रवाई करें।",Electricity
+GRVH900500,"Namaste sir, Ration dealer Adhartal mein har mahine paise leta hai anaj dene ke liye, complaint dena chahta hoon.",Corruption & Bribery
+GRVH900036,"Drinking water contaminated hai Sector 7 mein, please send sample testing team. Thank you.",Water Supply
+GRVH900436,"Passbook update Model Town bank branch mein two weeks se nahi ho raha, staff kaam nahi kar rahe. Bahut pareshaan hain hum log.",Banking & Financial Services
+GRVH900160,"महोदय, Mohd. Salim ki pension 3 days se nahi mili hai, bank account Wright Town branch mein hai. कृपया जल्द कार्रवाई करें।",Pension & Provident Fund
+GRVH900581,"Death certificate apply kiya tha one week pehle Ward 12 mein, abhi tak nhi mila. Otherwise we will protest.",Municipal Certificates
+GRVH900217,"Namaste sir, जमीन विवाद Patna में 3 days से पटवारी के पास लंबित है, कोई सुनवाई नहीं हो रही। Thank you.",Land Records & Revenue
+GRVH900515,"Ration dealer Indore mein har mahine paise leta hai anaj dene ke liye, complaint dena chahta hoon.",Corruption & Bribery
+GRVH900082,"Dear officer, Flyover construction Patna mein delay ho raha hai 20 din se, traffic diversion se logo ko dikkat.",Roads & Infrastructure
+GRVH900344,"Government school Lucknow mein books 1 hafta se distribute nahi hui, session shuru ho chuka hai. Otherwise we will protest.",Education & Schools
+GRVH900221,"Namaste sir, जमीन विवाद Varanasi में 10 din से पटवारी के पास लंबित है, कोई सुनवाई नहीं हो रही। Please take urgent action.",Land Records & Revenue
+GRVH900524,"Respected Sir, Ration dealer Gwalior mein har mahine paise leta hai anaj dene ke liye, complaint dena chahta hoon. Kripya jald samadhan karein.",Corruption & Bribery
+GRVH900263,"महोदय, FIR Kanpur thane mein darj nahi ki ja rahi h one week se, police sun nahi rahi.",Police & Law and Order
+GRVH900251,"Sir/Madam, जमीन विवाद Raipur में 1 hafta से पटवारी के पास लंबित है, कोई सुनवाई नहीं हो रही। Kripya jald samadhan karein.",Land Records & Revenue
+GRVH900389,"Government school Madan Mahal mein books 10 din se distribute nahi hui, session shuru ho chuka hai. Thank you.",Education & Schools
+GRVH900121,"Dear officer, Municipal safai gaadi Kotwali area area cover nahi karti, kachra jama hota rehta hai roz. Otherwise we will protest.",Sanitation & Garbage
+GRVH900208,"महोदय, Registry ke baad bhi khasra number update nahi hua Model Town revenue office mein.",Land Records & Revenue
+GRVH900546,"Dear officer, Contractor Model Town construction site par safety equipment nahi deta, accident ka khatra rehta hai. कृपया जल्द कार्रवाई करें।",Employment & Labour
+GRVH900194,"Sir/Madam, Divyang pension yojna ka labh Deepak Chouhan ko 3 days se nahi mil raha Ward 12 mein, form baar baar reject ho raha. Kripya jald samadhan karein.",Pension & Provident Fund
+GRVH900061,"महोदय, Load shedding Wright Town area mein bahut zyada ho rahi hai, bijli sirf kuch ghante milti hai. Otherwise we will protest.",Electricity
+GRVH900323,"Respected Sir, Sarkari hospital Ranchi mein doctor 5 din se nahi aa rahe, mareez pareshan hain. Please take urgent action.",Healthcare & Hospitals
+GRVH900400,"सार्वजनिक वितरण प्रणाली Ward 12 की दुकान समय पर नहीं खुलती, राशन नहीं मिल पाता गरीबों को। Sadar naman.",Ration & Public Distribution System
+GRVH900182,"Namaste sir, Divyang pension yojna ka labh Rajesh Verma ko 3 days se nahi mil raha Nagpur mein, form baar baar reject ho raha.",Pension & Provident Fund
+GRVH900538,"Respected Sir, Contract worker Kanpur factory mein PF aur ESI ka labh nahi diya ja raha hai kai mahino se.",Employment & Labour
+GRVH900544,फैक्ट्री Madan Mahal में मजदूरों को न्यूनतम वेतन नहीं दिया जा रहा है a month से।,Employment & Labour
+GRVH900068,"Sir/Madam, Meter reading galat li gayi hai Jaipur mein, bill 2000 zyada aaya, bijli connection sahi hai fir bhi.",Electricity
+GRVH900338,"Blood bank Wright Town mein zaroori blood group available nahi tha emergency mein, delay se dikkat hui. कृपया जल्द कार्रवाई करें।",Healthcare & Hospitals
+GRVH900104,"Sir/Madam, Flyover construction Kotwali area mein delay ho raha hai 3 days se, traffic diversion se logo ko dikkat.",Roads & Infrastructure
+GRVH900084,"Sir/Madam, Speed breaker Gandhi Nagar mein bina signage ke bana diya gaya, two weeks mein do accident ho chuke hn. Kripya jald samadhan karein.",Roads & Infrastructure
+GRVH900074,"Dear officer, Meter reading galat li gayi hai Raipur mein, bill 500 zyada aaya, bijli connection sahi hai fir bhi.",Electricity
+GRVH900401,"Dear officer, PDS dealer Kotwali area mein kerosene nahi de raha, black market mein bech raha hai shayad. Bahut pareshaan hain hum log.",Ration & Public Distribution System
+GRVH900416,"PDS dealer Bhopal mein kerosene nahi de raha, black market mein bech raha hai shayad. Please take urgent action.",Ration & Public Distribution System
+GRVH900252,"Dear officer, Registry ke baad bhi khasra number update nahi hua Raipur revenue office mein. Kripya jald samadhan karein.",Land Records & Revenue
+GRVH900185,"Sir/Madam, Mohd. Salim ki pension one week se nahi mili hai, bank account Shastri Colony branch mein hai. Kripya jald samadhan karein.",Pension & Provident Fund
+GRVH900589,"Sir/Madam, Death certificate apply kiya tha 2 hafte pehle Indore mein, abhi tak nahi mila. Bahut pareshaan hain hum log.",Municipal Certificates
+GRVH900307,"Sir/Madam, Blood bank Gwalior mein zaroori blood group available nahi tha emergency mein, delay se dikkat hui. Please take urgent action.",Healthcare & Hospitals
+GRVH900473,"Namaste sir, Passbook update Nagpur bank branch mein a month se nahi ho raha, staff kaam nahi kar rahe. Thank you.",Banking & Financial Services
+GRVH900520,"Dear officer, Bribe li gayi thi Meena Kori se Sector 7 office mein kaam ke badle mein, sabuth hai.",Corruption & Bribery
+GRVH900352,"Midday meal quality Civil Lines school mein bahut kharab hai, bacche bimar pad rahe hain. Otherwise we will protest.",Education & Schools
+GRVH900532,"Namaste sir, फैक्ट्री Ward 12 में मजदूरों को न्यूनतम वेतन नहीं दिया जा रहा है two weeks से। Otherwise we will protest.",Employment & Labour
+GRVH900299,"Blood bank Kanpur mein zaroori blood group available nhi tha emergency mein, delay se dikkat hui. Thank you.",Healthcare & Hospitals
+GRVH900531,Contract worker Model Town factory mein PF aur ESI ka labh nahi diya ja raha hai kai mahino se. Thank you.,Employment & Labour
+GRVH900196,"Anil Yadav ki pension one week se nahi mili hai, bank account Adhartal branch mein hai. Please take urgent action.",Pension & Provident Fund
+GRVH900358,"Namaste sir, Midday meal quality Indore school mein bahut kharab h, bacche bimar pad rahe hain. कृपया जल्द कार्रवाई करें।",Education & Schools
+GRVH900166,"Namaste sir, Ashok Gupta ki pension 20 din se nahi mili hai, bank account Kotwali area branch mein hai. Sadar naman.",Pension & Provident Fund
+GRVH900539,"Sir/Madam, फैक्ट्री Gwalior में मजदूरों को न्यूनतम वेतन नहीं दिया जा रहा है 5 din से। Otherwise we will protest.",Employment & Labour
+GRVH900505,मुझसे प्रमाण पत्र बनवाने के लिए 1500 रुपए मांगे गए Nagpur कार्यालय में। Sadar naman.,Corruption & Bribery
+GRVH900231,"महोदय, जमीन विवाद Shastri Colony में 20 din से पटवारी के पास लंबित है, कोई सुनवाई नहीं हो रही। Bahut pareshaan hain hum log.",Land Records & Revenue
+GRVH900611,"Sir/Madam, Birth certificate Lucknow nagar nigam se a month se nahi bana, school admission ruk gaya. Otherwise we will protest.",Municipal Certificates
+GRVH900567,"Dear officer, फैक्ट्री Lucknow में मजदूरों को न्यूनतम वेतन नहीं दिया जा रहा है 1 mahine से। Sadar naman.",Employment & Labour
+GRVH900296,"थाना Bhopal में शिकायत लेकर गए तो पुलिस ने टालमटोल किया, 5 din बीत गए कोई कार्रवाई नहीं।",Police & Law and Order
+GRVH900360,"Government school Adhartal mein books 1 hafta se distribute nahi hui, session shuru ho chuka hai. Kripya jald samadhan karein.",Education & Schools
+GRVH900337,"Blood bank Patna mein zaroori blood group available nahi tha emergency mein, delay se dikkat hui. Sadar naman.",Healthcare & Hospitals
+GRVH900300,"Blood bank Gandhi Nagar mein zaroori blood group available nahi tha emergency mein, delay se dikkat hui. Thank you.",Healthcare & Hospitals
+GRVH900376,"Respected Sir, Government school Wright Town mein books 2 hafte se distribute nahi hui, session shuru ho chuka hai. Kripya jald samadhan karein.",Education & Schools
+GRVH900222,"Sir/Madam, जमीन विवाद Raipur में 3 days से पटवारी के पास लंबित है, कोई सुनवाई नहीं हो रही। Otherwise we will protest.",Land Records & Revenue
+GRVH900568,Contract worker Gwalior factory mein PF aur ESI ka labh nahi diya ja raha hai kai mahino se. Sadar naman.,Employment & Labour
+GRVH900091,"महोदय, Sadak Raipur mein 15 din se kaam adhura pada hai, dhool aur gaddo ki wajah se logo ko pareshani. Sadar naman.",Roads & Infrastructure
+GRVH900216,"जमीन विवाद Nagpur में 20 din से पटवारी के पास लंबित है, कोई सुनवाई नहीं हो रही। Kripya jald samadhan karein.",Land Records & Revenue
+GRVH900209,"Namaste sir, Registry ke baad bhi khasra number update nahi hua Ward 12 revenue office mein.",Land Records & Revenue
+GRVH900365,"Namaste sir, Government school Ward 12 mein books 1 hafta se distribute nahi hui, session shuru ho chuka hai.",Education & Schools
+GRVH900204,"महोदय, जमीन विवाद Varanasi में 5 din से पटवारी के पास लंबित है, कोई सुनवाई नहीं हो रही। Please take urgent action.",Land Records & Revenue
+GRVH900234,"Dear officer, Registry ke baad bhi khasra number update nahi hua Model Town revenue office mein.",Land Records & Revenue
+GRVH900555,"Respected Sir, Contract worker Kanpur factory mein PF aur ESI ka labh nahi diya ja raha hai kai mahino se. Otherwise we will protest.",Employment & Labour
+GRVH900133,"Municipal safai gaadi Nagpur area cover nahi karti, kachra jama hota rehta hai roz. Bahut pareshaan hain hum log.",Sanitation & Garbage
+GRVH900592,"Death certificate apply kiya tha one week pehle Sector 7 mein, abhi tak nahi mila. Sadar naman.",Municipal Certificates
+GRVH900001,"Namaste sir, Water pipeline leak ho gaya hai Napier Town mein, sadak par paani bah raha hai 10 din se. Please take urgent action.",Water Supply
+GRVH900124,"Dear officer, Municipal safai gaadi Gwalior area cover nahi karti, kachra jama hota rehta hai roz. Sadar naman.",Sanitation & Garbage
+GRVH900240,"महोदय, Registry ke baad bhi khasra number update nahi hua Ward 12 revenue office mein. Thank you.",Land Records & Revenue
+GRVH900368,"Dear officer, Midday meal quality Indore school mein bahut kharab h, bacche bimar pad rahe hain.",Education & Schools
+GRVH900499,"Dear officer, Ration dealer Nagpur mein har mahine paise leta hai anaj dene ke liye, complaint dena chahta hoon. कृपया जल्द कार्रवाई करें।",Corruption & Bribery
+GRVH900195,"Sir/Madam, Divyang pension yojna ka labh Rekha Ahirwar ko 15 din se nahi mil raha Kanpur mein, form baar baar reject ho raha. Sadar naman.",Pension & Provident Fund
+GRVH900100,"Sadak Wright Town mein 3 din se kaam adhura pada hai, dhool aur gaddo ki wajah se logo ko pareshani.",Roads & Infrastructure
+GRVH900285,"Dear officer, FIR Lucknow thane mein darj nahi ki ja rahi hai 5 din se, police sun nahi rahi.",Police & Law and Order
+GRVH900333,"Namaste sir, Blood bank Patna mein zaroori blood group available nahi tha emergency mein, delay se dikkat hui. कृपया जल्द कार्रवाई करें।",Healthcare & Hospitals
+GRVH900553,"Contractor Varanasi construction site par safety equipment nahi deta, accident ka khatra rehta hai.",Employment & Labour
+GRVH900274,"Namaste sir, FIR Kanpur thane mein darj nahi ki ja rahi hai 5 din se, police sun nahi rahi.",Police & Law and Order
+GRVH900002,"Drinking water contaminated h Kotwali area mein, please send sample testing team. Kripya jald samadhan karein.",Water Supply
+GRVH900146,"Sir/Madam, Municipal safai vibhag Patna mein complaint karne par bhi kachra nahi uthata, ganda mahaul hai. Please take urgent action.",Sanitation & Garbage
+GRVH900206,"Namaste sir, Registry ke baad bhi khasra number update nahi hua Nagpur revenue office mein. Please take urgent action.",Land Records & Revenue
+GRVH900516,"Respected Sir, Bribe li gayi thi Deepak Chouhan se Gwalior office mein kaam ke badle mein, sabuth hai. Bahut pareshaan hain hum log.",Corruption & Bribery
+GRVH900484,"Namaste sir, मुझसे प्रमाण पत्र बनवाने के लिए 5000 रुपए मांगे गए Lucknow कार्यालय में। Sadar naman.",Corruption & Bribery
+GRVH900363,"Namaste sir, Government school Lucknow mein books 3 din se distribute nhi hui, session shuru ho chuka h. Thank you.",Education & Schools
+GRVH900241,"Namaste sir, Registry ke baad bhi khasra number update nahi hua Jabalpur revenue office mein.",Land Records & Revenue
+GRVH900071,"Meter reading galat li gayi hai Model Town mein, bill 3000 zyada aaya, bijli connection sahi hai fir bhi. Kripya jald samadhan karein.",Electricity
+GRVH900345,"Sir/Madam, Midday meal quality Madan Mahal school mein bahut kharab h, bacche bimar pad rahe hain. Please take urgent action.",Education & Schools
+GRVH900088,"Respected Sir, Flyover construction Model Town mein delay ho raha hai 10 din se, traffic diversion se logo ko dikkat. Sadar naman.",Roads & Infrastructure
+GRVH900582,"Death certificate apply kiya tha 10 din pehle Jabalpur mein, abhi tak nahi mila.",Municipal Certificates
+GRVH900329,"Sarkari hospital Raipur mein doctor 5 din se nhi aa rahe, mareez pareshan hn. Bahut pareshaan hain hum log.",Healthcare & Hospitals
+GRVH900178,"Namaste sir, Divyang pension yojna ka labh Anil Yadav ko two weeks se nahi mil raha Jaipur mein, form baar baar reject ho raha.",Pension & Provident Fund
+GRVH900418,"Dear officer, PDS dealer Lucknow mein kerosene nahi de raha, black market mein bech raha hai shayad.",Ration & Public Distribution System
+GRVH900042,"महोदय, Water supply ka pipeline Madan Mahal mein fata pada hai, saaf paani nahi mil raha logo ko.",Water Supply
+GRVH900041,"Respected Sir, Water pipeline leak ho gaya h Madan Mahal mein, sadak par paani bah raha hai two weeks se. Kripya jald samadhan karein.",Water Supply
+GRVH900590,"Sir/Madam, Death certificate apply kiya tha 3 days pehle Ward 12 mein, abhi tak nhi mila.",Municipal Certificates
+GRVH900211,Registry ke baad bhi khasra number update nahi hua Lucknow revenue office mein. Kripya jald samadhan karein.,Land Records & Revenue
+GRVH900479,"Dear officer, Bribe li gayi thi Rekha Ahirwar se Kotwali area office mein kaam ke badle mein, sabuth hai.",Corruption & Bribery
+GRVH900232,"जमीन विवाद Napier Town में 1 hafta से पटवारी के पास लंबित है, कोई सुनवाई नहीं हो रही। Otherwise we will protest.",Land Records & Revenue
+GRVH900366,"Namaste sir, Midday meal quality Gwalior school mein bahut kharab hai, bacche bimar pad rahe hain. Please take urgent action.",Education & Schools
+GRVH900523,"Namaste sir, Bribe li gayi thi Kavita Singh se Gwalior office mein kaam ke badle mein, sabuth hai. Please take urgent action.",Corruption & Bribery
+GRVH900426,"Sir/Madam, सार्वजनिक वितरण प्रणाली Indore की दुकान समय पर नहीं खुलती, राशन नहीं मिल पाता गरीबों को। Please take urgent action.",Ration & Public Distribution System
+GRVH900139,"Municipal safai vibhag Gwalior mein complain karne par bhi kachra nhi uthata, ganda mahaul h. Otherwise we will protest.",Sanitation & Garbage
+GRVH900547,"Dear officer, फैक्ट्री Jabalpur में मजदूरों को न्यूनतम वेतन नहीं दिया जा रहा है 15 din से। Please take urgent action.",Employment & Labour
+GRVH900198,"Divyang pension yojna ka labh Meena Kori ko 20 din se nahi mil raha Raipur mein, form baar baar reject ho raha.",Pension & Provident Fund
+GRVH900289,"थाना Adhartal में शिकायत लेकर गए तो पुलिस ने टालमटोल किया, 3 days बीत गए कोई कार्रवाई नहीं। Sadar naman.",Police & Law and Order
+GRVH900180,"Divyang pension yojna ka labh Geeta Bai ko 1 mahine se nahi mil raha Gandhi Nagar mein, form baar baar reject ho raha. Kripya jald samadhan karein.",Pension & Provident Fund
+GRVH900470,"मुद्रा लोन आवेदन Ranchi बैंक शाखा में 15 din से लंबित है, बार बार दस्तावेज मांगे जा रहे हैं। Sadar naman.",Banking & Financial Services
+GRVH900294,"FIR Lucknow thane mein darj nahi ki ja rahi hai 3 days se, police sun nahi rahi.",Police & Law and Order
+GRVH900057,"Namaste sir, Load shedding Raipur area mein bahut zyada ho rahi hai, bijli sirf kuch ghante milti hai. Please take urgent action.",Electricity
+GRVH900483,"Respected Sir, Bribe li gayi thi Mohd. Salim se Ranchi office mein kaam ke badle mein, sabuth h. Kripya jald samadhan karein.",Corruption & Bribery
+GRVH900024,"महोदय, Water supply ka pipeline Civil Lines mein fata pada hai, saaf paani nhi mil raha logo ko. Please take urgent action.",Water Supply
+GRVH900141,"Sir/Madam, Municipal safai vibhag Adhartal mein complaint karne par bhi kachra nhi uthata, ganda mahaul hai. Kripya jald samadhan karein.",Sanitation & Garbage
+GRVH900127,"सार्वजनिक कचरा पात्र Indore में ओवरफ्लो हो रहे हैं, सफाई कर्मी नहीं आ रहे। Otherwise we will protest.",Sanitation & Garbage
+GRVH900456,"Namaste sir, मुद्रा लोन आवेदन Indore बैंक शाखा में 10 din से लंबित है, बार बार दस्तावेज मांगे जा रहे हैं। Thank you.",Banking & Financial Services
+GRVH900015,"Namaste sir, Drinking water contaminated hai Lucknow mein, please send sample testing team. Kripya jald samadhan karein.",Water Supply
+GRVH900391,"Namaste sir, Midday meal quality Sector 7 school mein bahut kharab hai, bacche bimar pad rahe hain. Thank you.",Education & Schools
+GRVH900298,"Respected Sir, थाना Kotwali area में शिकायत लेकर गए तो पुलिस ने टालमटोल किया, two weeks बीत गए कोई कार्रवाई नहीं। कृपया जल्द कार्रवाई करें।",Police & Law and Order
+GRVH900364,"Sir/Madam, Midday meal quality Varanasi school mein bahut kharab hai, bacche bimar pad rahe hain. Bahut pareshaan hain hum log.",Education & Schools
+GRVH900431,"Respected Sir, PDS dealer Kanpur mein kerosene nahi de raha, black market mein bech raha hai shayad. Please take urgent action.",Ration & Public Distribution System
+GRVH900261,"महोदय, FIR Shastri Colony thane mein darj nahi ki ja rahi hai 3 din se, police sun nahi rahi. Kripya jald samadhan karein.",Police & Law and Order
+GRVH900472,"Passbook update Patna bank branch mein two weeks se nahi ho raha, staff kaam nahi kar rahe. Sadar naman.",Banking & Financial Services
+GRVH900145,"Namaste sir, Municipal safai vibhag Madan Mahal mein complaint karne par bhi kachra nahi uthata, ganda mahaul hai. Kripya jald samadhan karein.",Sanitation & Garbage
+GRVH900533,Contract worker Ward 12 factory mein PF aur ESI ka labh nahi diya ja raha hai kai mahino se. Bahut pareshaan hain hum log.,Employment & Labour
+GRVH900028,"No proper drinking water paani facility in Napier Town village, women have to walk 2km daily. Kripya jald samadhan karein.",Water Supply
+GRVH900271,"महोदय, थाना Ward 12 में शिकायत लेकर गए तो पुलिस ने टालमटोल किया, a month बीत गए कोई कार्रवाई नहीं। Sadar naman.",Police & Law and Order
+GRVH900369,"Dear officer, Government school Indore mein books 2 hafte se distribute nahi hui, session shuru ho chuka h. Sadar naman.",Education & Schools
+GRVH900144,"सार्वजनिक कचरा पात्र Napier Town में ओवरफ्लो हो रहे हैं, सफाई कर्मी नहीं आ रहे। Please take urgent action.",Sanitation & Garbage
+GRVH900490,"Ration dealer Gandhi Nagar mein har mahine paise leta hai anaj dene ke liye, complaint dena chahta hoon. Otherwise we will protest.",Corruption & Bribery
+GRVH900021,"Drinking water contaminated hai Napier Town mein, please send sample testing team. Bahut pareshaan hain hum log.",Water Supply
+GRVH900179,"Sir/Madam, Divyang pension yojna ka labh Anil Yadav ko 10 din se nhi mil raha Civil Lines mein, form baar baar reject ho raha. Please take urgent action.",Pension & Provident Fund
+GRVH900142,"Municipal safai gaadi Indore area cover nahi karti, kachra jama hota rehta hai roz. कृपया जल्द कार्रवाई करें।",Sanitation & Garbage
+GRVH900248,"जमीन विवाद Gwalior में 2 hafte से पटवारी के पास लंबित है, कोई सुनवाई नहीं हो रही। Please take urgent action.",Land Records & Revenue
+GRVH900233,"Sir/Madam, Registry ke baad bhi khasra number update nahi hua Bhopal revenue office mein.",Land Records & Revenue
+GRVH900341,"Blood bank Adhartal mein zaroori blood group available nahi tha emergency mein, delay se dikkat hui. Kripya jald samadhan karein.",Healthcare & Hospitals
+GRVH900303,"महोदय, Blood bank Napier Town mein zaroori blood group available nahi tha emergency mein, delay se dikkat hui. Kripya jald samadhan karein.",Healthcare & Hospitals
+GRVH900306,"Sarkari hospital Sector 7 mein doctor 1 mahine se nahi aa rahe, mareez pareshan hain. Sadar naman.",Healthcare & Hospitals
+GRVH900489,"Ration dealer Gandhi Nagar mein har mahine paise leta hai anaj dene ke liye, complaint dena chahta hoon. Sadar naman.",Corruption & Bribery
+GRVH900157,"Divyang pension yojna ka labh Mohd. Salim ko 15 din se nhi mil raha Civil Lines mein, form baar baar reject ho raha.",Pension & Provident Fund
+GRVH900291,"FIR Gwalior thane mein darj nhi ki ja rahi hai a month se, police sun nahi rahi. Thank you.",Police & Law and Order
+GRVH900412,"Sir/Madam, सार्वजनिक वितरण प्रणाली Kotwali area की दुकान समय पर नहीं खुलती, राशन नहीं मिल पाता गरीबों को।",Ration & Public Distribution System
+GRVH900430,"Namaste sir, राशन की दुकान Model Town में तौल में गड़बड़ी हो रही है, कम अनाज दिया जा रहा है। Otherwise we will protest.",Ration & Public Distribution System
+GRVH900521,"महोदय, Bribe li gayi thi Deepak Chouhan se Kanpur office mein kaam ke badle mein, sabuth hai. कृपया जल्द कार्रवाई करें।",Corruption & Bribery
+GRVH900070,"Dear officer, Meter reading galat li gayi hai Shastri Colony mein, bill 5000 zyada aaya, bijli connection sahi hai fir bhi. Sadar naman.",Electricity
+GRVH900387,"Namaste sir, Midday meal quality Madan Mahal school mein bahut kharab hai, bacche bimar pad rahe hain. Kripya jald samadhan karein.",Education & Schools
+GRVH900150,"Dear officer, सार्वजनिक कचरा पात्र Model Town में ओवरफ्लो हो रहे हैं, सफाई कर्मी नहीं आ रहे। कृपया जल्द कार्रवाई करें।",Sanitation & Garbage
+GRVH900016,"Water pipeline leak ho gaya hai Patna mein, sadak par paani bah raha hai 2 hafte se. Bahut pareshaan hain hum log.",Water Supply
+GRVH900173,"Dear officer, Vikas Tiwari ki pension 2 hafte se nahi mili hai, bank account Wright Town branch mein hai.",Pension & Provident Fund
+GRVH900448,"Namaste sir, Passbook update Jaipur bank branch mein 2 hafte se nahi ho raha, staff kaam nahi kar rahe. Please take urgent action.",Banking & Financial Services
+GRVH900175,"Dear officer, Divyang pension yojna ka labh Vikas Tiwari ko 1 hafta se nahi mil raha Napier Town mein, form baar baar reject ho raha. Sadar naman.",Pension & Provident Fund
+GRVH900286,"FIR Civil Lines thane mein darj nahi ki ja rahi hai 3 din se, police sun nahi rahi. Thank you.",Police & Law and Order
+GRVH900245,"महोदय, जमीन विवाद Model Town में 3 din से पटवारी के पास लंबित है, कोई सुनवाई नहीं हो रही। Kripya jald samadhan karein.",Land Records & Revenue
+GRVH900427,"सार्वजनिक वितरण प्रणाली Shastri Colony की दुकान समय पर नहीं खुलती, राशन नहीं मिल पाता गरीबों को। Otherwise we will protest.",Ration & Public Distribution System
+GRVH900309,"Blood bank Sector 7 mein zaroori blood group available nahi tha emergency mein, delay se dikkat hui. कृपया जल्द कार्रवाई करें।",Healthcare & Hospitals
+GRVH900420,"PDS dealer Bhopal mein kerosene nahi de raha, black market mein bech raha hai shayad. Bahut pareshaan hain hum log.",Ration & Public Distribution System
+GRVH900214,"Respected Sir, Registry ke baad bhi khasra number update nahi hua Kanpur revenue office mein. Sadar naman.",Land Records & Revenue
+GRVH900226,"Dear officer, जमीन विवाद Raipur में 10 din से पटवारी के पास लंबित है, कोई सुनवाई नहीं हो रही। Otherwise we will protest.",Land Records & Revenue
+GRVH900463,"Passbook update Nagpur bank branch mein 1 hafta se nhi ho raha, staff kaam nahi kar rahe. Bahut pareshaan hn hum log.",Banking & Financial Services
+GRVH900326,"महोदय, Blood bank Bhopal mein zaroori blood group available nahi tha emergency mein, delay se dikkat hui. Please take urgent action.",Healthcare & Hospitals
+GRVH900557,"Sir/Madam, Contract worker Kotwali area factory mein PF aur ESI ka labh nahi diya ja raha h kai mahino se. Kripya jald samadhan karein.",Employment & Labour
+GRVH900308,"Sir/Madam, Blood bank Model Town mein zaroori blood group available nahi tha emergency mein, delay se dikkat hui.",Healthcare & Hospitals
+GRVH900517,"Dear officer, Ration dealer Sector 7 mein har mahine paise leta hai anaj dene ke liye, complaint dena chahta hoon. Kripya jald samadhan karein.",Corruption & Bribery
+GRVH900190,"Respected Sir, Divyang pension yojna ka labh Deepak Chouhan ko two weeks se nahi mil raha Indore mein, form baar baar reject ho raha.",Pension & Provident Fund
+GRVH900143,"Respected Sir, सार्वजनिक कचरा पात्र Civil Lines में ओवरफ्लो हो रहे हैं, सफाई कर्मी नहीं आ रहे।",Sanitation & Garbage
+GRVH900188,"Deepak Chouhan ki pension 3 days se nahi mili hai, bank account Nagpur branch mein hai. कृपया जल्द कार्रवाई करें।",Pension & Provident Fund
+GRVH900350,"महोदय, Midday meal quality Model Town school mein bahut kharab h, bacche bimar pad rahe hain. कृपया जल्द कार्रवाई करें।",Education & Schools
+GRVH900017,"Drinking water contaminated hai Bhopal mein, please send sample testing team.",Water Supply
+GRVH900010,"Water pipeline leak ho gaya hai Gwalior mein, sadak par paani bah raha hai two weeks se.",Water Supply
+GRVH900493,"Namaste sir, मुझसे प्रमाण पत्र बनवाने के लिए 500 रुपए मांगे गए Lucknow कार्यालय में।",Corruption & Bribery
+GRVH900030,"Namaste sir, Water pipeline leak ho gaya hai Gwalior mein, sadak par paani bah raha hai 5 din se. Sadar naman.",Water Supply
+GRVH900351,"Government school Ranchi mein books two weeks se distribute nhi hui, session shuru ho chuka h. Bahut pareshaan hain hum log.",Education & Schools
+GRVH900494,मुझसे प्रमाण पत्र बनवाने के लिए 1500 रुपए मांगे गए Gandhi Nagar कार्यालय में। Otherwise we will protest.,Corruption & Bribery
+GRVH900548,"Namaste sir, Contractor Varanasi construction site par safety equipment nahi deta, accident ka khatra rehta hai. Please take urgent action.",Employment & Labour
+GRVH900518,"Dear officer, Bribe li gayi thi Ramesh Kumar se Ranchi office mein kaam ke badle mein, sabuth hai.",Corruption & Bribery
+GRVH900396,"सार्वजनिक वितरण प्रणाली Varanasi की दुकान समय पर नहीं खुलती, राशन नहीं मिल पाता गरीबों को। Please take urgent action.",Ration & Public Distribution System
+GRVH900034,"Water supply ka pipeline Patna mein fata pada hai, saaf paani nhi mil raha logo ko. Bahut pareshaan hain hum log.",Water Supply
+GRVH900432,"महोदय, PDS dealer Jabalpur mein kerosene nahi de raha, black market mein bech raha hai shayad. Thank you.",Ration & Public Distribution System
+GRVH900284,"FIR Sector 7 thane mein darj nahi ki ja rahi hai 5 din se, police sun nahi rahi. कृपया जल्द कार्रवाई करें।",Police & Law and Order
+GRVH900301,"Respected Sir, Blood bank Jabalpur mein zaroori blood group available nahi tha emergency mein, delay se dikkat hui. कृपया जल्द कार्रवाई करें।",Healthcare & Hospitals
+GRVH900342,"Blood bank Civil Lines mein zaroori blood group available nahi tha emergency mein, delay se dikkat hui. Bahut pareshaan hain hum log.",Healthcare & Hospitals
+GRVH900081,"Sir/Madam, Flyover construction Lucknow mein delay ho raha hai 1 hafta se, traffic diversion se logo ko dikkat. Bahut pareshaan hain hum log.",Roads & Infrastructure
+GRVH900062,"Meter reading galat li gayi hai Shastri Colony mein, bill 1500 zyada aaya, bijli connection sahi hai fir bhi. Bahut pareshaan hain hum log.",Electricity
+GRVH900536,"Contractor Jaipur construction site par safety equipment nahi deta, accident ka khatra rehta hai.",Employment & Labour
+GRVH900461,"Passbook update Wright Town bank branch mein 10 din se nhi ho raha, staff kaam nahi kar rahe. Otherwise we will protest.",Banking & Financial Services
+GRVH900551,"Dear officer, Contractor Jabalpur construction site par safety equipment nahi deta, accident ka khatra rehta hai. Otherwise we will protest.",Employment & Labour
+GRVH900101,"Sir/Madam, Flyover construction Civil Lines mein delay ho raha hai one week se, traffic diversion se logo ko dikkat. Sadar naman.",Roads & Infrastructure
+GRVH900605,"Sir/Madam, Death certificate apply kiya tha 20 din pehle Sector 7 mein, abhi tak nahi mila. कृपया जल्द कार्रवाई करें।",Municipal Certificates
+GRVH900243,"Namaste sir, जमीन विवाद Gandhi Nagar में 3 din से पटवारी के पास लंबित है, कोई सुनवाई नहीं हो रही।",Land Records & Revenue
+GRVH900347,"महोदय, Government school Lucknow mein books 20 din se distribute nahi hui, session shuru ho chuka hai. Thank you.",Education & Schools
+GRVH900475,"मुद्रा लोन आवेदन Raipur बैंक शाखा में 1 hafta से लंबित है, बार बार दस्तावेज मांगे जा रहे हैं। Sadar naman.",Banking & Financial Services
+GRVH900065,"महोदय, Wright Town mein bijli a month se gayab hai, transformer kharab ho gaya lagta hai. Thank you.",Electricity
+GRVH900162,"Sir/Madam, Divyang pension yojna ka labh Suman Devi ko 5 din se nhi mil raha Civil Lines mein, form baar baar reject ho raha. Sadar naman.",Pension & Provident Fund
+GRVH900477,"Respected Sir, मुद्रा लोन आवेदन Sector 7 बैंक शाखा में 1 hafta से लंबित है, बार बार दस्तावेज मांगे जा रहे हैं।",Banking & Financial Services
+GRVH900549,"महोदय, Contractor Civil Lines construction site par safety equipment nahi deta, accident ka khatra rehta hai.",Employment & Labour
+GRVH900325,"Sarkari hospital Adhartal mein doctor 3 din se nhi aa rahe, mareez pareshan hain.",Healthcare & Hospitals
+GRVH900375,"Midday meal quality Gandhi Nagar school mein bahut kharab h, bacche bimar pad rahe hain.",Education & Schools
+GRVH900254,"Sir/Madam, FIR Ward 12 thane mein darj nahi ki ja rahi hai 3 din se, police sun nahi rahi. कृपया जल्द कार्रवाई करें।",Police & Law and Order
+GRVH900210,"जमीन विवाद Jaipur में two weeks से पटवारी के पास लंबित है, कोई सुनवाई नहीं हो रही। Please take urgent action.",Land Records & Revenue
+GRVH900606,"Respected Sir, Birth certificate Patna nagar nigam se 3 din se nahi bana, school admission ruk gaya.",Municipal Certificates
+GRVH900410,"Namaste sir, राशन की दुकान Nagpur में तौल में गड़बड़ी हो रही है, कम अनाज दिया जा रहा है। Otherwise we will protest.",Ration & Public Distribution System
+GRVH900492,"महोदय, Bribe li gayi thi Meena Kori se Shastri Colony office mein kaam ke badle mein, sabuth hai.",Corruption & Bribery
+GRVH900273,"महोदय, FIR Civil Lines thane mein darj nahi ki ja rahi h a month se, police sun nahi rahi.",Police & Law and Order
+GRVH900149,"Dear officer, Garbage Varanasi mein 3 days se uthaya nahi gaya, badbu aa rahi hai. Kripya jald samadhan karein.",Sanitation & Garbage
+GRVH900009,"Drinking water contaminated hai Gwalior mein, please send sample testing team. Otherwise we will protest.",Water Supply
+GRVH900324,"Namaste sir, Sarkari hospital Wright Town mein doctor 20 din se nahi aa rahe, mareez pareshan hain.",Healthcare & Hospitals
+GRVH900476,"Dear officer, मुद्रा लोन आवेदन Jaipur बैंक शाखा में 10 din से लंबित है, बार बार दस्तावेज मांगे जा रहे हैं। Bahut pareshaan hain hum log.",Banking & Financial Services
+GRVH900322,"Sarkari hospital Sector 7 mein doctor a month se nahi aa rahe, mareez pareshan hain. Bahut pareshaan hain hum log.",Healthcare & Hospitals
+GRVH900554,"Dear officer, Contract worker Varanasi factory mein PF aur ESI ka labh nahi diya ja raha hai kai mahino se.",Employment & Labour
+GRVH900540,"Respected Sir, फैक्ट्री Patna में मजदूरों को न्यूनतम वेतन नहीं दिया जा रहा है 5 din से। Please take urgent action.",Employment & Labour
+GRVH900163,"Respected Sir, Divyang pension yojna ka labh Rajesh Verma ko 3 din se nahi mil raha Patna mein, form baar baar reject ho raha. Please take urgent action.",Pension & Provident Fund
+GRVH900541,"Respected Sir, फैक्ट्री Napier Town में मजदूरों को न्यूनतम वेतन नहीं दिया जा रहा है 15 din से। Thank you.",Employment & Labour
+GRVH900497,"Namaste sir, मुझसे प्रमाण पत्र बनवाने के लिए 5000 रुपए मांगे गए Jabalpur कार्यालय में। Kripya jald samadhan karein.",Corruption & Bribery
+GRVH900312,"Namaste sir, Blood bank Gwalior mein zaroori blood group available nahi tha emergency mein, delay se dikkat hui.",Healthcare & Hospitals
+GRVH900189,"महोदय, Kavita Singh ki pension 5 din se nahi mili hai, bank account Gandhi Nagar branch mein hai.",Pension & Provident Fund
+GRVH900152,"महोदय, Garbage Lucknow mein 10 din se uthaya nahi gaya, badbu aa rahi hai. Kripya jald samadhan karein.",Sanitation & Garbage
+GRVH900481,"Bribe li gayi thi Meena Kori se Raipur office mein kaam ke badle mein, sabuth hai. Please take urgent action.",Corruption & Bribery
+GRVH900118,"Dear officer, Garbage Civil Lines mein two weeks se uthaya nahi gaya, badbu aa rahi h. Thank you.",Sanitation & Garbage
+GRVH900085,"Namaste sir, Flyover construction Ward 12 mein delay ho raha hai 3 din se, traffic diversion se logo ko dikkat.",Roads & Infrastructure
+GRVH900559,"Sir/Madam, Contract worker Patna factory mein PF aur ESI ka labh nahi diya ja raha hai kai mahino se. कृपया जल्द कार्रवाई करें।",Employment & Labour
+GRVH900268,"Respected Sir, थाना Ward 12 में शिकायत लेकर गए तो पुलिस ने टालमटोल किया, 3 din बीत गए कोई कार्रवाई नहीं। Thank you.",Police & Law and Order
+GRVH900565,"Dear officer, फैक्ट्री Kotwali area में मजदूरों को न्यूनतम वेतन नहीं दिया जा रहा है 10 din से। कृपया जल्द कार्रवाई करें।",Employment & Labour
+GRVH900598,"Namaste sir, जन्म प्रमाण पत्र में नाम गलत छप गया है Sector 7 कार्यालय से, सुधार चाहिए। Bahut pareshaan hain hum log.",Municipal Certificates
+GRVH900599,"Namaste sir, जन्म प्रमाण पत्र में नाम गलत छप गया है Indore कार्यालय से, सुधार चाहिए। Please take urgent action.",Municipal Certificates
+GRVH900287,"थाना Shastri Colony में शिकायत लेकर गए तो पुलिस ने टालमटोल किया, a month बीत गए कोई कार्रवाई नहीं। Please take urgent action.",Police & Law and Order
+GRVH900411,"PDS dealer Civil Lines mein kerosene nahi de raha, black market mein bech raha hai shayad. Sadar naman.",Ration & Public Distribution System
+GRVH900239,"जमीन विवाद Adhartal में 10 din से पटवारी के पास लंबित है, कोई सुनवाई नहीं हो रही। कृपया जल्द कार्रवाई करें।",Land Records & Revenue
+GRVH900321,"Respected Sir, Sarkari hospital Model Town mein doctor two weeks se nahi aa rahe, mareez pareshan hain. Sadar naman.",Healthcare & Hospitals
+GRVH900562,"Dear officer, Contractor Ranchi construction site par safety equipment nhi deta, accident ka khatra rehta hai.",Employment & Labour
+GRVH900269,"थाना Indore में शिकायत लेकर गए तो पुलिस ने टालमटोल किया, a month बीत गए कोई कार्रवाई नहीं। Bahut pareshaan hain hum log.",Police & Law and Order
+GRVH900604,"Dear officer, Birth certificate Raipur nagar nigam se 1 mahine se nhi bana, school admission ruk gaya. कृपया जल्द कार्रवाई करें।",Municipal Certificates
+GRVH900044,"Sir/Madam, Varanasi mein bijli 1 hafta se gayab hai, transformer kharab ho gaya lagta hai. Otherwise we will protest.",Electricity
+GRVH900203,"Dear officer, जमीन विवाद Jabalpur में 15 din से पटवारी के पास लंबित है, कोई सुनवाई नहीं हो रही। Please take urgent action.",Land Records & Revenue
+GRVH900048,"Meter reading galat li gayi hai Ranchi mein, bill 5000 zyada aaya, bijli connection sahi hai fir bhi. Thank you.",Electricity
+GRVH900381,"Midday meal quality Civil Lines school mein bahut kharab hai, bacche bimar pad rahe hain. Sadar naman.",Education & Schools
+GRVH900253,"थाना Varanasi में शिकायत लेकर गए तो पुलिस ने टालमटोल किया, two weeks बीत गए कोई कार्रवाई नहीं। Sadar naman.",Police & Law and Order
+GRVH900334,"Respected Sir, Sarkari hospital Jabalpur mein doctor 3 din se nahi aa rahe, mareez pareshan hain.",Healthcare & Hospitals
+GRVH900330,"Sarkari hospital Madan Mahal mein doctor one week se nahi aa rahe, mareez pareshan hain. Thank you.",Healthcare & Hospitals
+GRVH900471,"मुद्रा लोन आवेदन Gandhi Nagar बैंक शाखा में 3 days से लंबित है, बार बार दस्तावेज मांगे जा रहे हैं। कृपया जल्द कार्रवाई करें।",Banking & Financial Services
+GRVH900421,"महोदय, राशन की दुकान Jabalpur में तौल में गड़बड़ी हो रही है, कम अनाज दिया जा रहा है। Please take urgent action.",Ration & Public Distribution System
+GRVH900444,"महोदय, मुद्रा लोन आवेदन Madan Mahal बैंक शाखा में a month से लंबित है, बार बार दस्तावेज मांगे जा रहे हैं।",Banking & Financial Services
+GRVH900205,"Respected Sir, जमीन विवाद Bhopal में 2 hafte से पटवारी के पास लंबित है, कोई सुनवाई नहीं हो रही। Otherwise we will protest.",Land Records & Revenue
+GRVH900207,"जमीन विवाद Bhopal में 3 days से पटवारी के पास लंबित है, कोई सुनवाई नहीं हो रही।",Land Records & Revenue
+GRVH900283,"FIR Bhopal thane mein darj nhi ki ja rahi hai 3 days se, police sun nahi rahi. Please take urgent action.",Police & Law and Order
+GRVH900172,"Sunita Patel ki pension 3 din se nahi mili hai, bank account Model Town branch mein hai. Sadar naman.",Pension & Provident Fund
+GRVH900129,"Dear officer, सार्वजनिक कचरा पात्र Indore में ओवरफ्लो हो रहे हैं, सफाई कर्मी नहीं आ रहे। Bahut pareshaan hain hum log.",Sanitation & Garbage
+GRVH900384,"Sir/Madam, Government school Kotwali area mein books 3 days se distribute nahi hui, session shuru ho chuka hai. Bahut pareshaan hain hum log.",Education & Schools
+GRVH900310,"Blood bank Patna mein zaroori blood group available nahi tha emergency mein, delay se dikkat hui. Otherwise we will protest.",Healthcare & Hospitals
+GRVH900019,"महोदय, No proper drinking water paani facility in Varanasi village, women have to walk 2km daily. Otherwise we will protest.",Water Supply
+GRVH900007,"Water pipeline leak ho gaya hai Nagpur mein, sadak par paani bah raha hai 3 din se. Sadar naman.",Water Supply
+GRVH900437,"मुद्रा लोन आवेदन Bhopal बैंक शाखा में 20 din से लंबित है, बार बार दस्तावेज मांगे जा रहे हैं। Kripya jald samadhan karein.",Banking & Financial Services
+GRVH900026,"Dear officer, पानी सप्लाई का समय Lucknow में बिना सूचना बदल दिया गया, logo ko paani nahi mil pa raha. कृपया जल्द कार्रवाई करें।",Water Supply
+GRVH900029,"Dear officer, No proper drinking water paani facility in Civil Lines village, women have to walk 2km daily. Thank you.",Water Supply
+GRVH900229,"Namaste sir, Registry ke baad bhi khasra number update nahi hua Gandhi Nagar revenue office mein. Bahut pareshaan hain hum log.",Land Records & Revenue
+GRVH900255,"थाना Patna में शिकायत लेकर गए तो पुलिस ने टालमटोल किया, 20 din बीत गए कोई कार्रवाई नहीं। Please take urgent action.",Police & Law and Order
+GRVH900373,"Namaste sir, Midday meal quality Madan Mahal school mein bahut kharab h, bacche bimar pad rahe hain. Bahut pareshaan hain hum log.",Education & Schools
+GRVH900320,"Respected Sir, Sarkari hospital Lucknow mein doctor 15 din se nhi aa rahe, mareez pareshan hain. Kripya jald samadhan karein.",Healthcare & Hospitals
+GRVH900011,"Respected Sir, पानी सप्लाई का समय Civil Lines में बिना सूचना बदल दिया गया, logo ko paani nahi mil pa raha. कृपया जल्द कार्रवाई करें।",Water Supply
+GRVH900126,"महोदय, Municipal safai gaadi Raipur area cover nahi karti, kachra jama hota rehta h roz. कृपया जल्द कार्रवाई करें।",Sanitation & Garbage
+GRVH900573,"Sir/Madam, Contract worker Ranchi factory mein PF aur ESI ka labh nhi diya ja raha h kai mahino se.",Employment & Labour
+GRVH900478,"Sir/Madam, Passbook update Jabalpur bank branch mein 20 din se nhi ho raha, staff kaam nahi kar rahe.",Banking & Financial Services
+GRVH900512,"Bribe li gayi thi Ramesh Kumar se Jabalpur office mein kaam ke badle mein, sabuth hai. Kripya jald samadhan karein.",Corruption & Bribery
+GRVH900457,"Respected Sir, Passbook update Nagpur bank branch mein 3 days se nahi ho raha, staff kaam nahi kar rahe.",Banking & Financial Services
+GRVH900439,"Respected Sir, मुद्रा लोन आवेदन Jaipur बैंक शाखा में a month से लंबित है, बार बार दस्तावेज मांगे जा रहे हैं। Bahut pareshaan hain hum log.",Banking & Financial Services
+GRVH900417,"Namaste sir, PDS dealer Sector 7 mein kerosene nahi de raha, black market mein bech raha hai shayad.",Ration & Public Distribution System
+GRVH900370,"Midday meal quality Bhopal school mein bahut kharab hai, bacche bimar pad rahe hain. Thank you.",Education & Schools
+GRVH900409,"Namaste sir, सार्वजनिक वितरण प्रणाली Raipur की दुकान समय पर नहीं खुलती, राशन नहीं मिल पाता गरीबों को। Sadar naman.",Ration & Public Distribution System
+GRVH900453,"Sir/Madam, मुद्रा लोन आवेदन Ward 12 बैंक शाखा में 2 hafte से लंबित है, बार बार दस्तावेज मांगे जा रहे हैं। Sadar naman.",Banking & Financial Services
+GRVH900571,"Sir/Madam, Contract worker Patna factory mein PF aur ESI ka labh nahi diya ja raha hai kai mahino se.",Employment & Labour
+GRVH900167,"महोदय, Ashok Gupta ki pension two weeks se nahi mili hai, bank account Ranchi branch mein hai. Kripya jald samadhan karein.",Pension & Provident Fund
+GRVH900105,"Sadak Lucknow mein 5 din se kaam adhura pada hai, dhool aur gaddo ki wajah se logo ko pareshani. Please take urgent action.",Roads & Infrastructure
+GRVH900183,"Namaste sir, Divyang pension yojna ka labh Meena Kori ko two weeks se nahi mil raha Varanasi mein, form baar baar reject ho raha.",Pension & Provident Fund
+GRVH900012,"महोदय, Water supply ka pipeline Ward 12 mein fata pada hai, saaf paani nahi mil raha logo ko. Thank you.",Water Supply
+GRVH900095,"Flyover construction Raipur mein delay ho raha hai two weeks se, traffic diversion se logo ko dikkat. Bahut pareshaan hain hum log.",Roads & Infrastructure
+GRVH900354,"Government school Lucknow mein books 5 din se distribute nahi hui, session shuru ho chuka hai. Bahut pareshaan hain hum log.",Education & Schools
+GRVH900558,"Contractor Raipur construction site par safety equipment nahi deta, accident ka khatra rehta hai. Kripya jald samadhan karein.",Employment & Labour
+GRVH900022,"Respected Sir, Water supply ka pipeline Indore mein fata pada hai, saaf paani nahi mil raha logo ko.",Water Supply
+GRVH900577,"महोदय, Contract worker Ward 12 factory mein PF aur ESI ka labh nahi diya ja raha hai kai mahino se. Thank you.",Employment & Labour
+GRVH900136,"सार्वजनिक कचरा पात्र Madan Mahal में ओवरफ्लो हो रहे हैं, सफाई कर्मी नहीं आ रहे। Otherwise we will protest.",Sanitation & Garbage
+GRVH900550,"Dear officer, Contractor Indore construction site par safety equipment nahi deta, accident ka khatra rehta hai. Kripya jald samadhan karein.",Employment & Labour
+GRVH900460,"मुद्रा लोन आवेदन Wright Town बैंक शाखा में 3 din से लंबित है, बार बार दस्तावेज मांगे जा रहे हैं।",Banking & Financial Services
+GRVH900353,"Government school Raipur mein books 10 din se distribute nahi hui, session shuru ho chuka hai. Kripya jald samadhan karein.",Education & Schools
+GRVH900318,"Blood bank Jaipur mein zaroori blood group available nahi tha emergency mein, delay se dikkat hui.",Healthcare & Hospitals
+GRVH900076,"Namaste sir, Meter reading galat li gayi h Bhopal mein, bill 500 zyada aaya, bijli connection sahi hai fir bhi. Kripya jald samadhan karein.",Electricity
+GRVH900429,"Dear officer, राशन की दुकान Varanasi में तौल में गड़बड़ी हो रही है, कम अनाज दिया जा रहा है।",Ration & Public Distribution System
+GRVH900219,Registry ke baad bhi khasra number update nahi hua Bhopal revenue office mein. Otherwise we will protest.,Land Records & Revenue
+GRVH900585,"Sir/Madam, जन्म प्रमाण पत्र में नाम गलत छप गया है Shastri Colony कार्यालय से, सुधार चाहिए। Bahut pareshaan hn hum log.",Municipal Certificates
+GRVH900045,"Load shedding Ward 12 area mein bahut zyada ho rahi hai, bijli sirf kuch ghante milti hai. Otherwise we will protest.",Electricity
+GRVH900348,"Midday meal quality Kanpur school mein bahut kharab hai, bacche bimar pad rahe hain. Please take urgent action.",Education & Schools
+GRVH900572,"Respected Sir, Contractor Adhartal construction site par safety equipment nahi deta, accident ka khatra rehta hai. Please take urgent action.",Employment & Labour
+GRVH900380,"Government school Jaipur mein books 20 din se distribute nahi hui, session shuru ho chuka hai. Thank you.",Education & Schools
+GRVH900612,"Sir/Madam, Death certificate apply kiya tha two weeks pehle Patna mein, abhi tak nahi mila. Otherwise we will protest.",Municipal Certificates
+GRVH900614,"Birth certificate Patna nagar nigam se 2 hafte se nahi bana, school admission ruk gaya.",Municipal Certificates
+GRVH900405,"महोदय, सार्वजनिक वितरण प्रणाली Gwalior की दुकान समय पर नहीं खुलती, राशन नहीं मिल पाता गरीबों को।",Ration & Public Distribution System
+GRVH900399,"Sir/Madam, PDS dealer Model Town mein kerosene nahi de raha, black market mein bech raha h shayad. कृपया जल्द कार्रवाई करें।",Ration & Public Distribution System
+GRVH900005,"Respected Sir, Water supply ka pipeline Patna mein fata pada hai, saaf paani nahi mil raha logo ko. Bahut pareshaan hain hum log.",Water Supply
+GRVH900316,"Sarkari hospital Indore mein doctor one week se nahi aa rahe, mareez pareshan hain. Bahut pareshaan hain hum log.",Healthcare & Hospitals
+GRVH900278,"थाना Madan Mahal में शिकायत लेकर गए तो पुलिस ने टालमटोल किया, 3 din बीत गए कोई कार्रवाई नहीं। Please take urgent action.",Police & Law and Order
+GRVH900242,"Namaste sir, Registry ke baad bhi khasra number update nahi hua Sector 7 revenue office mein.",Land Records & Revenue
+GRVH900288,"Namaste sir, FIR Indore thane mein darj nahi ki ja rahi hai 3 din se, police sun nahi rahi. Bahut pareshaan hain hum log.",Police & Law and Order
+GRVH900236,"जमीन विवाद Jabalpur में 5 din से पटवारी के पास लंबित है, कोई सुनवाई नहीं हो रही। Please take urgent action.",Land Records & Revenue
+GRVH900225,"महोदय, जमीन विवाद Ranchi में 2 hafte से पटवारी के पास लंबित है, कोई सुनवाई नहीं हो रही।",Land Records & Revenue
+GRVH900464,"महोदय, Passbook update Napier Town bank branch mein a month se nhi ho raha, staff kaam nahi kar rahe. Otherwise we will protest.",Banking & Financial Services
+GRVH900446,"Namaste sir, मुद्रा लोन आवेदन Ranchi बैंक शाखा में 1 mahine से लंबित है, बार बार दस्तावेज मांगे जा रहे हैं। Thank you.",Banking & Financial Services
+GRVH900502,"महोदय, मुझसे प्रमाण पत्र बनवाने के लिए 1500 रुपए मांगे गए Wright Town कार्यालय में। Sadar naman.",Corruption & Bribery
+GRVH900202,"Dear officer, Divyang pension yojna ka labh Ashok Gupta ko 2 hafte se nhi mil raha Model Town mein, form baar baar reject ho raha.",Pension & Provident Fund
+GRVH900393,"राशन की दुकान Bhopal में तौल में गड़बड़ी हो रही है, कम अनाज दिया जा रहा है।",Ration & Public Distribution System
+GRVH900613,"जन्म प्रमाण पत्र में नाम गलत छप गया है Gwalior कार्यालय से, सुधार चाहिए। Otherwise we will protest.",Municipal Certificates
+GRVH900594,"जन्म प्रमाण पत्र में नाम गलत छप गया है Indore कार्यालय से, सुधार चाहिए।",Municipal Certificates
+GRVH900049,"Sir/Madam, Nagpur mein bijli 20 din se gayab hai, transformer kharab ho gaya lagta hai. Please take urgent action.",Electricity
+GRVH900317,"Blood bank Ward 12 mein zaroori blood group available nahi tha emergency mein, delay se dikkat hui. Kripya jald samadhan karein.",Healthcare & Hospitals
+GRVH900486,"Sir/Madam, Bribe li gayi thi Anil Yadav se Jaipur office mein kaam ke badle mein, sabuth hai. Thank you.",Corruption & Bribery
+GRVH900403,"Dear officer, राशन की दुकान Adhartal में तौल में गड़बड़ी हो रही है, कम अनाज दिया जा रहा है।",Ration & Public Distribution System
+GRVH900224,"Respected Sir, जमीन विवाद Model Town में 15 din से पटवारी के पास लंबित है, कोई सुनवाई नहीं हो रही।",Land Records & Revenue
+GRVH900053,"Dear officer, Load shedding Adhartal area mein bahut zyada ho rahi h, bijli sirf kuch ghante milti hai. Bahut pareshaan hain hum log.",Electricity
+GRVH900440,"मुद्रा लोन आवेदन Patna बैंक शाखा में 5 din से लंबित है, बार बार दस्तावेज मांगे जा रहे हैं। Sadar naman.",Banking & Financial Services
+GRVH900186,"Namaste sir, Divyang pension yojna ka labh Sunita Patel ko 5 din se nahi mil raha Civil Lines mein, form baar baar reject ho raha. Otherwise we will protest.",Pension & Provident Fund
+GRVH900264,"Namaste sir, थाना Nagpur में शिकायत लेकर गए तो पुलिस ने टालमटोल किया, 10 din बीत गए कोई कार्रवाई नहीं। Bahut pareshaan hain hum log.",Police & Law and Order
+GRVH900449,"Passbook update Raipur bank branch mein 15 din se nahi ho raha, staff kaam nahi kar rahe. कृपया जल्द कार्रवाई करें।",Banking & Financial Services
+GRVH900545,Contract worker Sector 7 factory mein PF aur ESI ka labh nahi diya ja raha h kai mahino se. कृपया जल्द कार्रवाई करें।,Employment & Labour
+GRVH900447,"महोदय, Passbook update Civil Lines bank branch mein 5 din se nahi ho raha, staff kaam nahi kar rahe. Kripya jald samadhan karein.",Banking & Financial Services
+GRVH900272,"Sir/Madam, FIR Jabalpur thane mein darj nahi ki ja rahi hai 15 din se, police sun nahi rahi. Otherwise we will protest.",Police & Law and Order
+GRVH900526,"Namaste sir, मुझसे प्रमाण पत्र बनवाने के लिए 1500 रुपए मांगे गए Gandhi Nagar कार्यालय में।",Corruption & Bribery
+GRVH900357,"Government school Lucknow mein books two weeks se distribute nahi hui, session shuru ho chuka hai.",Education & Schools
+GRVH900442,"मुद्रा लोन आवेदन Shastri Colony बैंक शाखा में 3 days से लंबित है, बार बार दस्तावेज मांगे जा रहे हैं। Kripya jald samadhan karein.",Banking & Financial Services
+GRVH900098,"Sadak Patna mein 2 hafte se kaam adhura pada hai, dhool aur gaddo ki wajah se logo ko pareshani. Otherwise we will protest.",Roads & Infrastructure
+GRVH900260,"FIR Raipur thane mein darj nahi ki ja rahi hai 3 din se, police sun nahi rahi. कृपया जल्द कार्रवाई करें।",Police & Law and Order
+GRVH900302,"Blood bank Madan Mahal mein zaroori blood group available nahi tha emergency mein, delay se dikkat hui.",Healthcare & Hospitals
+GRVH900509,"Namaste sir, मुझसे प्रमाण पत्र बनवाने के लिए 10000 रुपए मांगे गए Gandhi Nagar कार्यालय में। Otherwise we will protest.",Corruption & Bribery
+GRVH900504,"Ration dealer Model Town mein har mahine paise leta hai anaj dene ke liye, complaint dena chahta hoon. कृपया जल्द कार्रवाई करें।",Corruption & Bribery
+GRVH900390,"Dear officer, Midday meal quality Shastri Colony school mein bahut kharab hai, bacche bimar pad rahe hain. Bahut pareshaan hain hum log.",Education & Schools
+GRVH900462,"Sir/Madam, मुद्रा लोन आवेदन Jabalpur बैंक शाखा में 3 din से लंबित है, बार बार दस्तावेज मांगे जा रहे हैं।",Banking & Financial Services
+GRVH900466,"Passbook update Shastri Colony bank branch mein two weeks se nahi ho raha, staff kaam nahi kar rahe.",Banking & Financial Services
+GRVH900156,"Geeta Bai ki pension one week se nahi mili hai, bank account Varanasi branch mein hai. Please take urgent action.",Pension & Provident Fund
+GRVH900093,"Speed breaker Ward 12 mein bina signage ke bana diya gaya, 5 din mein do accident ho chuke hain.",Roads & Infrastructure
+GRVH900025,"Dear officer, Water supply ka pipeline Jaipur mein fata pada hai, saaf paani nahi mil raha logo ko. Thank you.",Water Supply
+GRVH900610,"Dear officer, Birth certificate Ward 12 nagar nigam se 10 din se nahi bana, school admission ruk gaya. Sadar naman.",Municipal Certificates
+GRVH900270,"FIR Gandhi Nagar thane mein darj nahi ki ja rahi hai a month se, police sun nahi rahi. Thank you.",Police & Law and Order
+GRVH900537,"Contractor Napier Town construction site par safety equipment nahi deta, accident ka khatra rehta hai. Otherwise we will protest.",Employment & Labour
+GRVH900576,"Respected Sir, फैक्ट्री Indore में मजदूरों को न्यूनतम वेतन नहीं दिया जा रहा है 5 din से।",Employment & Labour
+GRVH900123,"महोदय, Municipal safai gaadi Patna area cover nahi karti, kachra jama hota rehta hai roz. कृपया जल्द कार्रवाई करें।",Sanitation & Garbage
+GRVH900394,"Respected Sir, PDS dealer Nagpur mein kerosene nhi de raha, black market mein bech raha h shayad. कृपया जल्द कार्रवाई करें।",Ration & Public Distribution System
+GRVH900155,"Namaste sir, Municipal safai vibhag Gwalior mein complaint karne par bhi kachra nahi uthata, ganda mahaul hai. Otherwise we will protest.",Sanitation & Garbage
+GRVH900579,"Respected Sir, Death certificate apply kiya tha a month pehle Nagpur mein, abhi tak nahi mila. Thank you.",Municipal Certificates
+GRVH900094,"Flyover construction Shastri Colony mein delay ho raha hai two weeks se, traffic diversion se logo ko dikkat.",Roads & Infrastructure
+GRVH900238,"Dear officer, Registry ke baad bhi khasra number update nahi hua Gandhi Nagar revenue office mein. Otherwise we will protest.",Land Records & Revenue
+GRVH900433,"महोदय, मुद्रा लोन आवेदन Jabalpur बैंक शाखा में two weeks से लंबित है, बार बार दस्तावेज मांगे जा रहे हैं। Otherwise we will protest.",Banking & Financial Services
+GRVH900108,"Namaste sir, Flyover construction Jaipur mein delay ho raha hai 10 din se, traffic diversion se logo ko dikkat.",Roads & Infrastructure
+GRVH900159,"Dear officer, Divyang pension yojna ka labh Vikas Tiwari ko 3 din se nahi mil raha Gandhi Nagar mein, form baar baar reject ho raha. Otherwise we will protest.",Pension & Provident Fund
+GRVH900168,"Namaste sir, Divyang pension yojna ka labh Sunita Patel ko 20 din se nahi mil raha Jaipur mein, form baar baar reject ho raha.",Pension & Provident Fund
+GRVH900608,"Birth certificate Raipur nagar nigam se 20 din se nahi bana, school admission ruk gaya. Bahut pareshaan hain hum log.",Municipal Certificates
+GRVH900586,"Death certificate apply kiya tha 3 days pehle Kanpur mein, abhi tak nhi mila. Bahut pareshaan hain hum log.",Municipal Certificates
+GRVH900560,फैक्ट्री Kanpur में मजदूरों को न्यूनतम वेतन नहीं दिया जा रहा है 20 din से। Please take urgent action.,Employment & Labour
+GRVH900584,"Dear officer, Birth certificate Gandhi Nagar nagar nigam se a month se nahi bana, school admission ruk gaya. Bahut pareshaan hain hum log.",Municipal Certificates
+GRVH900564,"महोदय, Contractor Indore construction site par safety equipment nahi deta, accident ka khatra rehta hai. Bahut pareshaan hain hum log.",Employment & Labour
+GRVH900184,"Ashok Gupta ki pension one week se nahi mili hai, bank account Sector 7 branch mein hai. Sadar naman.",Pension & Provident Fund
+GRVH900603,"Sir/Madam, जन्म प्रमाण पत्र में नाम गलत छप गया है Kotwali area कार्यालय से, सुधार चाहिए। कृपया जल्द कार्रवाई करें।",Municipal Certificates
+GRVH900059,"Respected Sir, Load shedding Varanasi area mein bahut zyada ho rahi h, bijli sirf kuch ghante milti hai. Otherwise we will protest.",Electricity
+GRVH900072,"Load shedding Gandhi Nagar area mein bahut zyada ho rahi hai, bijli sirf kuch ghante milti hai. Please take urgent action.",Electricity
+GRVH900256,"Respected Sir, FIR Wright Town thane mein darj nahi ki ja rahi hai 1 hafta se, police sun nahi rahi. Please take urgent action.",Police & Law and Order
+GRVH900137,"Namaste sir, Municipal safai vibhag Raipur mein complaint karne par bhi kachra nahi uthata, ganda mahaul hai. Otherwise we will protest.",Sanitation & Garbage
+GRVH900513,"Namaste sir, मुझसे प्रमाण पत्र बनवाने के लिए 2000 रुपए मांगे गए Jaipur कार्यालय में। Sadar naman.",Corruption & Bribery
+GRVH900227,"Respected Sir, Registry ke baad bhi khasra number update nahi hua Jabalpur revenue office mein.",Land Records & Revenue
+GRVH900487,"महोदय, Ration dealer Model Town mein har mahine paise leta hai anaj dene ke liye, complaint dena chahta hoon. Sadar naman.",Corruption & Bribery
+GRVH900176,"महोदय, Divyang pension yojna ka labh Ramesh Kumar ko 3 din se nahi mil raha Jaipur mein, form baar baar reject ho raha. कृपया जल्द कार्रवाई करें।",Pension & Provident Fund
+GRVH900033,"Namaste sir, Drinking water contaminated hai Jaipur mein, please send sample testing team. Otherwise we will protest.",Water Supply
+GRVH900153,"Dear officer, Garbage Bhopal mein 10 din se uthaya nhi gaya, badbu aa rahi hai.",Sanitation & Garbage
+GRVH900215,"Respected Sir, जमीन विवाद Civil Lines में 2 hafte से पटवारी के पास लंबित है, कोई सुनवाई नहीं हो रही।",Land Records & Revenue
+GRVH900237,"Respected Sir, Registry ke baad bhi khasra number update nahi hua Raipur revenue office mein. Please take urgent action.",Land Records & Revenue
+GRVH900249,"Namaste sir, जमीन विवाद Gwalior में 20 din से पटवारी के पास लंबित है, कोई सुनवाई नहीं हो रही। Kripya jald samadhan karein.",Land Records & Revenue
+GRVH900087,"Namaste sir, Sadak Kanpur mein 3 din se kaam adhura pada hai, dhool aur gaddo ki wajah se logo ko pareshani. कृपया जल्द कार्रवाई करें।",Roads & Infrastructure
+GRVH900588,"महोदय, जन्म प्रमाण पत्र में नाम गलत छप गया है Ranchi कार्यालय से, सुधार चाहिए।",Municipal Certificates
+GRVH900031,"पानी सप्लाई का समय Adhartal में बिना सूचना बदल दिया गया, logo ko paani nahi mil pa raha.",Water Supply
+GRVH900265,"Sir/Madam, थाना Ward 12 में शिकायत लेकर गए तो पुलिस ने टालमटोल किया, 20 din बीत गए कोई कार्रवाई नहीं। Sadar naman.",Police & Law and Order
+GRVH900587,"महोदय, Birth certificate Napier Town nagar nigam se 10 din se nahi bana, school admission ruk gaya. Otherwise we will protest.",Municipal Certificates
+GRVH900102,"महोदय, Speed breaker Model Town mein bina signage ke bana diya gaya, one week mein do accident ho chuke hain. Thank you.",Roads & Infrastructure
+GRVH900503,"Dear officer, Bribe li gayi thi Ramesh Kumar se Kotwali area office mein kaam ke badle mein, sabuth hai. कृपया जल्द कार्रवाई करें।",Corruption & Bribery
+GRVH900119,"सार्वजनिक कचरा पात्र Bhopal में ओवरफ्लो हो रहे हैं, सफाई कर्मी नहीं आ रहे। कृपया जल्द कार्रवाई करें।",Sanitation & Garbage
+GRVH900335,"Namaste sir, Blood bank Lucknow mein zaroori blood group available nhi tha emergency mein, delay se dikkat hui. Bahut pareshaan hn hum log.",Healthcare & Hospitals
+GRVH900046,"Namaste sir, Load shedding Jaipur area mein bahut zyada ho rahi hai, bijli sirf kuch ghante milti hai. कृपया जल्द कार्रवाई करें।",Electricity
+GRVH900388,"Respected Sir, Government school Ward 12 mein books 1 hafta se distribute nahi hui, session shuru ho chuka hai.",Education & Schools
+GRVH900327,"Respected Sir, Blood bank Raipur mein zaroori blood group available nhi tha emergency mein, delay se dikkat hui. Otherwise we will protest.",Healthcare & Hospitals
+GRVH900459,"Passbook update Jabalpur bank branch mein 15 din se nhi ho raha, staff kaam nahi kar rahe. Kripya jald samadhan karein.",Banking & Financial Services
+GRVH900331,"Namaste sir, Blood bank Kanpur mein zaroori blood group available nahi tha emergency mein, delay se dikkat hui. Otherwise we will protest.",Healthcare & Hospitals
+GRVH900482,"Respected Sir, मुझसे प्रमाण पत्र बनवाने के लिए 500 रुपए मांगे गए Patna कार्यालय में। Bahut pareshaan hain hum log.",Corruption & Bribery
+GRVH900602,"Respected Sir, Death certificate apply kiya tha 15 din pehle Gwalior mein, abhi tak nahi mila. Sadar naman.",Municipal Certificates
+GRVH900311,"Blood bank Sector 7 mein zaroori blood group available nahi tha emergency mein, delay se dikkat hui. Thank you.",Healthcare & Hospitals
+GRVH900574,Contract worker Kanpur factory mein PF aur ESI ka labh nahi diya ja raha hai kai mahino se. Kripya jald samadhan karein.,Employment & Labour
+GRVH900372,"Namaste sir, Government school Raipur mein books a month se distribute nahi hui, session shuru ho chuka hai. Sadar naman.",Education & Schools
+GRVH900413,"Sir/Madam, राशन की दुकान Napier Town में तौल में गड़बड़ी हो रही है, कम अनाज दिया जा रहा है। Kripya jald samadhan karein.",Ration & Public Distribution System
+GRVH900428,"सार्वजनिक वितरण प्रणाली Lucknow की दुकान समय पर नहीं खुलती, राशन नहीं मिल पाता गरीबों को। Otherwise we will protest.",Ration & Public Distribution System
+GRVH900566,"Namaste sir, Contractor Indore construction site par safety equipment nahi deta, accident ka khatra rehta hai. कृपया जल्द कार्रवाई करें।",Employment & Labour
+GRVH900596,"Death certificate apply kiya tha 20 din pehle Kotwali area mein, abhi tak nahi mila.",Municipal Certificates
+GRVH900037,"Dear officer, Drinking water contaminated hai Gwalior mein, please send sample testing team.",Water Supply
+GRVH900438,"Respected Sir, Passbook update Model Town bank branch mein one week se nahi ho raha, staff kaam nahi kar rahe. Kripya jald samadhan karein.",Banking & Financial Services
+GRVH900528,मुझसे प्रमाण पत्र बनवाने के लिए 3000 रुपए मांगे गए Madan Mahal कार्यालय में।,Corruption & Bribery
+GRVH900223,"महोदय, Registry ke baad bhi khasra number update nhi hua Model Town revenue office mein. कृपया जल्द कार्रवाई करें।",Land Records & Revenue
+GRVH900406,"Dear officer, सार्वजनिक वितरण प्रणाली Adhartal की दुकान समय पर नहीं खुलती, राशन नहीं मिल पाता गरीबों को।",Ration & Public Distribution System
+GRVH900220,"Respected Sir, जमीन विवाद Jaipur में 10 din से पटवारी के पास लंबित है, कोई सुनवाई नहीं हो रही। Kripya jald samadhan karein.",Land Records & Revenue
+GRVH900313,"Sarkari hospital Varanasi mein doctor 1 mahine se nhi aa rahe, mareez pareshan hn.",Healthcare & Hospitals
+GRVH900575,फैक्ट्री Gwalior में मजदूरों को न्यूनतम वेतन नहीं दिया जा रहा है 1 mahine से। Bahut pareshaan hain hum log.,Employment & Labour
+GRVH900250,"जमीन विवाद Lucknow में 3 days से पटवारी के पास लंबित है, कोई सुनवाई नहीं हो रही।",Land Records & Revenue
+GRVH900281,"Respected Sir, FIR Ranchi thane mein darj nhi ki ja rahi h a month se, police sun nahi rahi.",Police & Law and Order
+GRVH900383,"Midday meal quality Gwalior school mein bahut kharab hai, bacche bimar pad rahe hain. Bahut pareshaan hain hum log.",Education & Schools
+GRVH900583,"Respected Sir, जन्म प्रमाण पत्र में नाम गलत छप गया है Napier Town कार्यालय से, सुधार चाहिए।",Municipal Certificates
+GRVH900543,"Sir/Madam, Contractor Sector 7 construction site par safety equipment nhi deta, accident ka khatra rehta h. Please take urgent action.",Employment & Labour
+GRVH900514,मुझसे प्रमाण पत्र बनवाने के लिए 1000 रुपए मांगे गए Adhartal कार्यालय में। कृपया जल्द कार्रवाई करें।,Corruption & Bribery
+GRVH900423,"Respected Sir, सार्वजनिक वितरण प्रणाली Ward 12 की दुकान समय पर नहीं खुलती, राशन नहीं मिल पाता गरीबों को। Kripya jald samadhan karein.",Ration & Public Distribution System
+GRVH900552,फैक्ट्री Varanasi में मजदूरों को न्यूनतम वेतन नहीं दिया जा रहा है 1 hafta से। Please take urgent action.,Employment & Labour
+GRVH900498,"Bribe li gayi thi Anil Yadav se Napier Town office mein kaam ke badle mein, sabuth hai. Sadar naman.",Corruption & Bribery
+GRVH900228,"Dear officer, जमीन विवाद Madan Mahal में 20 din से पटवारी के पास लंबित है, कोई सुनवाई नहीं हो रही। Bahut pareshaan hain hum log.",Land Records & Revenue
+GRVH900501,"Respected Sir, मुझसे प्रमाण पत्र बनवाने के लिए 1000 रुपए मांगे गए Napier Town कार्यालय में।",Corruption & Bribery
+GRVH900292,"Sir/Madam, थाना Kotwali area में शिकायत लेकर गए तो पुलिस ने टालमटोल किया, two weeks बीत गए कोई कार्रवाई नहीं। Otherwise we will protest.",Police & Law and Order
+GRVH900147,"महोदय, Municipal safai vibhag Jabalpur mein complain karne par bhi kachra nahi uthata, ganda mahaul h. कृपया जल्द कार्रवाई करें।",Sanitation & Garbage
+GRVH900077,"Sir/Madam, Meter reading galat li gayi h Nagpur mein, bill 10000 zyada aaya, bijli connection sahi hai fir bhi. Otherwise we will protest.",Electricity
+GRVH900601,"Respected Sir, जन्म प्रमाण पत्र में नाम गलत छप गया है Ward 12 कार्यालय से, सुधार चाहिए। Kripya jald samadhan karein.",Municipal Certificates
+GRVH900244,Registry ke baad bhi khasra number update nahi hua Gandhi Nagar revenue office mein.,Land Records & Revenue
+GRVH900107,"Sadak Napier Town mein 15 din se kaam adhura pada hai, dhool aur gaddo ki wajah se logo ko pareshani. Bahut pareshaan hain hum log.",Roads & Infrastructure
+GRVH900374,"Namaste sir, Government school Lucknow mein books a month se distribute nahi hui, session shuru ho chuka hai. Kripya jald samadhan karein.",Education & Schools
+GRVH900006,"No proper drinking water paani facility in Shastri Colony village, women have to walk 2km daily. Otherwise we will protest.",Water Supply
+GRVH900115,"Sir/Madam, Sadak Nagpur mein 20 din se kaam adhura pada hai, dhool aur gaddo ki wajah se logo ko pareshani. Please take urgent action.",Roads & Infrastructure
+GRVH900164,"Respected Sir, Divyang pension yojna ka labh Mohd. Salim ko two weeks se nahi mil raha Jaipur mein, form baar baar reject ho raha. Sadar naman.",Pension & Provident Fund
+GRVH900556,Contract worker Raipur factory mein PF aur ESI ka labh nahi diya ja raha hai kai mahino se. कृपया जल्द कार्रवाई करें।,Employment & Labour
+GRVH900174,"Ramesh Kumar ki pension one week se nahi mili hai, bank account Jaipur branch mein hai. Thank you.",Pension & Provident Fund
+GRVH900361,"Dear officer, Midday meal quality Madan Mahal school mein bahut kharab hai, bacche bimar pad rahe hain. कृपया जल्द कार्रवाई करें।",Education & Schools
+GRVH900247,"Dear officer, जमीन विवाद Model Town में 10 din से पटवारी के पास लंबित है, कोई सुनवाई नहीं हो रही। Thank you.",Land Records & Revenue
+GRVH900038,"पानी सप्लाई का समय Civil Lines में बिना सूचना बदल दिया गया, logo ko paani nhi mil pa raha.",Water Supply
+GRVH900407,"Sir/Madam, राशन की दुकान Patna में तौल में गड़बड़ी हो रही है, कम अनाज दिया जा रहा है। Kripya jald samadhan karein.",Ration & Public Distribution System
+GRVH900332,"Dear officer, Sarkari hospital Shastri Colony mein doctor 3 din se nahi aa rahe, mareez pareshan hain.",Healthcare & Hospitals
+GRVH900140,"Municipal safai vibhag Ranchi mein complaint karne par bhi kachra nahi uthata, ganda mahaul hai. Bahut pareshaan hain hum log.",Sanitation & Garbage
+GRVH900458,"Sir/Madam, Passbook update Gwalior bank branch mein a month se nahi ho raha, staff kaam nahi kar rahe. Thank you.",Banking & Financial Services
+GRVH900246,"Respected Sir, जमीन विवाद Gwalior में a month से पटवारी के पास लंबित है, कोई सुनवाई नहीं हो रही। Sadar naman.",Land Records & Revenue
+GRVH900138,"Respected Sir, Garbage Varanasi mein 5 din se uthaya nahi gaya, badbu aa rahi hai. Kripya jald samadhan karein.",Sanitation & Garbage
+GRVH900047,"Patna mein bijli 20 din se gayab hai, transformer kharab ho gaya lagta hai. Otherwise we will protest.",Electricity
+GRVH900023,"Sir/Madam, Water pipeline leak ho gaya hai Jaipur mein, sadak par paani bah raha hai a month se. Thank you.",Water Supply
+GRVH900530,"Respected Sir, Contractor Gwalior construction site par safety equipment nahi deta, accident ka khatra rehta hai.",Employment & Labour
+GRVH900452,"Passbook update Kanpur bank branch mein 1 mahine se nahi ho raha, staff kaam nahi kar rahe. Bahut pareshaan hain hum log.",Banking & Financial Services
+GRVH900125,"Sir/Madam, सार्वजनिक कचरा पात्र Napier Town में ओवरफ्लो हो रहे हैं, सफाई कर्मी नहीं आ रहे। कृपया जल्द कार्रवाई करें।",Sanitation & Garbage
+GRVH900355,"महोदय, Government school Napier Town mein books 10 din se distribute nahi hui, session shuru ho chuka hai. Bahut pareshaan hain hum log.",Education & Schools
+GRVH900078,"Namaste sir, Gandhi Nagar mein bijli 5 din se gayab hai, transformer kharab ho gaya lagta hai. कृपया जल्द कार्रवाई करें।",Electricity
+GRVH900295,"Sir/Madam, थाना Adhartal में शिकायत लेकर गए तो पुलिस ने टालमटोल किया, 5 din बीत गए कोई कार्रवाई नहीं। Bahut pareshaan hain hum log.",Police & Law and Order
+GRVH900277,"FIR Gandhi Nagar thane mein darj nahi ki ja rahi hai 5 din se, police sun nahi rahi. Bahut pareshaan hain hum log.",Police & Law and Order
+GRVH900069,"Nagpur mein bijli 1 hafta se gayab h, transformer kharab ho gaya lagta hai. Thank you.",Electricity
+GRVH900510,मुझसे प्रमाण पत्र बनवाने के लिए 1000 रुपए मांगे गए Jaipur कार्यालय में। Sadar naman.,Corruption & Bribery
+GRVH900134,"महोदय, Municipal safai gaadi Indore area cover nahi karti, kachra jama hota rehta hai roz. Otherwise we will protest.",Sanitation & Garbage
+GRVH900161,"Respected Sir, Divyang pension yojna ka labh Ashok Gupta ko two weeks se nahi mil raha Wright Town mein, form baar baar reject ho raha. Thank you.",Pension & Provident Fund
+GRVH900169,"महोदय, Divyang pension yojna ka labh Deepak Chouhan ko 20 din se nahi mil raha Model Town mein, form baar baar reject ho raha. Thank you.",Pension & Provident Fund
+GRVH900597,"Respected Sir, Birth certificate Shastri Colony nagar nigam se one week se nahi bana, school admission ruk gaya.",Municipal Certificates
+GRVH900451,"Respected Sir, मुद्रा लोन आवेदन Patna बैंक शाखा में one week से लंबित है, बार बार दस्तावेज मांगे जा रहे हैं। Thank you.",Banking & Financial Services
+GRVH900529,"Sir/Madam, Contract worker Bhopal factory mein PF aur ESI ka labh nhi diya ja raha hai kai mahino se.",Employment & Labour
+GRVH900008,"पानी सप्लाई का समय Ward 12 में बिना सूचना बदल दिया गया, logo ko paani nahi mil pa raha. Sadar naman.",Water Supply
+GRVH900055,"महोदय, Meter reading galat li gayi hai Kotwali area mein, bill 500 zyada aaya, bijli connection sahi hai fir bhi. कृपया जल्द कार्रवाई करें।",Electricity
+GRVH900218,"Dear officer, जमीन विवाद Ward 12 में 1 hafta से पटवारी के पास लंबित है, कोई सुनवाई नहीं हो रही। Otherwise we will protest.",Land Records & Revenue
+GRVH900193,"Divyang pension yojna ka labh Deepak Chouhan ko 1 hafta se nahi mil raha Civil Lines mein, form baar baar reject ho raha. कृपया जल्द कार्रवाई करें।",Pension & Provident Fund
+GRVH900103,"Respected Sir, Speed breaker Kotwali area mein bina signage ke bana diya gaya, 20 din mein do accident ho chuke hain. Thank you.",Roads & Infrastructure
+GRVH900213,"Sir/Madam, जमीन विवाद Raipur में 3 days से पटवारी के पास लंबित है, कोई सुनवाई नहीं हो रही।",Land Records & Revenue
+GRVH900319,"Sarkari hospital Madan Mahal mein doctor 2 hafte se nahi aa rahe, mareez pareshan hain. Bahut pareshaan hain hum log.",Healthcare & Hospitals
+GRVH900290,"थाना Adhartal में शिकायत लेकर गए तो पुलिस ने टालमटोल किया, 10 din बीत गए कोई कार्रवाई नहीं।",Police & Law and Order
+GRVH900064,"Sir/Madam, Meter reading galat li gayi hai Raipur mein, bill 2000 zyada aaya, bijli connection sahi hai fir bhi. Bahut pareshaan hain hum log.",Electricity
+GRVH900467,"Passbook update Lucknow bank branch mein 3 days se nhi ho raha, staff kaam nahi kar rahe. Please take urgent action.",Banking & Financial Services
+GRVH900359,"Sir/Madam, Government school Indore mein books 10 din se distribute nahi hui, session shuru ho chuka hai. Sadar naman.",Education & Schools
+GRVH900056,"Meter reading galat li gayi h Sector 7 mein, bill 2000 zyada aaya, bijli connection sahi hai fir bhi. कृपया जल्द कार्रवाई करें।",Electricity
+GRVH900004,"Dear officer, Water supply ka pipeline Civil Lines mein fata pada hai, saaf paani nahi mil raha logo ko. Kripya jald samadhan karein.",Water Supply
+GRVH900534,Contract worker Bhopal factory mein PF aur ESI ka labh nahi diya ja raha hai kai mahino se. Thank you.,Employment & Labour
+GRVH900080,"Respected Sir, Meter reading galat li gayi hai Raipur mein, bill 5000 zyada aaya, bijli connection sahi hai fir bhi. Thank you.",Electricity
+GRVH900201,"Namaste sir, Divyang pension yojna ka labh Vikas Tiwari ko 2 hafte se nahi mil raha Madan Mahal mein, form baar baar reject ho raha. Please take urgent action.",Pension & Provident Fund
+GRVH900392,"महोदय, सार्वजनिक वितरण प्रणाली Wright Town की दुकान समय पर नहीं खुलती, राशन नहीं मिल पाता गरीबों को।",Ration & Public Distribution System
+GRVH900230,"जमीन विवाद Varanasi में 3 din से पटवारी के पास लंबित है, कोई सुनवाई नहीं हो रही।",Land Records & Revenue
+GRVH900067,"Dear officer, Model Town mein bijli 2 hafte se gayab hai, transformer kharab ho gaya lagta hai. Otherwise we will protest.",Electricity
+GRVH900113,"Speed breaker Indore mein bina signage ke bana diya gaya, two weeks mein do accident ho chuke hain. Kripya jald samadhan karein.",Roads & Infrastructure
+GRVH900135,"महोदय, Garbage Madan Mahal mein 2 hafte se uthaya nahi gaya, badbu aa rahi hai. कृपया जल्द कार्रवाई करें।",Sanitation & Garbage
+GRVH900496,"Respected Sir, मुझसे प्रमाण पत्र बनवाने के लिए 500 रुपए मांगे गए Wright Town कार्यालय में। Otherwise we will protest.",Corruption & Bribery
+GRVH900297,"थाना Raipur में शिकायत लेकर गए तो पुलिस ने टालमटोल किया, 3 din बीत गए कोई कार्रवाई नहीं।",Police & Law and Order
+GRVH900058,"Namaste sir, Meter reading galat li gayi hai Bhopal mein, bill 1000 zyada aaya, bijli connection sahi hai fir bhi.",Electricity
+GRVH900259,"FIR Ranchi thane mein darj nahi ki ja rahi hai 2 hafte se, police sun nahi rahi. Please take urgent action.",Police & Law and Order
+GRVH900480,"Ration dealer Sector 7 mein har mahine paise leta hai anaj dene ke liye, complaint dena chahta hoon. Thank you.",Corruption & Bribery
+GRVH900258,"थाना Patna में शिकायत लेकर गए तो पुलिस ने टालमटोल किया, 1 hafta बीत गए कोई कार्रवाई नहीं। Otherwise we will protest.",Police & Law and Order
+GRVH900569,"Respected Sir, फैक्ट्री Gandhi Nagar में मजदूरों को न्यूनतम वेतन नहीं दिया जा रहा है 15 din से। Otherwise we will protest.",Employment & Labour
+GRVH900455,"Sir/Madam, Passbook update Sector 7 bank branch mein two weeks se nahi ho raha, staff kaam nahi kar rahe. Please take urgent action.",Banking & Financial Services
+GRVH900262,"FIR Varanasi thane mein darj nhi ki ja rahi hai 1 hafta se, police sun nahi rahi. Thank you.",Police & Law and Order
+GRVH900434,"Respected Sir, मुद्रा लोन आवेदन Raipur बैंक शाखा में 10 din से लंबित है, बार बार दस्तावेज मांगे जा रहे हैं।",Banking & Financial Services
+GRVH900314,"महोदय, Blood bank Shastri Colony mein zaroori blood group available nahi tha emergency mein, delay se dikkat hui. Kripya jald samadhan karein.",Healthcare & Hospitals
+GRVH900441,"Namaste sir, मुद्रा लोन आवेदन Ranchi बैंक शाखा में 20 din से लंबित है, बार बार दस्तावेज मांगे जा रहे हैं। Otherwise we will protest.",Banking & Financial Services
+GRVH900280,"महोदय, FIR Adhartal thane mein darj nahi ki ja rahi hai 20 din se, police sun nahi rahi. Otherwise we will protest.",Police & Law and Order
+GRVH900013,"Sir/Madam, No proper drinking water paani facility in Raipur village, women have to walk 2km daily. Thank you.",Water Supply
+GRVH900014,"पानी सप्लाई का समय Raipur में बिना सूचना बदल दिया गया, logo ko paani nahi mil pa raha. Sadar naman.",Water Supply
+GRVH900050,"Namaste sir, Wright Town mein bijli 10 din se gayab h, transformer kharab ho gaya lagta hai. Otherwise we will protest.",Electricity
+GRVH900488,"Namaste sir, मुझसे प्रमाण पत्र बनवाने के लिए 3000 रुपए मांगे गए Model Town कार्यालय में।",Corruption & Bribery
+GRVH900257,"Dear officer, थाना Napier Town में शिकायत लेकर गए तो पुलिस ने टालमटोल किया, 20 din बीत गए कोई कार्रवाई नहीं। Thank you.",Police & Law and Order
+GRVH900235,"जमीन विवाद Ranchi में 1 hafta से पटवारी के पास लंबित है, कोई सुनवाई नहीं हो रही। Bahut pareshaan hain hum log.",Land Records & Revenue
+GRVH900032,"Drinking water contaminated hai Nagpur mein, please send sample testing team. Otherwise we will protest.",Water Supply
+GRVH900116,"Flyover construction Ranchi mein delay ho raha hai one week se, traffic diversion se logo ko dikkat. Bahut pareshaan hain hum log.",Roads & Infrastructure
+GRVH900200,"Anil Yadav ki pension two weeks se nahi mili hai, bank account Kanpur branch mein hai. Bahut pareshaan hain hum log.",Pension & Provident Fund
+GRVH900422,"Namaste sir, राशन की दुकान Lucknow में तौल में गड़बड़ी हो रही है, कम अनाज दिया जा रहा है। Sadar naman.",Ration & Public Distribution System
+GRVH900197,"Pooja Sharma ki pension 5 din se nahi mili hai, bank account Kanpur branch mein hai. Otherwise we will protest.",Pension & Provident Fund
+GRVH900111,"Sir/Madam, Speed breaker Patna mein bina signage ke bana diya gaya, 15 din mein do accident ho chuke hain.",Roads & Infrastructure
+GRVH900398,"Respected Sir, राशन की दुकान Ward 12 में तौल में गड़बड़ी हो रही है, कम अनाज दिया जा रहा है।",Ration & Public Distribution System
+GRVH900506,"Dear officer, Bribe li gayi thi Meena Kori se Wright Town office mein kaam ke badle mein, sabuth hai.",Corruption & Bribery
+GRVH900177,"Respected Sir, Divyang pension yojna ka labh Ashok Gupta ko one week se nhi mil raha Civil Lines mein, form baar baar reject ho raha. Please take urgent action.",Pension & Provident Fund
+GRVH900114,"महोदय, Flyover construction Nagpur mein delay ho raha hai 3 din se, traffic diversion se logo ko dikkat. Please take urgent action.",Roads & Infrastructure
+GRVH900154,"Municipal safai gaadi Lucknow area cover nahi karti, kachra jama hota rehta hai roz. Kripya jald samadhan karein.",Sanitation & Garbage
+GRVH900491,"Bribe li gayi thi Ramesh Kumar se Madan Mahal office mein kaam ke badle mein, sabuth hai. Please take urgent action.",Corruption & Bribery
+GRVH900120,"Respected Sir, Municipal safai vibhag Napier Town mein complain karne par bhi kachra nahi uthata, ganda mahaul h. Bahut pareshaan hain hum log.",Sanitation & Garbage
+GRVH900343,"Namaste sir, Sarkari hospital Nagpur mein doctor 20 din se nahi aa rahe, mareez pareshan hain. Sadar naman.",Healthcare & Hospitals
+GRVH900027,"Water pipeline leak ho gaya hai Gandhi Nagar mein, sadak par paani bah raha hai two weeks se. Bahut pareshaan hain hum log.",Water Supply
+GRVH900495,"महोदय, Bribe li gayi thi Vikas Tiwari se Model Town office mein kaam ke badle mein, sabuth hai. कृपया जल्द कार्रवाई करें।",Corruption & Bribery
+GRVH900378,"Sir/Madam, Government school Gwalior mein books 20 din se distribute nahi hui, session shuru ho chuka hai. Thank you.",Education & Schools
+GRVH900362,"Dear officer, Government school Wright Town mein books a month se distribute nahi hui, session shuru ho chuka hai. Otherwise we will protest.",Education & Schools
+GRVH900570,फैक्ट्री Gwalior में मजदूरों को न्यूनतम वेतन नहीं दिया जा रहा है 1 mahine से।,Employment & Labour
+GRVH900424,"राशन की दुकान Ward 12 में तौल में गड़बड़ी हो रही है, कम अनाज दिया जा रहा है। Kripya jald samadhan karein.",Ration & Public Distribution System
+GRVH900402,"PDS dealer Patna mein kerosene nahi de raha, black market mein bech raha hai shayad. Thank you.",Ration & Public Distribution System
+GRVH900092,"Speed breaker Wright Town mein bina signage ke bana diya gaya, a month mein do accident ho chuke hain. Otherwise we will protest.",Roads & Infrastructure
+GRVH900276,"थाना Jabalpur में शिकायत लेकर गए तो पुलिस ने टालमटोल किया, 1 hafta बीत गए कोई कार्रवाई नहीं। Kripya jald samadhan karein.",Police & Law and Order
+GRVH900522,"महोदय, मुझसे प्रमाण पत्र बनवाने के लिए 2000 रुपए मांगे गए Sector 7 कार्यालय में। Kripya jald samadhan karein.",Corruption & Bribery
+GRVH900054,"Sir/Madam, Bhopal mein bijli 10 din se gayab hai, transformer kharab ho gaya lagta hai. Sadar naman.",Electricity
+GRVH900356,"Respected Sir, Government school Wright Town mein books a month se distribute nahi hui, session shuru ho chuka hai. Sadar naman.",Education & Schools
+GRVH900408,"सार्वजनिक वितरण प्रणाली Kotwali area की दुकान समय पर नहीं खुलती, राशन नहीं मिल पाता गरीबों को। Sadar naman.",Ration & Public Distribution System
+GRVH900336,"Blood bank Gwalior mein zaroori blood group available nahi tha emergency mein, delay se dikkat hui. Otherwise we will protest.",Healthcare & Hospitals
+GRVH900419,"महोदय, सार्वजनिक वितरण प्रणाली Indore की दुकान समय पर नहीं खुलती, राशन नहीं मिल पाता गरीबों को। Please take urgent action.",Ration & Public Distribution System
+GRVH900267,"महोदय, थाना Ward 12 में शिकायत लेकर गए तो पुलिस ने टालमटोल किया, two weeks बीत गए कोई कार्रवाई नहीं। Bahut pareshaan hain hum log.",Police & Law and Order
+GRVH900414,"Sir/Madam, राशन की दुकान Ward 12 में तौल में गड़बड़ी हो रही है, कम अनाज दिया जा रहा है। Kripya jald samadhan karein.",Ration & Public Distribution System
+GRVH900199,"Respected Sir, Divyang pension yojna ka labh Rajesh Verma ko a month se nhi mil raha Wright Town mein, form baar baar reject ho raha. Otherwise we will protest.",Pension & Provident Fund
+GRVH900415,"सार्वजनिक वितरण प्रणाली Madan Mahal की दुकान समय पर नहीं खुलती, राशन नहीं मिल पाता गरीबों को। Please take urgent action.",Ration & Public Distribution System
+GRVH900212,"Sir/Madam, Registry ke baad bhi khasra number update nahi hua Civil Lines revenue office mein. Bahut pareshaan hain hum log.",Land Records & Revenue
+GRVH900096,"महोदय, Flyover construction Patna mein delay ho raha hai 10 din se, traffic diversion se logo ko dikkat. Kripya jald samadhan karein.",Roads & Infrastructure
+GRVH900035,"पानी सप्लाई का समय Shastri Colony में बिना सूचना बदल दिया गया, logo ko paani nahi mil pa raha. Otherwise we will protest.",Water Supply
+GRVH900090,"Flyover construction Model Town mein delay ho raha hai 3 days se, traffic diversion se logo ko dikkat. Kripya jald samadhan karein.",Roads & Infrastructure
+GRVH900395,"राशन की दुकान Jabalpur में तौल में गड़बड़ी हो रही है, कम अनाज दिया जा रहा है। Otherwise we will protest.",Ration & Public Distribution System
+GRVH900349,"महोदय, Government school Sector 7 mein books 20 din se distribute nahi hui, session shuru ho chuka h. Please take urgent action.",Education & Schools
+GRVH900468,"Dear officer, Passbook update Bhopal bank branch mein 15 din se nahi ho raha, staff kaam nahi kar rahe. Kripya jald samadhan karein.",Banking & Financial Services
+GRVH900266,"Namaste sir, थाना Raipur में शिकायत लेकर गए तो पुलिस ने टालमटोल किया, 3 din बीत गए कोई कार्रवाई नहीं। कृपया जल्द कार्रवाई करें।",Police & Law and Order
+GRVH900607,"Respected Sir, जन्म प्रमाण पत्र में नाम गलत छप गया है Varanasi कार्यालय से, सुधार चाहिए। Bahut pareshaan hain hum log.",Municipal Certificates
+GRVH900122,"महोदय, Municipal safai gaadi Napier Town area cover nhi karti, kachra jama hota rehta h roz. कृपया जल्द कार्रवाई करें।",Sanitation & Garbage
+GRVH900346,"Sir/Madam, Midday meal quality Jaipur school mein bahut kharab hai, bacche bimar pad rahe hain. Please take urgent action.",Education & Schools
+GRVH900018,"Dear officer, Water supply ka pipeline Sector 7 mein fata pada hai, saaf paani nahi mil raha logo ko.",Water Supply
+GRVH900563,"Namaste sir, फैक्ट्री Indore में मजदूरों को न्यूनतम वेतन नहीं दिया जा रहा है 3 days से। Kripya jald samadhan karein.",Employment & Labour
+GRVH900595,"Namaste sir, जन्म प्रमाण पत्र में नाम गलत छप गया है Gandhi Nagar कार्यालय से, सुधार चाहिए। Otherwise we will protest.",Municipal Certificates
+GRVH900109,"Sir/Madam, Speed breaker Civil Lines mein bina signage ke bana diya gaya, a month mein do accident ho chuke hain.",Roads & Infrastructure
+GRVH900003,"Drinking water contaminated hai Ranchi mein, please send sample testing team. Kripya jald samadhan karein.",Water Supply
+GRVH900151,"Garbage Indore mein two weeks se uthaya nhi gaya, badbu aa rahi h. Thank you.",Sanitation & Garbage
+GRVH900039,"Respected Sir, No proper drinking water paani facility in Madan Mahal village, women have to walk 2km daily. Please take urgent action.",Water Supply
+GRVH900454,"Respected Sir, मुद्रा लोन आवेदन Patna बैंक शाखा में 3 din से लंबित है, बार बार दस्तावेज मांगे जा रहे हैं। कृपया जल्द कार्रवाई करें।",Banking & Financial Services
+GRVH900435,"महोदय, Passbook update Patna bank branch mein 1 hafta se nahi ho raha, staff kaam nahi kar rahe. Thank you.",Banking & Financial Services
+GRVH900112,"Flyover construction Model Town mein delay ho raha hai 10 din se, traffic diversion se logo ko dikkat.",Roads & Infrastructure
+GRVH900315,"Dear officer, Sarkari hospital Sector 7 mein doctor 2 hafte se nahi aa rahe, mareez pareshan hain. Otherwise we will protest.",Healthcare & Hospitals
+GRVH900593,"Birth certificate Varanasi nagar nigam se one week se nahi bana, school admission ruk gaya. Otherwise we will protest.",Municipal Certificates
+GRVH900089,"Namaste sir, Sadak Civil Lines mein 3 din se kaam adhura pada hai, dhool aur gaddo ki wajah se logo ko pareshani. Sadar naman.",Roads & Infrastructure
+GRVH900131,"Garbage Madan Mahal mein 3 days se uthaya nahi gaya, badbu aa rahi hai. Please take urgent action.",Sanitation & Garbage
+GRVH900367,"Midday meal quality Raipur school mein bahut kharab hai, bacche bimar pad rahe hain. Otherwise we will protest.",Education & Schools
+GRVH900086,"Namaste sir, Sadak Patna mein 10 din se kaam adhura pada hai, dhool aur gaddo ki wajah se logo ko pareshani. Thank you.",Roads & Infrastructure
+GRVH900425,"Namaste sir, सार्वजनिक वितरण प्रणाली Varanasi की दुकान समय पर नहीं खुलती, राशन नहीं मिल पाता गरीबों को। कृपया जल्द कार्रवाई करें।",Ration & Public Distribution System
+GRVH900485,"Ration dealer Nagpur mein har mahine paise leta hai anaj dene ke liye, complaint dena chahta hoon. Otherwise we will protest.",Corruption & Bribery
+GRVH900043,"Water pipeline leak ho gaya hai Lucknow mein, sadak par paani bah raha hai a month se. Bahut pareshaan hain hum log.",Water Supply
+GRVH900600,"Birth certificate Nagpur nagar nigam se one week se nahi bana, school admission ruk gaya. Kripya jald samadhan karein.",Municipal Certificates
+GRVH900371,"Midday meal quality Wright Town school mein bahut kharab hai, bacche bimar pad rahe hain. Thank you.",Education & Schools
+GRVH900507,"Ration dealer Ranchi mein har mahine paise leta hai anaj dene ke liye, complaint dena chahta hoon. Thank you.",Corruption & Bribery
+GRVH900305,"Dear officer, Blood bank Gwalior mein zaroori blood group available nahi tha emergency mein, delay se dikkat hui. Thank you.",Healthcare & Hospitals
+GRVH900117,"Municipal safai vibhag Kotwali area mein complaint karne par bhi kachra nahi uthata, ganda mahaul hai. Kripya jald samadhan karein.",Sanitation & Garbage
+GRVH900073,"Load shedding Nagpur area mein bahut zyada ho rahi hai, bijli sirf kuch ghante milti hai. Bahut pareshaan hain hum log.",Electricity
+GRVH900191,"Rekha Ahirwar ki pension 1 mahine se nahi mili hai, bank account Kotwali area branch mein hai. Otherwise we will protest.",Pension & Provident Fund
+GRVH900377,"Midday meal quality Sector 7 school mein bahut kharab h, bacche bimar pad rahe hain. Please take urgent action.",Education & Schools
+GRVH900275,"FIR Indore thane mein darj nahi ki ja rahi h 10 din se, police sun nahi rahi. Otherwise we will protest.",Police & Law and Order
+GRVH900052,"Dear officer, Meter reading galat li gayi hai Kanpur mein, bill 5000 zyada aaya, bijli connection sahi hai fir bhi. Kripya jald samadhan karein.",Electricity
+GRVH900328,"Namaste sir, Sarkari hospital Model Town mein doctor 3 days se nhi aa rahe, mareez pareshan hn.",Healthcare & Hospitals
+GRVH900083,"Speed breaker Nagpur mein bina signage ke bana diya gaya, 10 din mein do accident ho chuke hain. Sadar naman.",Roads & Infrastructure
+GRVH900130,"Dear officer, सार्वजनिक कचरा पात्र Ward 12 में ओवरफ्लो हो रहे हैं, सफाई कर्मी नहीं आ रहे। कृपया जल्द कार्रवाई करें।",Sanitation & Garbage
+GRVH900171,"Ramesh Kumar ki pension 5 din se nahi mili hai, bank account Varanasi branch mein hai. Otherwise we will protest.",Pension & Provident Fund
+GRVH900450,"Dear officer, Passbook update Jaipur bank branch mein 3 days se nahi ho raha, staff kaam nahi kar rahe. Please take urgent action.",Banking & Financial Services
+GRVH900542,"Sir/Madam, फैक्ट्री Bhopal में मजदूरों को न्यूनतम वेतन नहीं दिया जा रहा है a month से। Please take urgent action.",Employment & Labour
+GRVH900339,"महोदय, Sarkari hospital Indore mein doctor 5 din se nahi aa rahe, mareez pareshan hain. Sadar naman.",Healthcare & Hospitals
+GRVH900340,"Sarkari hospital Adhartal mein doctor 5 din se nahi aa rahe, mareez pareshan hain. Bahut pareshaan hain hum log.",Healthcare & Hospitals
+GRVH900469,"महोदय, मुद्रा लोन आवेदन Varanasi बैंक शाखा में two weeks से लंबित है, बार बार दस्तावेज मांगे जा रहे हैं। Please take urgent action.",Banking & Financial Services
+GRVH900097,"महोदय, Flyover construction Gwalior mein delay ho raha hai two weeks se, traffic diversion se logo ko dikkat.",Roads & Infrastructure
+GRVH900578,"महोदय, Contractor Kanpur construction site par safety equipment nahi deta, accident ka khatra rehta hai. Please take urgent action.",Employment & Labour
+GRVH900106,"Respected Sir, Speed breaker Napier Town mein bina signage ke bana diya gaya, a month mein do accident ho chuke hain. कृपया जल्द कार्रवाई करें।",Roads & Infrastructure
+GRVH900535,फैक्ट्री Jaipur में मजदूरों को न्यूनतम वेतन नहीं दिया जा रहा है 5 din से। Please take urgent action.,Employment & Labour
+GRVH900079,"Dear officer, Load shedding Jaipur area mein bahut zyada ho rahi hai, bijli sirf kuch ghante milti hai. Please take urgent action.",Electricity
+GRVH900282,"Respected Sir, थाना Kanpur में शिकायत लेकर गए तो पुलिस ने टालमटोल किया, 5 din बीत गए कोई कार्रवाई नहीं। Otherwise we will protest.",Police & Law and Order
+GRVH900304,"Dear officer, Blood bank Ranchi mein zaroori blood group available nahi tha emergency mein, delay se dikkat hui. Please take urgent action.",Healthcare & Hospitals
+GRVH900170,"Dear officer, Divyang pension yojna ka labh Anil Yadav ko 5 din se nahi mil raha Madan Mahal mein, form baar baar reject ho raha. Thank you.",Pension & Provident Fund
+GRVH900580,"Death certificate apply kiya tha 1 mahine pehle Kotwali area mein, abhi tak nahi mila.",Municipal Certificates
+GRVH900192,"Mohd. Salim ki pension 20 din se nahi mili hai, bank account Jabalpur branch mein hai. Otherwise we will protest.",Pension & Provident Fund
+GRVH900063,"Lucknow mein bijli a month se gayab hai, transformer kharab ho gaya lagta hai. कृपया जल्द कार्रवाई करें।",Electricity
+GRVH900051,"Meter reading galat li gayi hai Nagpur mein, bill 1000 zyada aaya, bijli connection sahi hai fir bhi. Bahut pareshaan hain hum log.",Electricity
+GRVH900066,"Meter reading galat li gayi hai Madan Mahal mein, bill 2000 zyada aaya, bijli connection sahi hai fir bhi. Sadar naman.",Electricity
+GRVH900386,"Midday meal quality Wright Town school mein bahut kharab hai, bacche bimar pad rahe hain.",Education & Schools
+GRVH900187,"Deepak Chouhan ki pension 2 hafte se nahi mili hai, bank account Shastri Colony branch mein hai. Please take urgent action.",Pension & Provident Fund
+GRVH900279,"थाना Patna में शिकायत लेकर गए तो पुलिस ने टालमटोल किया, 15 din बीत गए कोई कार्रवाई नहीं। Bahut pareshaan hain hum log.",Police & Law and Order
+GRVH900519,"Sir/Madam, मुझसे प्रमाण पत्र बनवाने के लिए 1500 रुपए मांगे गए Kanpur कार्यालय में। Please take urgent action.",Corruption & Bribery
+GRVH900397,"Namaste sir, राशन की दुकान Civil Lines में तौल में गड़बड़ी हो रही है, कम अनाज दिया जा रहा है। Thank you.",Ration & Public Distribution System
+GRVH900132,"Garbage Jaipur mein 15 din se uthaya nahi gaya, badbu aa rahi hai. Bahut pareshaan hain hum log.",Sanitation & Garbage
+GRVH900508,"Dear officer, Ration dealer Sector 7 mein har mahine paise leta hai anaj dene ke liye, complaint dena chahta hoon. Bahut pareshaan hain hum log.",Corruption & Bribery
+GRVH900525,"Dear officer, Ration dealer Indore mein har mahine paise leta h anaj dene ke liye, complaint dena chahta hoon. Bahut pareshaan hain hum log.",Corruption & Bribery
+GRVH900165,"Respected Sir, Ramesh Kumar ki pension 3 din se nahi mili hai, bank account Raipur branch mein hai. Otherwise we will protest.",Pension & Provident Fund
+GRVH900609,"Death certificate apply kiya tha 15 din pehle Adhartal mein, abhi tak nahi mila.",Municipal Certificates
+GRVH900158,"Namaste sir, Divyang pension yojna ka labh Meena Kori ko 1 mahine se nhi mil raha Indore mein, form baar baar reject ho raha.",Pension & Provident Fund
+GRVH900385,"Namaste sir, Government school Napier Town mein books one week se distribute nahi hui, session shuru ho chuka hai. Otherwise we will protest.",Education & Schools
+GRVH900128,"Garbage Ward 12 mein 2 hafte se uthaya nahi gaya, badbu aa rahi hai. Sadar naman.",Sanitation & Garbage
+GRVH900110,"Respected Sir, Speed breaker Lucknow mein bina signage ke bana diya gaya, two weeks mein do accident ho chuke hain. Thank you.",Roads & Infrastructure
+GRVH900060,"Load shedding Raipur area mein bahut zyada ho rahi hai, bijli sirf kuch ghante milti hai. Kripya jald samadhan karein.",Electricity
+GRVH900181,"Divyang pension yojna ka labh Anil Yadav ko 15 din se nahi mil raha Patna mein, form baar baar reject ho raha.",Pension & Provident Fund
+GRVH900404,"Dear officer, सार्वजनिक वितरण प्रणाली Napier Town की दुकान समय पर नहीं खुलती, राशन नहीं मिल पाता गरीबों को। Bahut pareshaan hain hum log.",Ration & Public Distribution System
+GRVH900445,"Sir/Madam, Passbook update Jaipur bank branch mein 10 din se nahi ho raha, staff kaam nahi kar rahe. कृपया जल्द कार्रवाई करें।",Banking & Financial Services
+GRVH900561,फैक्ट्री Nagpur में मजदूरों को न्यूनतम वेतन नहीं दिया जा रहा है one week से। Thank you.,Employment & Labour
+GRVH900382,"Dear officer, Midday meal quality Adhartal school mein bahut kharab hai, bacche bimar pad rahe hain.",Education & Schools
+GRVH900591,"Sir/Madam, Birth certificate Ward 12 nagar nigam se two weeks se nahi bana, school admission ruk gaya. Otherwise we will protest.",Municipal Certificates
+GRVH900443,"Respected Sir, मुद्रा लोन आवेदन Madan Mahal बैंक शाखा में 2 hafte से लंबित है, बार बार दस्तावेज मांगे जा रहे हैं। कृपया जल्द कार्रवाई करें।",Banking & Financial Services
+GRVH900527,"महोदय, मुझसे प्रमाण पत्र बनवाने के लिए 2000 रुपए मांगे गए Jabalpur कार्यालय में। Thank you.",Corruption & Bribery
+GRVH900020,"Respected Sir, पानी सप्लाई का समय Patna में बिना सूचना बदल दिया गया, logo ko paani nhi mil pa raha. कृपया जल्द कार्रवाई करें।",Water Supply
+GRVH900511,"Bribe li gayi thi Meena Kori se Model Town office mein kaam ke badle mein, sabuth hai. Sadar naman.",Corruption & Bribery
+GRVH900465,"Namaste sir, मुद्रा लोन आवेदन Model Town बैंक शाखा में 5 din से लंबित है, बार बार दस्तावेज मांगे जा रहे हैं। Please take urgent action.",Banking & Financial Services
+GRVH900099,"Sir/Madam, Speed breaker Wright Town mein bina signage ke bana diya gaya, 3 days mein do accident ho chuke hain. Thank you.",Roads & Infrastructure
+GRVH900379,"Government school Gwalior mein books 5 din se distribute nahi hui, session shuru ho chuka hai. Please take urgent action.",Education & Schools
+GRVH900474,"मुद्रा लोन आवेदन Nagpur बैंक शाखा में 3 din से लंबित है, बार बार दस्तावेज मांगे जा रहे हैं। Kripya jald samadhan karein.",Banking & Financial Services
+GRVH900148,"Sir/Madam, सार्वजनिक कचरा पात्र Civil Lines में ओवरफ्लो हो रहे हैं, सफाई कर्मी नहीं आ रहे।",Sanitation & Garbage
+GRVH900293,"Namaste sir, FIR Raipur thane mein darj nahi ki ja rahi hai 20 din se, police sun nahi rahi. Kripya jald samadhan karein.",Police & Law and Order
+GRVH900040,"Sir/Madam, Water pipeline leak ho gaya hai Nagpur mein, sadak par paani bah raha hai 3 days se. Kripya jald samadhan karein.",Water Supply

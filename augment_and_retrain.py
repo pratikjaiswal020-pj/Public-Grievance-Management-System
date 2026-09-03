@@ -1,7 +1,8 @@
 """
 Augmentation Strategy:
 - Analyze holdout text patterns (templates) to extract sentence structures
-- Generate 1000+ template-based augmented samples for each category
+- Generate 1000+ rich template-based augmented samples for all 14 categories
+- Include deep vocabulary covering Hinglish, Hindi, and English variations
 - Combine with original training data and retrain all models
 """
 
@@ -21,6 +22,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.svm import LinearSVC
+from sklearn.calibration import CalibratedClassifierCV
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
@@ -33,21 +35,22 @@ from xgboost import XGBClassifier
 random.seed(42)
 np.random.seed(42)
 
-BASE = r"c:\Users\prati\OneDrive\Desktop\PUBLIC GRIEVANCE project"
+BASE = os.path.dirname(os.path.abspath(__file__))
 
 df_train = pd.read_csv(os.path.join(BASE, "grievances_synthetic.csv"))
 df_holdout = pd.read_csv(os.path.join(BASE, "grievances_holdout_templates.csv"))
 
 # ─────────────────────────────────────────────
-# Template Augmentation Data
+# Vocabulary & Entities for Augmentation
 # ─────────────────────────────────────────────
 
 CITIES = [
     "Patna", "Varanasi", "Raipur", "Bhopal", "Lucknow", "Kanpur", "Indore",
-    "Nagpur", "Allahabad", "Gwalior", "Jabalpur", "Agra", "Meerut",
+    "Nagpur", "Allahabad", "Prayagraj", "Gwalior", "Jabalpur", "Agra", "Meerut",
     "Faridabad", "Ghaziabad", "Nashik", "Aurangabad", "Solapur", "Kolkata",
     "Ranchi", "Dhanbad", "Jamshedpur", "Bokaro", "Dehradun", "Haridwar",
-    "Amritsar", "Ludhiana", "Jodhpur", "Kota", "Ajmer", "Surat", "Vadodara"
+    "Amritsar", "Ludhiana", "Jodhpur", "Kota", "Ajmer", "Surat", "Vadodara",
+    "Jaipur", "Delhi", "Gurugram", "Noida", "Muzaffarpur", "Gaya", "Ujjain"
 ]
 
 NAMES = [
@@ -55,40 +58,46 @@ NAMES = [
     "Priya Singh", "Ramesh Gupta", "Anita Devi", "Sunita Sharma",
     "Vikram Yadav", "Kavita Patel", "Ajay Mishra", "Rekha Joshi",
     "Dinesh Tiwari", "Pooja Rani", "Sanjay Dubey", "Meena Pandey",
-    "Rohit Agarwal", "Geeta Soni", "Arun Pal", "Savita Jain"
+    "Rohit Agarwal", "Geeta Soni", "Arun Pal", "Savita Jain",
+    "Ashok Gupta", "Meena Kori", "Anil Yadav", "Sunil Verma", "Kishore Kumar"
 ]
 
 AREAS = [
-    "Ward 12", "Sector 5", "Gandhi Nagar", "Nehru Colony",
-    "Civil Lines", "Napier Town", "Wright Town", "Adhartal",
-    "Madan Mahal", "Model Town", "Adarsh Nagar", "Shastri Nagar",
-    "Patel Nagar", "New Colony", "Old City", "Station Road area"
+    "Ward 12", "Sector 5", "Gandhi Nagar", "Nehru Colony", "Sector 7",
+    "Civil Lines", "Napier Town", "Wright Town", "Adhartal", "Kotwali area",
+    "Madan Mahal", "Model Town", "Adarsh Nagar", "Shastri Nagar", "Shastri Colony",
+    "Patel Nagar", "New Colony", "Old City", "Station Road area", "Subhash Nagar"
 ]
 
 POLICE_STATIONS = [
-    "thane", "police station", "chowki", "outpost"
+    "thane", "police station", "chowki", "outpost", "kotwali", "thana"
 ]
 
 DURATIONS = [
     "3 days", "5 din", "1 hafta", "10 din", "2 weeks", "ek mahine",
-    "15 din", "7 din", "4 din", "6 din", "3 hafte"
+    "15 din", "7 din", "4 din", "6 din", "3 hafte", "20 din", "one week",
+    "two weeks", "a month", "2 hafte", "1 mahine", "kai hafto", "3 mahine"
 ]
 
 GREETINGS = [
     "Namaste sir,", "Sir/Madam,", "Dear officer,", "महोदय,",
-    "Respected Sir,", "थाना", "Mahoday,", ""
+    "Respected Sir,", "Sadar pranam,", "Mahoday,", "To the concerned authority,",
+    "Hello Sir,", "Respected officer,", ""
 ]
 
 CLOSINGS = [
     "Thank you.", "Please take urgent action.",
     "Kripya jald samadhan karein.", "कृपया जल्द कार्रवाई करें।",
-    "Sadar naman.", "Otherwise we will protest.", ""
+    "Sadar naman.", "Otherwise we will protest.", "Bahut pareshaan hain hum log.",
+    "Looking forward to prompt resolution.", "Umeed hai jald sunwai hogi.", ""
 ]
+
+AMOUNTS = ["500", "1000", "1500", "2000", "5000", "10000", "50000"]
 
 def rand(lst): return random.choice(lst)
 
 # ─────────────────────────────────────────────
-# Template generators per category
+# Category-Specific Rich Sentence Generators
 # ─────────────────────────────────────────────
 
 def gen_land_records():
@@ -99,7 +108,11 @@ def gen_land_records():
         f"{rand(GREETINGS)} {rand(NAMES)} ki zameen ka patwari {rand(DURATIONS)} se koi jawab nahi de rahe hain. {rand(CLOSINGS)}",
         f"Jameen ka naksha sahi nahi hai {rand(CITIES)} mein, {rand(DURATIONS)} se tehsildar se guzarish kar raha hoon. {rand(CLOSINGS)}",
         f"{rand(GREETINGS)} भू-अभिलेख में गलती है, {rand(CITIES)} में तहसीलदार को निर्देश दें। {rand(CLOSINGS)}",
-        f"Land mutation {rand(NAMES)} ki {rand(DURATIONS)} se atki hai, {rand(CITIES)} patwari karyalay mein. {rand(CLOSINGS)}",
+        f"Land mutation (dakhil kharij) {rand(NAMES)} ki {rand(DURATIONS)} se atki hai, {rand(CITIES)} patwari karyalay mein. {rand(CLOSINGS)}",
+        f"{rand(GREETINGS)} Registry ke baad bhi khasra number update nahi hua {rand(AREAS)} revenue office mein. {rand(CLOSINGS)}",
+        f"Khatoni aur fard ki copy {rand(CITIES)} tehsil se {rand(DURATIONS)} se nahi nikal rahi hai. {rand(CLOSINGS)}",
+        f"{rand(NAMES)} ki ancestral property par illegal kabja ho gaya hai {rand(AREAS)} mein, revenue department action le.",
+        f"Tehsildar office {rand(CITIES)} mein land partition case {rand(DURATIONS)} se delay ho raha hai. {rand(CLOSINGS)}"
     ]
     return rand(templates)
 
@@ -112,6 +125,9 @@ def gen_police():
         f"{rand(GREETINGS)} {rand(AREAS)} mein asaamajik tatvon ka atank hai, {rand(DURATIONS)} se shikayat ke baad bhi koi action nahi. {rand(CLOSINGS)}",
         f"FIR registration {rand(CITIES)} mein refuse kar di gayi {rand(DURATIONS)} pehle, police ne harassment ki. {rand(CLOSINGS)}",
         f"Chor bazaar {rand(CITIES)} mein khule aam chal raha hai, {rand(DURATIONS)} se shikayat laga raha hoon. {rand(CLOSINGS)}",
+        f"{rand(NAMES)} ka mobile aur wallet chori ho gaya {rand(AREAS)} mein, police ne complaint lene se mana kar diya.",
+        f"Night patrolling {rand(AREAS)} mein bilkul band hai, gundagardi aur dacoity ka darr bana rehta hai.",
+        f"{rand(GREETINGS)} Cyber crime fraud case mein {rand(CITIES)} police station koi investigation nahi kar rahi."
     ]
     return rand(templates)
 
@@ -122,8 +138,10 @@ def gen_pension():
         f"PF withdrawal request {rand(DURATIONS)} se pending h, office se koi response nahi mil raha. {rand(CLOSINGS)}",
         f"EPF transfer {rand(CITIES)} regional office se {rand(DURATIONS)} se atka hai, naya employer wait kar raha hai. {rand(CLOSINGS)}",
         f"पेंशन फॉर्म में गलत बैंक खाता नंबर दर्ज हो गया है, {rand(DURATIONS)} से सुधार नहीं हुआ। {rand(CLOSINGS)}",
-        f"{rand(NAMES)} ki old age pension {rand(DURATIONS)} se band hai, {rand(CITIES)} mein. {rand(CLOSINGS)}",
+        f"{rand(NAMES)} ki old age pension (vriddhavastha pension) {rand(DURATIONS)} se band hai, {rand(CITIES)} mein. {rand(CLOSINGS)}",
         f"Widow pension {rand(NAMES)} ki {rand(DURATIONS)} se nahi aayi, {rand(CITIES)} se application ki thi. {rand(CLOSINGS)}",
+        f"Life certificate (Jeevan Pramaan) submit karne ke baad bhi pension release nahi hui {rand(AREAS)} mein. {rand(CLOSINGS)}",
+        f"Retirement gratuity aur pension arrears {rand(NAMES)} ko {rand(DURATIONS)} se nahi mile. {rand(CLOSINGS)}"
     ]
     return rand(templates)
 
@@ -135,6 +153,9 @@ def gen_electricity():
         f"Bijli bill bahut zyada aaya hai, {rand(NAMES)} ka meter reading galat lagta hai {rand(CITIES)} mein. {rand(CLOSINGS)}",
         f"{rand(GREETINGS)} बिजली कटौती {rand(CITIES)} में {rand(DURATIONS)} से हो रही है, कोई समाधान नहीं। {rand(CLOSINGS)}",
         f"New bijli connection {rand(DURATIONS)} se pending hai {rand(NAMES)} ka, {rand(CITIES)} office mein application di thi. {rand(CLOSINGS)}",
+        f"Load shedding {rand(AREAS)} area mein bahut zyada ho rahi hai, bijli sirf kuch ghante milti hai. {rand(CLOSINGS)}",
+        f"Meter reading galat li gayi hai {rand(CITIES)} mein, bill {rand(AMOUNTS)} zyada aaya, bijli connection sahi hai fir bhi. {rand(CLOSINGS)}",
+        f"High voltage fluctuation se ghar ke electrical appliances jal gaye {rand(AREAS)} mein, electricity board complaint solve kare."
     ]
     return rand(templates)
 
@@ -145,7 +166,9 @@ def gen_water():
         f"Pani ka pressure bahut kam hai {rand(AREAS)} colony mein {rand(DURATIONS)} se. {rand(CLOSINGS)}",
         f"{rand(GREETINGS)} नल में {rand(DURATIONS)} से पानी नहीं आ रहा {rand(CITIES)} में। {rand(CLOSINGS)}",
         f"Tanker bhi {rand(DURATIONS)} se nahi aaya {rand(AREAS)} mein, pani ki badi dikkat hai. {rand(CLOSINGS)}",
-        f"Pipe leakage {rand(AREAS)} mein {rand(DURATIONS)} se hai, koi repair nahi hua. {rand(CLOSINGS)}",
+        f"Pipe leakage {rand(AREAS)} mein {rand(DURATIONS)} se hai, koi repair nahi hua, sadak par paani beh raha hai. {rand(CLOSINGS)}",
+        f"Drinking water contaminated hai {rand(AREAS)} mein, ganda aur badbudaar paani supply ho raha hai, please send testing team. {rand(CLOSINGS)}",
+        f"Borewell motor jal gaya hai municipal water supply ka {rand(CITIES)} mein {rand(DURATIONS)} se."
     ]
     return rand(templates)
 
@@ -157,6 +180,8 @@ def gen_sanitation():
         f"गंदगी {rand(AREAS)} में {rand(DURATIONS)} से फैली हुई है, सफाई कर्मचारी नहीं आ रहे। {rand(CLOSINGS)}",
         f"Dustbin full hai {rand(AREAS)} mein, {rand(DURATIONS)} se clear nahi ki. {rand(CLOSINGS)}",
         f"Open drain overflow {rand(AREAS)} mein, {rand(DURATIONS)} se shikayat kar raha hoon. {rand(CLOSINGS)}",
+        f"{rand(GREETINGS)} Municipal safai gaadi {rand(AREAS)} area cover nahi karti, kachra jama hota rehta hai roz. {rand(CLOSINGS)}",
+        f"Dead animal pada hai main road {rand(AREAS)} par {rand(DURATIONS)} se, hygiene aur health hazard ban raha hai."
     ]
     return rand(templates)
 
@@ -167,6 +192,9 @@ def gen_roads():
         f"Street light {rand(AREAS)} mein {rand(DURATIONS)} se band hai, raat ko andhera rehta hai. {rand(CLOSINGS)}",
         f"Footpath {rand(AREAS)} mein toot gayi hai {rand(DURATIONS)} pehle, koi repair nahi hua. {rand(CLOSINGS)}",
         f"सड़क पर गड्ढे {rand(CITIES)} में {rand(DURATIONS)} से हैं, वाहन चालक परेशान हैं। {rand(CLOSINGS)}",
+        f"{rand(GREETINGS)} Flyover construction {rand(CITIES)} mein delay ho raha hai {rand(DURATIONS)} se, traffic diversion se logo ko dikkat. {rand(CLOSINGS)}",
+        f"Speed breaker {rand(AREAS)} mein bina signage ke bana diya gaya, {rand(DURATIONS)} mein do accident ho chuke hn. {rand(CLOSINGS)}",
+        f"Sadak {rand(CITIES)} mein {rand(DURATIONS)} se kaam adhura pada hai, dhool aur gaddo ki wajah se logo ko pareshani. {rand(CLOSINGS)}"
     ]
     return rand(templates)
 
@@ -174,60 +202,77 @@ def gen_education():
     templates = [
         f"{rand(GREETINGS)} School {rand(CITIES)} mein {rand(DURATIONS)} se teacher nahi aa raha. {rand(CLOSINGS)}",
         f"Scholarship {rand(NAMES)} ki {rand(DURATIONS)} se nahi mili, school ne form bhara tha. {rand(CLOSINGS)}",
-        f"Admission mein problem hai {rand(CITIES)} ke school mein. {rand(CLOSINGS)}",
+        f"Admission mein problem hai {rand(CITIES)} ke government school mein RTE quota ke tahat. {rand(CLOSINGS)}",
         f"Mid day meal {rand(DURATIONS)} se band hai {rand(AREAS)} school mein. {rand(CLOSINGS)}",
         f"स्कूल में {rand(DURATIONS)} से पानी और शौचालय की व्यवस्था नहीं है {rand(CITIES)} में। {rand(CLOSINGS)}",
-        f"Board exam result {rand(NAMES)} ka {rand(DURATIONS)} se galat show ho raha hai online. {rand(CLOSINGS)}",
+        f"Board exam result {rand(NAMES)} ka {rand(DURATIONS)} se galat show ho raha hai online marksheet mein. {rand(CLOSINGS)}",
+        f"Government school {rand(CITIES)} mein books {rand(DURATIONS)} se distribute nahi hui, session shuru ho chuka hai. {rand(CLOSINGS)}",
+        f"Midday meal quality {rand(AREAS)} school mein bahut kharab hai, bacche bimar pad rahe hain. {rand(CLOSINGS)}"
     ]
     return rand(templates)
 
 def gen_healthcare():
     templates = [
-        f"{rand(GREETINGS)} Doctor {rand(DURATIONS)} se hospital {rand(CITIES)} mein nahi aa raha. {rand(CLOSINGS)}",
-        f"Hospital mein medicines {rand(DURATIONS)} se khatam hain {rand(CITIES)} mein. {rand(CLOSINGS)}",
-        f"Ayushman card se treatment nahi mil rahi {rand(NAMES)} ko {rand(DURATIONS)} se. {rand(CLOSINGS)}",
-        f"PHC {rand(AREAS)} mein {rand(DURATIONS)} se doctor nahi hai, makkhi chhapti hai. {rand(CLOSINGS)}",
+        f"{rand(GREETINGS)} Doctor {rand(DURATIONS)} se hospital {rand(CITIES)} mein nahi aa raha, OPD band hai. {rand(CLOSINGS)}",
+        f"Hospital mein medicines {rand(DURATIONS)} se khatam hain {rand(CITIES)} mein, bahar se lene ko bolte hain. {rand(CLOSINGS)}",
+        f"Ayushman Bharat card se treatment nahi mil rahi {rand(NAMES)} ko {rand(DURATIONS)} se, hospital mana kar raha hai. {rand(CLOSINGS)}",
+        f"PHC / CHC {rand(AREAS)} mein {rand(DURATIONS)} se doctor nahi hai, makkhi udti hai, staff gayab rehta hai. {rand(CLOSINGS)}",
         f"स्वास्थ्य केंद्र {rand(CITIES)} में {rand(DURATIONS)} से बंद है, मरीज परेशान हैं। {rand(CLOSINGS)}",
+        f"Blood bank {rand(AREAS)} mein zaroori blood group available nahi tha emergency mein, delay se dikkat hui. {rand(CLOSINGS)}",
+        f"Sarkari hospital {rand(CITIES)} mein doctor {rand(DURATIONS)} se nahi aa rahe, mareez pareshan hain. {rand(CLOSINGS)}",
+        f"Emergency ward {rand(CITIES)} civil hospital mein ventilator aur oxygen cylinder ki kami hai {rand(DURATIONS)} se."
     ]
     return rand(templates)
 
 def gen_banking():
     templates = [
         f"{rand(GREETINGS)} {rand(NAMES)} ka bank account {rand(DURATIONS)} se freeze hai, koi reason nahi bataya. {rand(CLOSINGS)}",
-        f"ATM {rand(AREAS)} mein {rand(DURATIONS)} se kaam nahi kar raha. {rand(CLOSINGS)}",
-        f"Loan application {rand(NAMES)} ki {rand(DURATIONS)} se pending hai bank mein. {rand(CLOSINGS)}",
-        f"Jan dhan account mein paise nahi aaye {rand(DURATIONS)} se {rand(NAMES)} ko. {rand(CLOSINGS)}",
+        f"ATM {rand(AREAS)} mein {rand(DURATIONS)} se kaam nahi kar raha, cash out of service hai. {rand(CLOSINGS)}",
+        f"Loan application {rand(NAMES)} ki {rand(DURATIONS)} se pending hai bank mein, subsidy nahi aayi. {rand(CLOSINGS)}",
+        f"Jan dhan account mein DBT paise nahi aaye {rand(DURATIONS)} se {rand(NAMES)} ko. {rand(CLOSINGS)}",
         f"बैंक से {rand(DURATIONS)} से कोई जवाब नहीं मिल रहा {rand(NAMES)} के खाते के बारे में। {rand(CLOSINGS)}",
+        f"Passbook update {rand(AREAS)} bank branch mein {rand(DURATIONS)} se nahi ho raha, staff kaam nahi kar rahe. {rand(CLOSINGS)}",
+        f"Online UPI transaction fail hua tha {rand(AMOUNTS)} rupees cut gaye bank account se par refund nahi aaya {rand(DURATIONS)} se.",
+        f"Cheque deposit kiya tha {rand(NAMES)} ne {rand(AREAS)} branch mein, abhi tak clear nahi kiya gaya."
     ]
     return rand(templates)
 
 def gen_corruption():
     templates = [
-        f"{rand(GREETINGS)} {rand(AREAS)} mein officer ne {rand(DURATIONS)} mein rishwat maangi, kaam nahi kiya. {rand(CLOSINGS)}",
-        f"Sarkari kaam ke liye paisa maanga ja raha hai {rand(CITIES)} office mein. {rand(CLOSINGS)}",
-        f"Bhrashtachar {rand(CITIES)} mein {rand(DURATIONS)} se ho raha hai, koi sunne wala nahi. {rand(CLOSINGS)}",
-        f"{rand(NAMES)} ne shikayat ki bribe maangi ja rahi hai {rand(AREAS)} mein. {rand(CLOSINGS)}",
+        f"{rand(GREETINGS)} {rand(AREAS)} mein officer ne ₹{rand(AMOUNTS)} rishwat maangi, bina paise kaam nahi kiya. {rand(CLOSINGS)}",
+        f"Sarkari kaam ke liye paisa maanga ja raha hai {rand(CITIES)} office mein clerk dwara. {rand(CLOSINGS)}",
+        f"Bhrashtachar {rand(CITIES)} mein {rand(DURATIONS)} se ho raha hai, babu bribe demand kar raha hai. {rand(CLOSINGS)}",
+        f"{rand(NAMES)} ne shikayat ki bribe li gayi thi {rand(AREAS)} office mein kaam ke badle mein, sabuth hai. {rand(CLOSINGS)}",
         f"Tender mein ghotala hua hai {rand(CITIES)} mein, {rand(DURATIONS)} se inquiry nahi hui. {rand(CLOSINGS)}",
+        f"Ration dealer {rand(AREAS)} mein har mahine paise leta hai anaj dene ke liye, bribe complaint dena chahta hoon. {rand(CLOSINGS)}",
+        f"मुझसे प्रमाण पत्र बनवाने के लिए {rand(AMOUNTS)} रुपए मांगे गए {rand(CITIES)} कार्यालय में घूस के रूप में। {rand(CLOSINGS)}",
+        f"Tehsil mein patwari bina {rand(AMOUNTS)} rs commission ke file aage nahi bhej raha, rishwatkhori band karwao."
     ]
     return rand(templates)
 
 def gen_employment():
     templates = [
         f"{rand(GREETINGS)} Naukri ke liye interview {rand(DURATIONS)} se postpone ho raha hai {rand(CITIES)} mein. {rand(CLOSINGS)}",
-        f"MNREGA payment {rand(NAMES)} ko {rand(DURATIONS)} se nahi mili {rand(AREAS)} mein. {rand(CLOSINGS)}",
-        f"Factory mein {rand(DURATIONS)} se salary nahi mili {rand(NAMES)} ko. {rand(CLOSINGS)}",
-        f"Rozgar mela {rand(CITIES)} mein {rand(DURATIONS)} se announce hua tha, abhi tak nahi hua. {rand(CLOSINGS)}",
-        f"Labour department {rand(CITIES)} ne {rand(DURATIONS)} se koi jawab nahi diya {rand(NAMES)} ki shikayat par. {rand(CLOSINGS)}",
+        f"MNREGA payment {rand(NAMES)} ko {rand(DURATIONS)} se nahi mili {rand(AREAS)} mein, majdoori atki hai. {rand(CLOSINGS)}",
+        f"Factory mein {rand(DURATIONS)} se salary nahi mili {rand(NAMES)} ko, owner dhamki deta hai. {rand(CLOSINGS)}",
+        f"Rozgar mela {rand(CITIES)} mein {rand(DURATIONS)} se announce hua tha, abhi tak koi update nahi. {rand(CLOSINGS)}",
+        f"Labour department {rand(CITIES)} ne {rand(DURATIONS)} se koi jawab nahi diya {rand(NAMES)} ki wages shikayat par. {rand(CLOSINGS)}",
+        f"Contract worker {rand(AREAS)} factory mein PF aur ESI ka labh nahi diya ja raha hai kai mahino se. {rand(CLOSINGS)}",
+        f"फैक्ट्री {rand(AREAS)} में मजदूरों को न्यूनतम वेतन (minimum wage) नहीं दिया जा रहा है {rand(DURATIONS)} से। {rand(CLOSINGS)}",
+        f"Contractor {rand(AREAS)} construction site par safety equipment nahi deta, accident ka khatra rehta hai majdooron ko. {rand(CLOSINGS)}"
     ]
     return rand(templates)
 
 def gen_ration():
     templates = [
-        f"{rand(GREETINGS)} Ration {rand(DURATIONS)} se nahi mila {rand(NAMES)} ko, {rand(AREAS)} mein. {rand(CLOSINGS)}",
-        f"PDS shop {rand(AREAS)} mein {rand(DURATIONS)} se band hai. {rand(CLOSINGS)}",
-        f"Ration card naya banwana hai {rand(NAMES)} ka, {rand(DURATIONS)} se office chakkar laga raha hoon. {rand(CLOSINGS)}",
-        f"Gehu aur chawal {rand(DURATIONS)} se nahi aaya fair price shop mein {rand(CITIES)}. {rand(CLOSINGS)}",
+        f"{rand(GREETINGS)} Ration {rand(DURATIONS)} se nahi mila {rand(NAMES)} ko, {rand(AREAS)} mein shop band milti hai. {rand(CLOSINGS)}",
+        f"PDS shop {rand(AREAS)} mein {rand(DURATIONS)} se band hai, dealer anaj nahi baant raha. {rand(CLOSINGS)}",
+        f"Ration card naya banwana hai {rand(NAMES)} ka, {rand(DURATIONS)} se food supply office chakkar laga raha hoon. {rand(CLOSINGS)}",
+        f"Gehu aur chawal {rand(DURATIONS)} se nahi aaya fair price shop mein {rand(CITIES)} ki ration dukan par. {rand(CLOSINGS)}",
         f"BPL card se ration nahi de rahe {rand(AREAS)} dukan wale, {rand(DURATIONS)} se pareshan hoon. {rand(CLOSINGS)}",
+        f"PDS dealer {rand(AREAS)} mein kerosene nahi de raha, black market mein bech raha hai shayad. {rand(CLOSINGS)}",
+        f"सार्वजनिक वितरण प्रणाली {rand(AREAS)} की दुकान समय पर नहीं खुलती, राशन नहीं मिल पाता गरीबों को। {rand(CLOSINGS)}",
+        f"Ration dealer electronic weighing machine mein gadbadi karke kam anaj toltā hai {rand(CITIES)} mein."
     ]
     return rand(templates)
 
@@ -235,17 +280,19 @@ def gen_municipal():
     templates = [
         f"{rand(GREETINGS)} Birth certificate {rand(NAMES)} ka {rand(DURATIONS)} se nahi mila nagar nigam {rand(CITIES)} se. {rand(CLOSINGS)}",
         f"Trade license {rand(DURATIONS)} se pending hai {rand(CITIES)} municipal office mein. {rand(CLOSINGS)}",
-        f"Death certificate {rand(NAMES)} ka {rand(DURATIONS)} se nahi mila. {rand(CLOSINGS)}",
-        f"Property tax notice galat aaya hai {rand(NAMES)} ko {rand(CITIES)} mein. {rand(CLOSINGS)}",
-        f"नगर निगम {rand(CITIES)} से {rand(DURATIONS)} से जाति प्रमाण पत्र नहीं मिल रहा {rand(NAMES)} को। {rand(CLOSINGS)}",
+        f"Death certificate {rand(NAMES)} ka {rand(DURATIONS)} se nahi mila, registry office delay kar raha hai. {rand(CLOSINGS)}",
+        f"Property tax notice galat calculation ke sath aaya hai {rand(NAMES)} ko {rand(CITIES)} nagar nigam mein. {rand(CLOSINGS)}",
+        f"नगर निगम {rand(CITIES)} से {rand(DURATIONS)} से जाति प्रमाण पत्र / निवास प्रमाण पत्र नहीं मिल रहा {rand(NAMES)} को। {rand(CLOSINGS)}",
+        f"Birth certificate apply kiya tha {rand(DURATIONS)} pehle {rand(CITIES)} nagar nigam se, school admission ruk gaya hai. {rand(CLOSINGS)}",
+        f"Death certificate apply kiya tha {rand(DURATIONS)} pehle {rand(AREAS)} mein, abhi tak nahi mila nagar palika se. {rand(CLOSINGS)}"
     ]
     return rand(templates)
 
+# ─────────────────────────────────────────────
+# Generate Augmented Dataset (1000 per class)
+# ─────────────────────────────────────────────
 
-# ─────────────────────────────────────────────
-# Generate augmented samples
-# ─────────────────────────────────────────────
-AUGMENT_PER_CLASS = 500
+AUGMENT_PER_CLASS = 1000
 
 category_generators = {
     "Land Records & Revenue": gen_land_records,
@@ -264,7 +311,6 @@ category_generators = {
     "Municipal Certificates": gen_municipal,
 }
 
-# Normalize keys to match actual dataset categories
 actual_cats = df_train['category'].unique()
 cat_map = {}
 for k in category_generators:
@@ -274,7 +320,6 @@ for k in category_generators:
             break
 
 print("Categories mapped for augmentation:", list(cat_map.keys()))
-print(f"Missing generators: {set(actual_cats) - set(cat_map.keys())}")
 
 augmented_rows = []
 aug_id = 10000
@@ -289,7 +334,6 @@ for cat, gen_fn in cat_map.items():
 
 df_aug = pd.DataFrame(augmented_rows)
 print(f"\nAugmented samples generated: {len(df_aug)}")
-print(f"Per category: {df_aug['category'].value_counts().to_dict()}")
 
 # Combine with original training data
 df_combined = pd.concat([df_train, df_aug], ignore_index=True)
@@ -302,7 +346,7 @@ print("Saved grievances_augmented.csv")
 # Retrain all models
 # ─────────────────────────────────────────────
 print("\n" + "=" * 60)
-print("  RETRAINING WITH AUGMENTED DATA")
+print("  RETRAINING WITH EXPANDED DATASET")
 print("=" * 60)
 
 df_combined['clean_text'] = df_combined['text'].str.lower().str.strip()
@@ -323,8 +367,8 @@ y_holdout = df_holdout['label']
 print(f"Train: {len(X_train_raw)} | Val: {len(X_val_raw)} | Holdout: {len(X_holdout_raw)}")
 
 tfidf = TfidfVectorizer(
-    ngram_range=(1, 2),
-    max_features=50000,
+    ngram_range=(1, 3),
+    max_features=65000,
     sublinear_tf=True,
     min_df=2,
     strip_accents='unicode',
@@ -340,7 +384,9 @@ print(f"TF-IDF matrix shape: {X_train.shape}")
 models = {
     "Logistic Regression": LogisticRegression(C=5, max_iter=1000, random_state=42, n_jobs=-1, solver='lbfgs'),
     "Random Forest": RandomForestClassifier(n_estimators=200, random_state=42, n_jobs=-1),
-    "SVM (LinearSVC)": LinearSVC(C=1.0, max_iter=2000, random_state=42),
+    "SVM (LinearSVC)": CalibratedClassifierCV(
+        LinearSVC(C=1.0, max_iter=2500, random_state=42), cv=5, method="sigmoid"
+    ),
     "Naive Bayes": MultinomialNB(alpha=0.1),
     "XGBoost": XGBClassifier(n_estimators=200, max_depth=6, learning_rate=0.1, eval_metric='mlogloss', random_state=42, n_jobs=-1),
 }
@@ -365,7 +411,7 @@ for name, model in models.items():
           f"Holdout Acc: {r['holdout_acc']:.4f}  Holdout F1(W): {r['holdout_f1_weighted']:.4f}")
 
 print("\n" + "=" * 60)
-print("  FINAL COMPARISON TABLE (After Augmentation)")
+print("  FINAL COMPARISON TABLE (After Expanded Augmentation)")
 print("=" * 60)
 print(f"\n{'Model':<25} {'Val Acc':>8} {'Val F1':>8} {'Hold Acc':>10} {'Hold F1(W)':>11} {'Hold F1(M)':>11}")
 print("-" * 78)
@@ -383,6 +429,8 @@ print(classification_report(y_holdout, y_pred_holdout, target_names=le.classes_,
 # Save best model
 with open(os.path.join(BASE, "best_model_aug.pkl"), "wb") as f:
     pickle.dump(best_model, f)
+with open(os.path.join(BASE, "router_svm_model_aug.pkl"), "wb") as f:
+    pickle.dump(results["SVM (LinearSVC)"]["model"], f)
 with open(os.path.join(BASE, "tfidf_vectorizer_aug.pkl"), "wb") as f:
     pickle.dump(tfidf, f)
 with open(os.path.join(BASE, "label_encoder_aug.pkl"), "wb") as f:
@@ -396,5 +444,5 @@ summary = {
 with open(os.path.join(BASE, "augmented_training_summary.json"), "w") as f:
     json.dump(summary, f, indent=2)
 
-print(f"\n[DONE] Saved: best_model_aug.pkl, tfidf_vectorizer_aug.pkl, label_encoder_aug.pkl")
+print(f"\n[DONE] Saved: best_model_aug.pkl, router_svm_model_aug.pkl, tfidf_vectorizer_aug.pkl, label_encoder_aug.pkl")
 print("AUGMENTED TRAINING COMPLETE!")

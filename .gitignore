@@ -2,3 +2,7 @@
 "__pycache__/" 
 "*.pyc" 
 "implementation_plan.md" 
+data/
+.venv/
+__pycache__/
+*.pyc

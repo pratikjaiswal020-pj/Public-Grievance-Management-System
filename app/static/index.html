@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Public Grievance Portal</title>
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/multi_issue.css">
+</head>
+<body>
+  <header><div class="container nav"><a href="#top" class="brand">जन-सुनवाई <span>Public Grievance Portal</span></a><a href="#track" class="button secondary">Track complaint</a></div></header>
+  <main id="top">
+    <section class="hero"><div class="container"><p class="eyebrow">A simple path to resolution</p><h1>Make your public-service concern heard.</h1><p class="lead">Submit a grievance, attach evidence, and follow every update using one reference number.</p><a href="#file" class="button">File a complaint</a></div></section>
+    <section id="file" class="container section"><div class="section-heading"><p class="eyebrow">Step 1</p><h2>File a complaint</h2><p>Your complaint is automatically routed to the relevant department.</p></div>
+      <form id="complaint-form" class="card form-grid">
+        <label>Full name<input name="citizen_name" required minlength="2" placeholder="Your name"></label>
+        <label>Email <small>(optional)</small><input type="email" name="citizen_email" placeholder="you@example.com"></label>
+        <label>Phone <small>(optional)</small><input name="citizen_phone" inputmode="tel" placeholder="Mobile number"></label>
+        <label>Location / ward <small>(optional)</small><input name="location" placeholder="e.g. Ward 12, Patna"></label>
+        <label class="full">Complaint title<input name="title" required minlength="5" placeholder="Briefly describe the issue"></label>
+        <label class="full">Describe the problem<textarea id="description" name="description" required minlength="10" rows="6" placeholder="What happened, where, and since when?"></textarea></label>
+        <label class="full">Evidence <small>(optional: JPG, PNG, or PDF; maximum 5 MB)</small><input type="file" name="evidence" accept="image/jpeg,image/png,application/pdf"></label>
+        <div id="prediction" class="prediction full" hidden></div>
+        <button class="button full" type="submit">Submit complaint</button>
+      </form>
+      <div id="submitted" class="card success" hidden></div>
+    </section>
+    <section id="track" class="alt"><div class="container section"><div class="section-heading"><p class="eyebrow">Step 2</p><h2>Track your complaint</h2><p>Enter your reference ID, for example <code>GRV-2026-ABC123</code>.</p></div>
+      <form id="track-form" class="track-form"><input id="reference-id" required placeholder="GRV-2026-ABC123"><button class="button">Track</button></form>
+      <div id="tracking-result" aria-live="polite"></div>
+    </div></section>
+  </main>
+  <footer>Public Grievance Management System · Keep your reference ID safe.</footer>
+  <script src="/app.js"></script>
+</body>
+</html>

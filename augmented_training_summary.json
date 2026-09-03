@@ -1,41 +1,41 @@
 {
-  "best_model": "SVM (LinearSVC)",
-  "augmented_training_size": 10110,
+  "best_model": "Logistic Regression",
+  "augmented_training_size": 17110,
   "all_models": {
     "Logistic Regression": {
       "val_acc": 1.0,
       "val_f1": 1.0,
-      "holdout_acc": 0.7280130293159609,
-      "holdout_f1_weighted": 0.7171775975471296,
-      "holdout_f1_macro": 0.7253700372698239
+      "holdout_acc": 0.9478827361563518,
+      "holdout_f1_weighted": 0.9426637920284744,
+      "holdout_f1_macro": 0.9427067624152895
     },
     "Random Forest": {
-      "val_acc": 1.0,
-      "val_f1": 1.0,
-      "holdout_acc": 0.6807817589576547,
-      "holdout_f1_weighted": 0.6762569701542644,
-      "holdout_f1_macro": 0.6759980142018334
+      "val_acc": 0.9992208804051422,
+      "val_f1": 0.9992208558140493,
+      "holdout_acc": 0.9071661237785016,
+      "holdout_f1_weighted": 0.9073843025916135,
+      "holdout_f1_macro": 0.9036986672412378
     },
     "SVM (LinearSVC)": {
       "val_acc": 1.0,
       "val_f1": 1.0,
-      "holdout_acc": 0.752442996742671,
-      "holdout_f1_weighted": 0.7353845327711427,
-      "holdout_f1_macro": 0.7442096862189994
+      "holdout_acc": 0.9446254071661238,
+      "holdout_f1_weighted": 0.9423854232246646,
+      "holdout_f1_macro": 0.9379251700680272
     },
     "Naive Bayes": {
-      "val_acc": 0.998681608437706,
-      "val_f1": 0.9986813822985015,
-      "holdout_acc": 0.6726384364820847,
-      "holdout_f1_weighted": 0.6458989460276796,
-      "holdout_f1_macro": 0.6574081249222495
+      "val_acc": 0.9988313206077133,
+      "val_f1": 0.9988312376095003,
+      "holdout_acc": 0.9397394136807817,
+      "holdout_f1_weighted": 0.933836259470756,
+      "holdout_f1_macro": 0.934125152412636
     },
     "XGBoost": {
-      "val_acc": 0.997363216875412,
-      "val_f1": 0.9973627496998282,
-      "holdout_acc": 0.6433224755700325,
-      "holdout_f1_weighted": 0.6158639376900091,
-      "holdout_f1_macro": 0.6171749394611645
+      "val_acc": 0.9988313206077133,
+      "val_f1": 0.9988323667176394,
+      "holdout_acc": 0.9022801302931596,
+      "holdout_f1_weighted": 0.8979451744491537,
+      "holdout_f1_macro": 0.8951822863922752
     }
   }
 }

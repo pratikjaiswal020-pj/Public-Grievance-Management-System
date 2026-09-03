@@ -1,0 +1,14 @@
+.issue-options {
+  display: grid;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.issue-options label {
+  font-weight: 600;
+}
+
+.issue-options input[type="checkbox"] {
+  width: auto;
+  margin: 0 6px 0 0;
+}

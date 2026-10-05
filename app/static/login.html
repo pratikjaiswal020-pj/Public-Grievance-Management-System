@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login — CivicPulse Public Grievance Portal</title>
+  <meta name="description" content="Secure login for citizens, officers, and administrators of the Public Grievance Management System."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500&family=Public+Sans:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#00236f", "on-primary": "#ffffff",
+            "primary-container": "#1e3a8a", "on-primary-container": "#90a8ff",
+            "primary-fixed": "#dce1ff", "primary-fixed-dim": "#b6c4ff",
+            "secondary": "#006a61", "on-secondary": "#ffffff",
+            "secondary-container": "#86f2e4", "on-secondary-container": "#006f66",
+            "surface": "#faf8ff", "on-surface": "#131b2e",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-low": "#f2f3ff",
+            "surface-container": "#eaedff",
+            "surface-container-high": "#e2e7ff",
+            "on-surface-variant": "#444651",
+            "outline": "#757682", "outline-variant": "#c5c5d3",
+            "error": "#ba1a1a", "error-container": "#ffdad6", "on-error-container": "#93000a",
+            "tertiary-fixed": "#ffdcc3",
+          },
+          fontFamily: {
+            "sans": ["Public Sans", "system-ui", "sans-serif"],
+            "mono": ["JetBrains Mono", "monospace"],
+          },
+        }
+      }
+    };
+  </script>
+  <style>
+    body { margin: 0; font-family: "Public Sans", system-ui, sans-serif; }
+    .material-symbols-outlined { font-size: 1.1em; vertical-align: middle; }
+    input:focus { outline: 2px solid #1e3a8a; outline-offset: 0; }
+    .tab-active { background: white; color: #00236f; box-shadow: 0 1px 4px rgba(0,0,0,.08); }
+    .tab-inactive { color: #444651; }
+    .fade-in { animation: fadeIn .25s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+    #live-utc, #session-hash { font-family: "JetBrains Mono", monospace; }
+  </style>
+</head>
+<body class="bg-surface-container-low min-h-screen text-on-surface antialiased">
+
+
+
+<!-- ── Header ── -->
+<header class="bg-white shadow-sm px-6 lg:px-12 py-3 flex items-center justify-between">
+  <a href="/" class="flex items-center gap-3 no-underline">
+    <span class="material-symbols-outlined text-3xl text-primary" style="font-size:2rem">account_balance</span>
+    <div>
+      <div class="flex items-center gap-2">
+        <span class="font-bold text-lg text-primary leading-tight">CivicPulse</span>
+        <span class="text-xs font-semibold uppercase bg-secondary-container text-on-secondary-container px-1.5 py-0.5 rounded">Public Redressal</span>
+      </div>
+      <p class="text-xs text-on-surface-variant m-0">Department of Administrative Reforms &amp; Public Oversight</p>
+    </div>
+  </a>
+  <nav class="hidden lg:flex items-center gap-1 text-sm font-semibold">
+    <a href="/" class="px-3 py-2 rounded text-on-surface-variant hover:bg-surface-container-low transition-colors">Lodge Grievance</a>
+    <a href="/" class="px-3 py-2 rounded text-on-surface-variant hover:bg-surface-container-low transition-colors">Track Status</a>
+    <a href="/login.html" class="px-3 py-2 rounded bg-surface-container-high text-primary font-semibold" aria-current="page">Login / Register</a>
+  </nav>
+</header>
+
+<!-- ── Security ribbon ── -->
+<div class="bg-surface-container-high text-on-surface text-xs py-2 px-6 lg:px-12 flex flex-wrap items-center justify-between gap-3">
+  <div class="flex items-center gap-3">
+    <span class="flex items-center gap-1 bg-secondary-container text-on-secondary-container px-2 py-0.5 rounded font-semibold">
+      <span class="material-symbols-outlined text-xs">security</span> CERT-In Audited 2025/Q1
+    </span>
+    <span class="hidden sm:inline text-on-surface-variant">•</span>
+    <span class="hidden sm:inline font-mono text-on-surface-variant">SESSION ID: <span id="session-hash" class="font-bold text-primary">SEC-NODE-8824A</span></span>
+  </div>
+  <div class="flex items-center gap-2 font-mono text-on-surface-variant">
+    <span class="w-2 h-2 rounded-full bg-secondary animate-pulse inline-block"></span>
+    UTC: <span id="live-utc" class="text-on-surface font-bold">--:--:-- Z</span>
+  </div>
+</div>
+
+<!-- ── Main content ── -->
+<main class="max-w-7xl mx-auto px-4 lg:px-12 py-10">
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+    <!-- Left: Auth panel (8 cols) -->
+    <div class="lg:col-span-8 flex flex-col gap-6">
+
+      <!-- Header card -->
+      <div class="bg-white rounded-xl shadow-sm p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div class="flex items-center gap-4">
+          <div class="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center">
+            <span class="material-symbols-outlined text-primary" style="font-size:2rem">verified_user</span>
+          </div>
+          <div>
+            <div class="flex items-center gap-2 mb-1">
+              <span class="bg-primary-container text-on-primary-container text-xs font-bold uppercase px-2 py-0.5 rounded">Gateway Access</span>
+              <span class="font-mono text-xs text-secondary font-semibold">TLS 1.3 / AES-256</span>
+            </div>
+            <h1 class="text-xl font-bold text-primary m-0 leading-tight">Unified Administrative Redressal Access</h1>
+            <p class="text-sm text-on-surface-variant m-0">Single secure entry point for Citizens and Gazetted Grievance Officers.</p>
+          </div>
+        </div>
+        <div class="sm:text-right text-xs text-on-surface-variant">
+          <div>Client IP (Node Hash)</div>
+          <div class="font-mono font-bold text-primary">142.250.x.x :: PROXY-SEC</div>
+        </div>
+      </div>
+
+      <!-- Role switcher tabs -->
+      <div class="bg-surface-container-low p-1.5 rounded-xl grid grid-cols-2 gap-2">
+        <button id="tab-citizen-btn" onclick="switchTab('citizen')"
+          class="tab-active flex items-center justify-center gap-2 py-3 px-4 rounded-lg text-sm font-semibold transition-all">
+          <span class="material-symbols-outlined">person_pin</span>
+          <span>Citizen &amp; Whistleblower Desk</span>
+        </button>
+        <button id="tab-officer-btn" onclick="switchTab('officer')"
+          class="tab-inactive flex items-center justify-center gap-2 py-3 px-4 rounded-lg text-sm font-semibold transition-all hover:text-on-surface">
+          <span class="material-symbols-outlined">badge</span>
+          <span>Gazetted Officer Clearance</span>
+          <span class="hidden md:inline text-[0.6rem] bg-error-container text-on-error-container px-1.5 py-0.5 rounded uppercase font-bold">Class-1</span>
+        </button>
+      </div>
+
+      <!-- ── CITIZEN PANEL ── -->
+      <div id="panel-citizen" class="flex flex-col gap-4 fade-in">
+        <!-- Sub-tabs -->
+        <div class="bg-white rounded-xl shadow-sm p-6">
+          <h2 class="text-lg font-bold text-on-surface mb-1">Citizen Identification Portal</h2>
+          <p class="text-sm text-on-surface-variant mb-5">Sign in with your registered credentials or create a new account.</p>
+          <div class="flex gap-1 bg-surface-container p-1 rounded-lg mb-6 w-fit">
+            <button id="sub-login-btn" onclick="setCitizenMethod('login')" class="px-3 py-1.5 rounded text-sm font-semibold bg-white text-primary shadow-sm transition-all">Sign In</button>
+            <button id="sub-register-btn" onclick="setCitizenMethod('register')" class="px-3 py-1.5 rounded text-sm font-semibold text-on-surface-variant hover:text-on-surface transition-all">Create Account</button>
+          </div>
+
+          <!-- Login form -->
+          <div id="citizen-login-form">
+            <form id="login-form" onsubmit="handleCitizenLogin(event)" class="flex flex-col gap-4 max-w-md">
+              <div>
+                <label class="block text-sm font-semibold mb-1" for="login-email">Email Address <span class="text-error">*</span></label>
+                <input id="login-email" type="email" name="email" required autocomplete="email"
+                  placeholder="citizen@example.com"
+                  class="w-full border border-outline-variant rounded-lg px-3 py-2.5 text-sm bg-white focus:border-primary transition-colors"/>
+              </div>
+              <div>
+                <label class="block text-sm font-semibold mb-1" for="login-password">Password <span class="text-error">*</span></label>
+                <div class="relative">
+                  <input id="login-password" type="password" name="password" required autocomplete="current-password"
+                    placeholder="Your password"
+                    class="w-full border border-outline-variant rounded-lg px-3 py-2.5 pr-10 text-sm bg-white focus:border-primary transition-colors"/>
+                  <button type="button" onclick="togglePwd('login-password')" class="absolute right-2.5 top-1/2 -translate-y-1/2 text-on-surface-variant">
+                    <span class="material-symbols-outlined text-base" id="login-password-icon">visibility</span>
+                  </button>
+                </div>
+              </div>
+              <div id="login-error" class="hidden text-sm text-error bg-error-container rounded-lg px-3 py-2"></div>
+              <button type="submit" id="login-btn"
+                class="bg-primary text-white font-semibold py-3 rounded-lg hover:bg-primary-container transition-colors flex items-center justify-center gap-2">
+                <span class="material-symbols-outlined text-base">login</span>
+                <span>Sign In to Citizen Desk</span>
+              </button>
+              <p class="text-xs text-on-surface-variant text-center">
+                No account? <button type="button" onclick="setCitizenMethod('register')" class="text-primary font-semibold underline">Register here</button>
+              </p>
+            </form>
+          </div>
+
+          <!-- Register form -->
+          <div id="citizen-register-form" class="hidden fade-in">
+            <form id="register-form" onsubmit="handleCitizenRegister(event)" class="flex flex-col gap-4 max-w-md">
+              <div>
+                <label class="block text-sm font-semibold mb-1" for="reg-name">Full Name <span class="text-error">*</span></label>
+                <input id="reg-name" type="text" name="name" required minlength="2"
+                  placeholder="Your full name"
+                  class="w-full border border-outline-variant rounded-lg px-3 py-2.5 text-sm bg-white focus:border-primary transition-colors"/>
+              </div>
+              <div>
+                <label class="block text-sm font-semibold mb-1" for="reg-email">Email Address <span class="text-error">*</span></label>
+                <input id="reg-email" type="email" name="email" required autocomplete="email"
+                  placeholder="citizen@example.com"
+                  class="w-full border border-outline-variant rounded-lg px-3 py-2.5 text-sm bg-white focus:border-primary transition-colors"/>
+              </div>
+              <div>
+                <label class="block text-sm font-semibold mb-1" for="reg-password">Create Password <span class="text-error">*</span></label>
+                <div class="relative">
+                  <input id="reg-password" type="password" name="password" required minlength="8"
+                    placeholder="Minimum 8 characters"
+                    class="w-full border border-outline-variant rounded-lg px-3 py-2.5 pr-10 text-sm bg-white focus:border-primary transition-colors"/>
+                  <button type="button" onclick="togglePwd('reg-password')" class="absolute right-2.5 top-1/2 -translate-y-1/2 text-on-surface-variant">
+                    <span class="material-symbols-outlined text-base" id="reg-password-icon">visibility</span>
+                  </button>
+                </div>
+              </div>
+              <div id="register-error" class="hidden text-sm text-error bg-error-container rounded-lg px-3 py-2"></div>
+              <button type="submit" id="register-btn"
+                class="bg-secondary text-on-secondary font-semibold py-3 rounded-lg hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
+                <span class="material-symbols-outlined text-base">how_to_reg</span>
+                <span>Create Citizen Account</span>
+              </button>
+              <p class="text-xs text-on-surface-variant text-center">
+                Already have an account? <button type="button" onclick="setCitizenMethod('login')" class="text-primary font-semibold underline">Sign in</button>
+              </p>
+            </form>
+          </div>
+        </div>
+
+        <!-- Anonymous track strip -->
+        <div class="bg-white rounded-xl shadow-sm p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-secondary text-2xl">search</span>
+            <div>
+              <p class="font-semibold text-sm text-on-surface m-0">Track without logging in</p>
+              <p class="text-xs text-on-surface-variant m-0">Use your reference ID (e.g. GRV-2026-XXXXX)</p>
+            </div>
+          </div>
+          <a href="/#track" class="bg-surface-container text-primary font-semibold text-sm px-4 py-2 rounded-lg hover:bg-surface-container-high transition-colors whitespace-nowrap">
+            Track Grievance →
+          </a>
+        </div>
+      </div>
+
+      <!-- ── OFFICER PANEL ── -->
+      <div id="panel-officer" class="hidden flex-col gap-4 fade-in">
+        <div class="bg-white rounded-xl shadow-sm p-6">
+          <div class="flex items-center gap-3 mb-2">
+            <span class="bg-error-container text-on-error-container text-xs font-bold uppercase px-2 py-0.5 rounded">Restricted Access</span>
+            <span class="font-mono text-xs text-secondary font-semibold">Gazetted Officers &amp; Admins Only</span>
+          </div>
+          <h2 class="text-lg font-bold text-primary mb-1">Officer / Admin Console Login</h2>
+          <p class="text-sm text-on-surface-variant mb-6">Enter your official credentials assigned by the Nodal Administrator.</p>
+
+          <form id="officer-form" onsubmit="handleOfficerLogin(event)" class="flex flex-col gap-4 max-w-md">
+            <div>
+              <label class="block text-sm font-semibold mb-1" for="officer-email">Official Email or Username <span class="text-error">*</span></label>
+              <input id="officer-email" type="text" name="email" required autocomplete="username"
+                placeholder="admin@grievance.gov or admin"
+                class="w-full border border-outline-variant rounded-lg px-3 py-2.5 text-sm bg-white focus:border-primary transition-colors"/>
+            </div>
+            <div>
+              <label class="block text-sm font-semibold mb-1" for="officer-password">Official Password <span class="text-error">*</span></label>
+              <div class="relative">
+                <input id="officer-password" type="password" name="password" required autocomplete="current-password"
+                  placeholder="Your secure password"
+                  class="w-full border border-outline-variant rounded-lg px-3 py-2.5 pr-10 text-sm bg-white focus:border-primary transition-colors"/>
+                <button type="button" onclick="togglePwd('officer-password')" class="absolute right-2.5 top-1/2 -translate-y-1/2 text-on-surface-variant">
+                  <span class="material-symbols-outlined text-base" id="officer-password-icon">visibility</span>
+                </button>
+              </div>
+            </div>
+            <div id="officer-error" class="hidden text-sm text-error bg-error-container rounded-lg px-3 py-2"></div>
+            <button type="submit" id="officer-btn"
+              class="bg-primary text-white font-semibold py-3 rounded-lg hover:bg-primary-container transition-colors flex items-center justify-center gap-2">
+              <span class="material-symbols-outlined text-base">admin_panel_settings</span>
+              <span>Access Officer Console</span>
+            </button>
+          </form>
+
+          <div class="mt-5 p-4 bg-surface-container-low rounded-lg border border-outline-variant flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <p class="text-xs text-on-surface-variant m-0">
+              <span class="material-symbols-outlined text-xs align-middle">info</span>
+              Default Admin: <strong class="font-mono text-primary">admin@grievance.gov</strong> &bull; Password: <strong class="font-mono text-primary">Admin@1234</strong>
+            </p>
+            <button type="button" onclick="quickFillAdmin()"
+              class="px-3 py-1.5 bg-primary/10 hover:bg-primary/20 text-primary text-xs font-semibold rounded border border-primary/20 transition-all flex items-center gap-1.5 whitespace-nowrap self-start sm:self-auto">
+              <span class="material-symbols-outlined text-xs">bolt</span> Auto-Fill Admin
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right sidebar (4 cols) -->
+    <aside class="lg:col-span-4 flex flex-col gap-5">
+      <!-- System status -->
+      <div class="bg-white rounded-xl shadow-sm p-5">
+        <h3 class="font-bold text-sm text-primary mb-3 flex items-center gap-2">
+          <span class="material-symbols-outlined text-base">monitoring</span> System Status
+        </h3>
+        <div class="flex flex-col gap-2 text-xs">
+          <div class="flex justify-between items-center py-1.5 border-b border-outline-variant">
+            <span class="text-on-surface-variant">Portal Uptime</span>
+            <span class="font-semibold text-secondary flex items-center gap-1"><span class="w-1.5 h-1.5 bg-secondary rounded-full inline-block animate-pulse"></span> 99.97%</span>
+          </div>
+          <div class="flex justify-between items-center py-1.5 border-b border-outline-variant">
+            <span class="text-on-surface-variant">SLA Compliance</span>
+            <span class="font-semibold text-on-surface">94.2%</span>
+          </div>
+          <div class="flex justify-between items-center py-1.5 border-b border-outline-variant">
+            <span class="text-on-surface-variant">Grievances (Month)</span>
+            <span class="font-mono font-bold text-on-surface">24,892</span>
+          </div>
+          <div class="flex justify-between items-center py-1.5">
+            <span class="text-on-surface-variant">Avg Resolution</span>
+            <span class="font-semibold text-primary">6.4 days</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Help box -->
+      <div class="bg-surface-container-low rounded-xl p-5 border border-outline-variant">
+        <h3 class="font-bold text-sm text-on-surface mb-2 flex items-center gap-2">
+          <span class="material-symbols-outlined text-base text-secondary">support_agent</span> Need Help?
+        </h3>
+        <p class="text-xs text-on-surface-variant mb-3">For login issues or account recovery, contact the nodal officer.</p>
+        <div class="flex flex-col gap-1 text-xs font-mono text-primary font-semibold">
+          <span>📞 1800-CIVIC-HELP (24/7)</span>
+          <span>📧 helpdesk@civicpulse.gov.in</span>
+        </div>
+      </div>
+
+      <!-- Track without login -->
+      <div class="bg-primary rounded-xl p-5 text-white">
+        <h3 class="font-bold text-sm mb-1 flex items-center gap-2">
+          <span class="material-symbols-outlined text-base">search</span> No Account Needed
+        </h3>
+        <p class="text-xs opacity-80 mb-3">File or track a complaint anonymously using your reference ID — no login required.</p>
+        <a href="/" class="block bg-white text-primary font-semibold text-sm text-center py-2 rounded-lg hover:opacity-90 transition-opacity">
+          Go to Public Portal →
+        </a>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<!-- ── Footer ── -->
+<footer class="bg-primary text-white text-xs text-center py-4 mt-10">
+  CivicPulse Public Grievance Management System · Department of Administrative Reforms &amp; Public Oversight
+</footer>
+
+<script type="module">
+  import { setToken, getToken, isTokenValid, parseToken } from "/auth.js";
+
+  // Redirect already-logged-in users
+  const existingToken = getToken();
+  if (existingToken && isTokenValid(existingToken)) {
+    const role = parseToken(existingToken)?.role;
+    if (role === "admin" || role === "officer") {
+      window.location.replace("/dashboard.html");
+    } else {
+      window.location.replace("/");
+    }
+  }
+
+  // Live UTC clock
+  function updateClock() {
+    const now = new Date();
+    document.getElementById("live-utc").textContent =
+      now.toISOString().replace("T", " ").substring(0, 19) + " Z";
+  }
+  updateClock();
+  setInterval(updateClock, 1000);
+
+  // Tab switching
+  window.switchTab = (tab) => {
+    const citizen = document.getElementById("panel-citizen");
+    const officer = document.getElementById("panel-officer");
+    const btnC = document.getElementById("tab-citizen-btn");
+    const btnO = document.getElementById("tab-officer-btn");
+    if (tab === "citizen") {
+      citizen.classList.remove("hidden"); citizen.classList.add("flex");
+      officer.classList.add("hidden"); officer.classList.remove("flex");
+      btnC.classList.add("tab-active"); btnC.classList.remove("tab-inactive");
+      btnO.classList.remove("tab-active"); btnO.classList.add("tab-inactive");
+    } else {
+      officer.classList.remove("hidden"); officer.classList.add("flex");
+      citizen.classList.add("hidden"); citizen.classList.remove("flex");
+      btnO.classList.add("tab-active"); btnO.classList.remove("tab-inactive");
+      btnC.classList.remove("tab-active"); btnC.classList.add("tab-inactive");
+    }
+  };
+
+  // Sub-tabs: login vs register
+  window.setCitizenMethod = (method) => {
+    const loginForm = document.getElementById("citizen-login-form");
+    const registerForm = document.getElementById("citizen-register-form");
+    const btnL = document.getElementById("sub-login-btn");
+    const btnR = document.getElementById("sub-register-btn");
+    if (method === "login") {
+      loginForm.classList.remove("hidden");
+      registerForm.classList.add("hidden");
+      btnL.classList.add("bg-white", "text-primary", "shadow-sm");
+      btnL.classList.remove("text-on-surface-variant");
+      btnR.classList.remove("bg-white", "text-primary", "shadow-sm");
+      btnR.classList.add("text-on-surface-variant");
+    } else {
+      registerForm.classList.remove("hidden");
+      loginForm.classList.add("hidden");
+      btnR.classList.add("bg-white", "text-primary", "shadow-sm");
+      btnR.classList.remove("text-on-surface-variant");
+      btnL.classList.remove("bg-white", "text-primary", "shadow-sm");
+      btnL.classList.add("text-on-surface-variant");
+    }
+  };
+
+  // Show/hide password
+  window.togglePwd = (inputId) => {
+    const input = document.getElementById(inputId);
+    const icon = document.getElementById(inputId + "-icon");
+    if (input.type === "password") { input.type = "text"; icon.textContent = "visibility_off"; }
+    else { input.type = "password"; icon.textContent = "visibility"; }
+  };
+
+  function showError(id, msg) {
+    const el = document.getElementById(id);
+    el.textContent = msg;
+    el.classList.remove("hidden");
+  }
+  function hideError(id) { document.getElementById(id).classList.add("hidden"); }
+  function setLoading(btnId, loading) {
+    const btn = document.getElementById(btnId);
+    btn.disabled = loading;
+    btn.style.opacity = loading ? "0.7" : "1";
+  }
+
+  window.quickFillAdmin = () => {
+    switchTab("officer");
+    document.getElementById("officer-email").value = "admin@grievance.gov";
+    document.getElementById("officer-password").value = "Admin@1234";
+    hideError("officer-error");
+  };
+
+  function parseErrorMessage(data, fallback = "Action failed.") {
+    if (!data) return fallback;
+    if (typeof data.detail === "string") return data.detail;
+    if (Array.isArray(data.detail)) {
+      return data.detail.map(d => d.msg || JSON.stringify(d)).join("; ");
+    }
+    return fallback;
+  }
+
+  window.handleCitizenLogin = async (e) => {
+    e.preventDefault();
+    hideError("login-error");
+    setLoading("login-btn", true);
+    try {
+      const form = e.target;
+      const email = (form.email.value || "").trim();
+      const password = form.password.value;
+      const res = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(parseErrorMessage(data, "Login failed."));
+      setToken(data.access_token);
+      // Redirect based on role
+      if (data.role === "admin" || data.role === "officer") {
+        window.location.replace("/dashboard.html");
+      } else {
+        window.location.replace("/");
+      }
+    } catch (err) {
+      showError("login-error", err.message);
+    } finally {
+      setLoading("login-btn", false);
+    }
+  };
+
+  window.handleCitizenRegister = async (e) => {
+    e.preventDefault();
+    hideError("register-error");
+    setLoading("register-btn", true);
+    try {
+      const form = e.target;
+      const name = (form.name.value || "").trim();
+      const email = (form.email.value || "").trim();
+      const password = form.password.value;
+      const res = await fetch("/api/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, password }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(parseErrorMessage(data, "Registration failed."));
+      setToken(data.access_token);
+      window.location.replace("/");
+    } catch (err) {
+      showError("register-error", err.message);
+    } finally {
+      setLoading("register-btn", false);
+    }
+  };
+
+  window.handleOfficerLogin = async (e) => {
+    e.preventDefault();
+    hideError("officer-error");
+    setLoading("officer-btn", true);
+    try {
+      const form = e.target;
+      const email = (form.email.value || "").trim();
+      const password = form.password.value;
+      const res = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(parseErrorMessage(data, "Login failed."));
+      if (data.role !== "admin" && data.role !== "officer") {
+        throw new Error("Access denied — this console is for officers and admins only.");
+      }
+      setToken(data.access_token);
+      window.location.replace("/dashboard.html");
+    } catch (err) {
+      showError("officer-error", err.message);
+    } finally {
+      setLoading("officer-btn", false);
+    }
+  };
+</script>
+
+</body>
+</html>

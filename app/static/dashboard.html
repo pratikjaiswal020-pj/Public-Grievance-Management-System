@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Officer Console — CivicPulse Grievance Redressal</title>
+  <meta name="description" content="Nodal Officer and Administrative Management Console for Public Grievance Resolution."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ["Inter", "system-ui", "sans-serif"],
+            mono: ["JetBrains Mono", "monospace"],
+          },
+        }
+      }
+    };
+  </script>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Inter", system-ui, sans-serif;
+      background: #09090f;
+      color: #e2e8f0;
+      min-height: 100vh;
+    }
+    .material-symbols-outlined { font-size: 1.1em; vertical-align: middle; user-select: none; }
+    .font-mono { font-family: "JetBrains Mono", monospace; }
+
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #13131f; }
+    ::-webkit-scrollbar-thumb { background: #2a2a4a; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #383862; }
+
+    @keyframes fadeUp { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes pulse-dot { 0%,100% { opacity:1; } 50% { opacity:0.3; } }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .fade-up { animation: fadeUp 0.25s ease-out both; }
+    .animate-spin { animation: spin 1s linear infinite; }
+    .live-dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: #10b981; animation: pulse-dot 1.4s ease-in-out infinite; }
+
+    .glass {
+      background: rgba(21, 21, 36, 0.85);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(99,102,241,0.12);
+    }
+    .glass-hover { transition: all 0.2s; }
+    .glass-hover:hover {
+      border-color: rgba(99,102,241,0.3);
+      box-shadow: 0 0 18px rgba(99,102,241,0.15);
+    }
+
+    .trow { transition: background 0.15s; }
+    .trow:hover { background: rgba(99,102,241,0.07); }
+
+    .badge-submitted  { background: rgba(99,102,241,0.15); color: #a5b4fc; border: 1px solid rgba(99,102,241,0.3); }
+    .badge-assigned   { background: rgba(6,182,212,0.15); color: #67e8f9; border: 1px solid rgba(6,182,212,0.3); }
+    .badge-progress   { background: rgba(245,158,11,0.15); color: #fcd34d; border: 1px solid rgba(245,158,11,0.3); }
+    .badge-resolved   { background: rgba(16,185,129,0.15); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.3); }
+    .badge-high       { background: rgba(244,63,94,0.15);  color: #fda4af; border: 1px solid rgba(244,63,94,0.3); }
+    .badge-normal     { background: rgba(100,116,139,0.15); color: #94a3b8; border: 1px solid rgba(100,116,139,0.3); }
+
+    .dark-input {
+      background: #13131f;
+      border: 1px solid rgba(99,102,241,0.2);
+      color: #e2e8f0;
+      border-radius: 8px;
+      padding: 6px 12px;
+      font-size: 0.8rem;
+      outline: none;
+      transition: border-color 0.15s;
+      font-family: "Inter", sans-serif;
+    }
+    .dark-input:focus { border-color: #6366f1; box-shadow: 0 0 0 3px rgba(99,102,241,0.12); }
+    .dark-input::placeholder { color: #4e4e8a; }
+    option { background: #13131f; color: #e2e8f0; }
+
+    .modal-bg { background: rgba(0,0,0,0.75); backdrop-filter: blur(4px); }
+    .chart-wrap { position: relative; }
+  </style>
+</head>
+<body>
+
+<!-- TOP HEADER -->
+<header style="background: linear-gradient(90deg, #0f0f1a 0%, #17172a 100%); border-bottom: 1px solid rgba(99,102,241,0.2);">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap items-center justify-between gap-3">
+    <a href="/" class="flex items-center gap-3 no-underline">
+      <div style="width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,#4f46e5,#06b6d4);display:flex;align-items:center;justify-content:center;">
+        <span class="material-symbols-outlined" style="font-size:1.4rem;color:#fff;">account_balance</span>
+      </div>
+      <div>
+        <div class="flex items-center gap-2">
+          <span style="font-weight:700;color:#fff;font-size:1rem;letter-spacing:.04em;">CivicPulse</span>
+          <span style="font-size:0.6rem;font-weight:700;letter-spacing:.08em;background:rgba(99,102,241,0.2);color:#a5b4fc;border:1px solid rgba(99,102,241,0.3);padding:1px 6px;border-radius:4px;">OFFICER CONSOLE</span>
+        </div>
+        <div style="font-size:0.68rem;color:#4e4e8a;margin-top:1px;">Grievance Redressal &amp; Oversight Portal</div>
+      </div>
+    </a>
+    <div class="flex items-center gap-4">
+      <a href="/" style="font-size:0.75rem;color:#4e4e8a;display:flex;align-items:center;gap:4px;text-decoration:none;" onmouseover="this.style.color='#818cf8'" onmouseout="this.style.color='#4e4e8a'">
+        <span class="material-symbols-outlined" style="font-size:.85rem;">open_in_new</span> Citizen Portal
+      </a>
+      <div style="width:1px;height:20px;background:rgba(99,102,241,0.2);"></div>
+      <div class="flex items-center gap-3">
+        <div class="text-right">
+          <div id="user-name-display" style="font-size:.85rem;font-weight:700;color:#e2e8f0;">Loading...</div>
+          <div style="margin-top:2px;">
+            <span id="user-role-badge" style="font-size:.6rem;font-weight:700;letter-spacing:.07em;background:rgba(99,102,241,0.2);color:#818cf8;border:1px solid rgba(99,102,241,0.3);padding:1px 6px;border-radius:4px;">Officer</span>
+          </div>
+        </div>
+        <button onclick="handleLogout()" style="background:rgba(244,63,94,0.1);border:1px solid rgba(244,63,94,0.25);color:#fda4af;font-size:.72rem;font-weight:600;padding:6px 12px;border-radius:8px;cursor:pointer;display:flex;align-items:center;gap:5px;" onmouseover="this.style.background='rgba(244,63,94,0.2)'" onmouseout="this.style.background='rgba(244,63,94,0.1)'">
+          <span class="material-symbols-outlined" style="font-size:.9rem;">logout</span> Logout
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- SUBBAR -->
+<div style="background:#0f0f1a;border-bottom:1px solid rgba(99,102,241,0.1);padding:6px 0;">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+    <div class="flex items-center gap-2" style="font-size:.7rem;color:#4e4e8a;">
+      <span class="live-dot"></span>
+      <span style="font-weight:600;color:#6366f1;letter-spacing:.08em;">LIVE CONSOLE</span>
+      <span>— Gazetted Officer Dashboard</span>
+    </div>
+    <div class="flex items-center gap-2" style="font-size:.72rem;color:#383862;font-family:'JetBrains Mono',monospace;">
+      <span class="material-symbols-outlined" style="font-size:.85rem;color:#4e4e8a;">schedule</span>
+      <span id="live-utc" style="color:#6366f1;font-weight:700;">--:--:-- Z</span>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col gap-6">
+
+  <!-- KPI CARDS -->
+  <section class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 fade-up">
+    <div class="glass glass-hover rounded-xl p-4 flex flex-col gap-2">
+      <div class="flex items-center justify-between">
+        <span style="font-size:.65rem;font-weight:600;letter-spacing:.06em;color:#4e4e8a;">TOTAL</span>
+        <span class="material-symbols-outlined" style="font-size:1.05rem;color:#6366f1;">folder_open</span>
+      </div>
+      <div id="stat-total" class="font-mono" style="font-size:2rem;font-weight:800;color:#818cf8;">--</div>
+      <div style="font-size:.65rem;color:#383862;">All time registered</div>
+    </div>
+    <div class="glass glass-hover rounded-xl p-4 flex flex-col gap-2">
+      <div class="flex items-center justify-between">
+        <span style="font-size:.65rem;font-weight:600;letter-spacing:.06em;color:#4e4e8a;">SUBMITTED</span>
+        <span class="material-symbols-outlined" style="font-size:1.05rem;color:#22d3ee;">new_releases</span>
+      </div>
+      <div id="stat-submitted" class="font-mono" style="font-size:2rem;font-weight:800;color:#22d3ee;">--</div>
+      <div style="font-size:.65rem;color:#383862;">Awaiting action</div>
+    </div>
+    <div class="glass glass-hover rounded-xl p-4 flex flex-col gap-2">
+      <div class="flex items-center justify-between">
+        <span style="font-size:.65rem;font-weight:600;letter-spacing:.06em;color:#4e4e8a;">IN PROGRESS</span>
+        <span class="material-symbols-outlined" style="font-size:1.05rem;color:#f59e0b;">pending_actions</span>
+      </div>
+      <div id="stat-in-progress" class="font-mono" style="font-size:2rem;font-weight:800;color:#f59e0b;">--</div>
+      <div style="font-size:.65rem;color:#383862;">Under investigation</div>
+    </div>
+    <div class="glass glass-hover rounded-xl p-4 flex flex-col gap-2">
+      <div class="flex items-center justify-between">
+        <span style="font-size:.65rem;font-weight:600;letter-spacing:.06em;color:#4e4e8a;">RESOLVED</span>
+        <span class="material-symbols-outlined" style="font-size:1.05rem;color:#10b981;">check_circle</span>
+      </div>
+      <div id="stat-resolved" class="font-mono" style="font-size:2rem;font-weight:800;color:#10b981;">--</div>
+      <div style="font-size:.65rem;color:#383862;">Action completed</div>
+    </div>
+    <div class="glass glass-hover rounded-xl p-4 flex flex-col gap-2 col-span-2 sm:col-span-1">
+      <div class="flex items-center justify-between">
+        <span style="font-size:.65rem;font-weight:600;letter-spacing:.06em;color:#4e4e8a;">HIGH PRIORITY</span>
+        <span class="material-symbols-outlined" style="font-size:1.05rem;color:#f43f5e;">warning</span>
+      </div>
+      <div id="stat-urgent" class="font-mono" style="font-size:2rem;font-weight:800;color:#f43f5e;">--</div>
+      <div style="font-size:.65rem;color:#383862;">SLA critical issues</div>
+    </div>
+  </section>
+
+  <!-- CHARTS -->
+  <section class="grid grid-cols-1 lg:grid-cols-2 gap-4 fade-up" style="animation-delay:.05s;">
+    <!-- Donut: Status -->
+    <div class="glass rounded-xl p-5">
+      <div class="flex items-center gap-2 mb-1">
+        <span class="material-symbols-outlined" style="font-size:.95rem;color:#6366f1;">donut_large</span>
+        <span style="font-weight:700;font-size:.88rem;color:#e2e8f0;">Status Breakdown</span>
+      </div>
+      <div style="font-size:.67rem;color:#4e4e8a;margin-bottom:14px;">Distribution of all complaints by current status</div>
+      <div class="chart-wrap" style="height:190px;display:flex;align-items:center;justify-content:center;">
+        <canvas id="statusChart"></canvas>
+      </div>
+      <div id="status-legend" class="flex flex-wrap items-center justify-center gap-4 mt-4" style="font-size:.72rem;"></div>
+    </div>
+
+    <!-- Bar: Departments -->
+    <div class="glass rounded-xl p-5">
+      <div class="flex items-center justify-between mb-1">
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined" style="font-size:.95rem;color:#22d3ee;">bar_chart</span>
+          <span style="font-weight:700;font-size:.88rem;color:#e2e8f0;">Top Departments</span>
+        </div>
+        <span id="chart-data-note" style="font-size:.62rem;color:#383862;font-style:italic;">Loading...</span>
+      </div>
+      <div style="font-size:.67rem;color:#4e4e8a;margin-bottom:14px;">Departments with highest complaint volume</div>
+      <div class="chart-wrap" style="height:200px;">
+        <canvas id="deptChart"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- ADMIN PANEL -->
+  <section id="admin-officers-section" class="hidden glass rounded-xl p-5 fade-up" style="border-color:rgba(99,102,241,0.25);animation-delay:.08s;">
+    <div class="flex items-center justify-between mb-4 pb-3" style="border-bottom:1px solid rgba(99,102,241,0.15);">
+      <div class="flex items-center gap-2">
+        <span class="material-symbols-outlined" style="color:#6366f1;">admin_panel_settings</span>
+        <div>
+          <div style="font-weight:700;font-size:.88rem;color:#e2e8f0;">Officer Provisioning Panel</div>
+          <div style="font-size:.67rem;color:#4e4e8a;">Create credentials for departmental officers. Admin use only.</div>
+        </div>
+      </div>
+      <span style="font-size:.6rem;font-weight:700;letter-spacing:.08em;background:rgba(99,102,241,0.15);color:#a5b4fc;border:1px solid rgba(99,102,241,0.3);padding:2px 8px;border-radius:4px;">ADMIN ONLY</span>
+    </div>
+    <form id="create-officer-form" onsubmit="handleCreateOfficer(event)" class="grid grid-cols-1 sm:grid-cols-3 gap-4 items-end">
+      <div>
+        <label style="display:block;font-size:.7rem;font-weight:600;color:#818cf8;margin-bottom:5px;" for="off-name">Officer Name <span style="color:#f43f5e;">*</span></label>
+        <input id="off-name" type="text" name="name" required placeholder="e.g. Dr. Rajesh Kumar" class="dark-input w-full"/>
+      </div>
+      <div>
+        <label style="display:block;font-size:.7rem;font-weight:600;color:#818cf8;margin-bottom:5px;" for="off-email">Official Email <span style="color:#f43f5e;">*</span></label>
+        <input id="off-email" type="email" name="email" required placeholder="officer@dept.gov.in" class="dark-input w-full"/>
+      </div>
+      <div>
+        <label style="display:block;font-size:.7rem;font-weight:600;color:#818cf8;margin-bottom:5px;" for="off-password">Password <span style="color:#f43f5e;">*</span></label>
+        <input id="off-password" type="password" name="password" required minlength="8" placeholder="Min 8 characters" class="dark-input w-full"/>
+      </div>
+      <div class="sm:col-span-3 flex items-center justify-between">
+        <div id="create-officer-msg" class="hidden"></div>
+        <button type="submit" id="create-officer-btn" style="background:linear-gradient(135deg,#4f46e5,#06b6d4);color:#fff;font-size:.75rem;font-weight:700;padding:8px 18px;border-radius:8px;border:none;cursor:pointer;display:flex;align-items:center;gap:6px;margin-left:auto;" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
+          <span class="material-symbols-outlined" style="font-size:.9rem;">person_add</span> Provision Officer
+        </button>
+      </div>
+    </form>
+  </section>
+
+  <!-- GRIEVANCE QUEUE -->
+  <section class="glass rounded-xl overflow-hidden fade-up" style="animation-delay:.1s;">
+    <!-- Toolbar -->
+    <div class="flex flex-wrap items-center justify-between gap-3 p-4" style="border-bottom:1px solid rgba(99,102,241,0.12);background:rgba(21,21,36,0.9);">
+      <div class="flex items-center gap-2">
+        <span class="material-symbols-outlined" style="color:#6366f1;">table_chart</span>
+        <span style="font-weight:700;font-size:.88rem;color:#e2e8f0;">Grievance Queue</span>
+        <span id="queue-count-badge" class="font-mono" style="font-size:.65rem;font-weight:700;background:rgba(99,102,241,0.15);color:#818cf8;border:1px solid rgba(99,102,241,0.25);padding:2px 8px;border-radius:20px;">0 items</span>
+      </div>
+      <div class="flex flex-wrap items-center gap-2">
+        <div style="position:relative;">
+          <input id="search-input" type="text" placeholder="Search Ref ID, name, keyword…" oninput="debounceSearch()" class="dark-input" style="padding-left:28px;width:220px;"/>
+          <span class="material-symbols-outlined" style="position:absolute;left:7px;top:50%;transform:translateY(-50%);font-size:.9rem;color:#4e4e8a;">search</span>
+        </div>
+        <select id="status-filter" onchange="loadComplaints(1)" class="dark-input">
+          <option value="">All Statuses</option>
+          <option value="Submitted">Submitted</option>
+          <option value="Assigned">Assigned</option>
+          <option value="In Progress">In Progress</option>
+          <option value="Resolved">Resolved</option>
+        </select>
+        <select id="priority-filter" onchange="loadComplaints(1)" class="dark-input">
+          <option value="">All Priorities</option>
+          <option value="High">High / Urgent</option>
+          <option value="Normal">Normal / Medium</option>
+        </select>
+        <button onclick="loadComplaints(currentPage);loadStats();" style="background:rgba(99,102,241,0.1);border:1px solid rgba(99,102,241,0.25);color:#818cf8;font-size:.72rem;font-weight:600;padding:6px 12px;border-radius:8px;cursor:pointer;display:flex;align-items:center;gap:5px;" onmouseover="this.style.background='rgba(99,102,241,0.2)'" onmouseout="this.style.background='rgba(99,102,241,0.1)'">
+          <span class="material-symbols-outlined" style="font-size:.9rem;">refresh</span> Refresh
+        </button>
+      </div>
+    </div>
+
+    <!-- Table -->
+    <div style="overflow-x:auto;min-height:300px;">
+      <table style="width:100%;border-collapse:collapse;font-size:.78rem;">
+        <thead>
+          <tr style="background:rgba(15,15,26,0.9);border-bottom:1px solid rgba(99,102,241,0.15);">
+            <th style="padding:10px 14px;text-align:left;font-size:.62rem;font-weight:700;letter-spacing:.07em;color:#4e4e8a;">REF ID</th>
+            <th style="padding:10px 14px;text-align:left;font-size:.62rem;font-weight:700;letter-spacing:.07em;color:#4e4e8a;">DATE</th>
+            <th style="padding:10px 14px;text-align:left;font-size:.62rem;font-weight:700;letter-spacing:.07em;color:#4e4e8a;">CITIZEN &amp; LOCATION</th>
+            <th style="padding:10px 14px;text-align:left;font-size:.62rem;font-weight:700;letter-spacing:.07em;color:#4e4e8a;">TITLE &amp; CATEGORY</th>
+            <th style="padding:10px 14px;text-align:left;font-size:.62rem;font-weight:700;letter-spacing:.07em;color:#4e4e8a;">DEPARTMENT</th>
+            <th style="padding:10px 14px;text-align:left;font-size:.62rem;font-weight:700;letter-spacing:.07em;color:#4e4e8a;">PRIORITY</th>
+            <th style="padding:10px 14px;text-align:left;font-size:.62rem;font-weight:700;letter-spacing:.07em;color:#4e4e8a;">STATUS</th>
+            <th style="padding:10px 14px;text-align:right;font-size:.62rem;font-weight:700;letter-spacing:.07em;color:#4e4e8a;">ACTIONS</th>
+          </tr>
+        </thead>
+        <tbody id="complaints-tbody">
+          <tr>
+            <td colspan="8" style="text-align:center;padding:48px;color:#4e4e8a;">
+              <span class="material-symbols-outlined animate-spin" style="font-size:2rem;color:#6366f1;">hourglass_empty</span>
+              <p style="margin:8px 0 0;font-size:.75rem;">Loading grievance records…</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Pagination -->
+    <div class="flex flex-wrap items-center justify-between gap-3 p-4" style="border-top:1px solid rgba(99,102,241,0.12);background:rgba(15,15,26,0.7);font-size:.72rem;color:#4e4e8a;">
+      <div>
+        Showing <span id="page-start" style="font-weight:700;color:#818cf8;">0</span> – <span id="page-end" style="font-weight:700;color:#818cf8;">0</span> of <span id="page-total" style="font-weight:700;color:#818cf8;">0</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <button id="btn-prev-page" onclick="changePage(-1)" disabled style="background:rgba(99,102,241,0.08);border:1px solid rgba(99,102,241,0.2);color:#818cf8;font-size:.72rem;font-weight:600;padding:5px 12px;border-radius:7px;cursor:pointer;">&#8592; Prev</button>
+        <span style="font-weight:700;color:#818cf8;font-family:monospace;">Pg <span id="current-page-num">1</span></span>
+        <button id="btn-next-page" onclick="changePage(1)" disabled style="background:rgba(99,102,241,0.08);border:1px solid rgba(99,102,241,0.2);color:#818cf8;font-size:.72rem;font-weight:600;padding:5px 12px;border-radius:7px;cursor:pointer;">Next &#8594;</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer style="background:#0f0f1a;border-top:1px solid rgba(99,102,241,0.1);text-align:center;font-size:.67rem;color:#383862;padding:12px;">
+  CivicPulse Nodal Redressal Suite — Department of Administrative Reforms &amp; Public Oversight
+</footer>
+
+
+<!-- MODAL: Detail -->
+<div id="detail-modal" class="modal-bg fixed inset-0 z-50 hidden flex items-center justify-center p-4">
+  <div class="rounded-2xl shadow-2xl w-full max-w-3xl max-h-[90vh] flex flex-col overflow-hidden fade-up" style="background:#13131f;border:1px solid rgba(99,102,241,0.25);">
+    <div class="flex items-center justify-between p-4" style="background:linear-gradient(90deg,#17172a,#1c1c33);border-bottom:1px solid rgba(99,102,241,0.2);">
+      <div class="flex items-center gap-3">
+        <div style="width:36px;height:36px;border-radius:9px;background:linear-gradient(135deg,#4f46e5,#06b6d4);display:flex;align-items:center;justify-content:center;">
+          <span class="material-symbols-outlined" style="color:#fff;font-size:1rem;">description</span>
+        </div>
+        <div>
+          <div id="modal-ref-id" class="font-mono" style="font-weight:700;font-size:1rem;color:#a5b4fc;">GRV-2026-XXXXXX</div>
+          <div style="font-size:.67rem;color:#4e4e8a;">Grievance Inspection &amp; Audit File</div>
+        </div>
+      </div>
+      <button onclick="closeDetailModal()" style="background:rgba(244,63,94,0.1);border:1px solid rgba(244,63,94,0.2);color:#fda4af;border-radius:8px;padding:4px 8px;cursor:pointer;" onmouseover="this.style.background='rgba(244,63,94,0.2)'" onmouseout="this.style.background='rgba(244,63,94,0.1)'">
+        <span class="material-symbols-outlined" style="font-size:1.2rem;">close</span>
+      </button>
+    </div>
+    <div style="padding:20px;overflow-y:auto;display:flex;flex-direction:column;gap:14px;font-size:.78rem;color:#cbd5e1;">
+
+      <div class="flex flex-wrap items-center justify-between gap-2 rounded-lg p-3" style="background:rgba(21,21,36,0.9);border:1px solid rgba(99,102,241,0.15);">
+        <div class="flex items-center gap-2">
+          <span style="color:#4e4e8a;font-weight:600;font-size:.65rem;">STATUS</span>
+          <span id="modal-status-badge" style="font-size:.72rem;font-weight:700;padding:2px 8px;border-radius:5px;">--</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span style="color:#4e4e8a;font-weight:600;font-size:.65rem;">PRIORITY</span>
+          <span id="modal-priority-badge" style="font-size:.72rem;font-weight:700;padding:2px 8px;border-radius:5px;">--</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span style="color:#4e4e8a;font-weight:600;font-size:.65rem;">SUBMITTED</span>
+          <span id="modal-date" class="font-mono" style="font-size:.72rem;color:#818cf8;font-weight:600;">--</span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 rounded-lg p-4" style="background:rgba(21,21,36,0.8);border:1px solid rgba(99,102,241,0.12);">
+        <div>
+          <div style="font-size:.62rem;color:#4e4e8a;font-weight:600;margin-bottom:3px;">COMPLAINANT</div>
+          <div id="modal-citizen-name" style="font-weight:700;font-size:.88rem;color:#a5b4fc;">--</div>
+        </div>
+        <div>
+          <div style="font-size:.62rem;color:#4e4e8a;font-weight:600;margin-bottom:3px;">CONTACT</div>
+          <div id="modal-citizen-contact" style="font-weight:500;">--</div>
+        </div>
+        <div>
+          <div style="font-size:.62rem;color:#4e4e8a;font-weight:600;margin-bottom:3px;">LOCATION</div>
+          <div id="modal-location" style="font-weight:500;">--</div>
+        </div>
+      </div>
+
+      <div class="rounded-lg p-4" style="background:rgba(21,21,36,0.8);border:1px solid rgba(99,102,241,0.12);">
+        <div style="font-size:.62rem;color:#4e4e8a;font-weight:600;margin-bottom:3px;">TITLE</div>
+        <div id="modal-title" style="font-weight:700;font-size:.9rem;color:#e2e8f0;margin-bottom:12px;">--</div>
+        <div style="font-size:.62rem;color:#4e4e8a;font-weight:600;margin-bottom:5px;">DESCRIPTION</div>
+        <p id="modal-description" style="background:#09090f;border:1px solid rgba(99,102,241,0.12);border-radius:8px;padding:12px;font-size:.75rem;line-height:1.7;white-space:pre-wrap;color:#94a3b8;margin:0;">--</p>
+      </div>
+
+      <div class="rounded-lg p-4" style="background:rgba(99,102,241,0.06);border:1px solid rgba(99,102,241,0.18);">
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-1.5" style="font-weight:700;font-size:.78rem;color:#818cf8;">
+            <span class="material-symbols-outlined" style="font-size:.95rem;">psychology</span> NLP Auto-Categorization
+          </div>
+          <span id="modal-confidence" class="font-mono" style="font-size:.72rem;font-weight:700;color:#10b981;">--</span>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2" style="font-size:.75rem;">
+          <div><span style="color:#4e4e8a;">Category: </span><span id="modal-category" style="font-weight:700;color:#e2e8f0;">--</span></div>
+          <div><span style="color:#4e4e8a;">Department: </span><span id="modal-department" style="font-weight:700;color:#22d3ee;">--</span></div>
+        </div>
+      </div>
+
+      <div class="rounded-lg p-4" style="background:rgba(21,21,36,0.8);border:1px solid rgba(99,102,241,0.12);">
+        <div style="font-size:.62rem;color:#4e4e8a;font-weight:600;margin-bottom:8px;display:flex;align-items:center;gap:5px;">
+          <span class="material-symbols-outlined" style="font-size:.9rem;">attach_file</span> EVIDENCE ATTACHMENTS
+        </div>
+        <div id="modal-attachments-list"><span style="color:#383862;font-style:italic;">No file attached.</span></div>
+      </div>
+
+      <div class="rounded-lg p-4" style="background:rgba(21,21,36,0.8);border:1px solid rgba(99,102,241,0.12);">
+        <div style="font-size:.62rem;color:#4e4e8a;font-weight:600;margin-bottom:12px;display:flex;align-items:center;gap:5px;">
+          <span class="material-symbols-outlined" style="font-size:.9rem;">history</span> STATUS TIMELINE
+        </div>
+        <div id="modal-timeline" style="display:flex;flex-direction:column;gap:12px;padding-left:16px;position:relative;">
+          <div style="position:absolute;left:5px;top:4px;bottom:4px;width:1px;background:rgba(99,102,241,0.2);"></div>
+        </div>
+      </div>
+
+      <div id="modal-feedback-card" class="hidden rounded-lg p-4" style="background:rgba(245,158,11,0.07);border:1px solid rgba(245,158,11,0.2);">
+        <div style="font-weight:700;font-size:.78rem;color:#fcd34d;margin-bottom:6px;display:flex;align-items:center;gap:5px;">
+          <span class="material-symbols-outlined" style="font-size:.9rem;">star</span> CITIZEN FEEDBACK
+        </div>
+        <div id="modal-rating" style="font-weight:700;color:#fbbf24;margin-bottom:4px;">--</div>
+        <p id="modal-comment" style="font-size:.73rem;color:#fde68a;font-style:italic;margin:0;">--</p>
+      </div>
+    </div>
+    <div class="flex items-center justify-between p-4" style="border-top:1px solid rgba(99,102,241,0.15);background:rgba(15,15,26,0.8);">
+      <button onclick="closeDetailModal()" style="background:rgba(99,102,241,0.08);border:1px solid rgba(99,102,241,0.2);color:#818cf8;font-size:.75rem;font-weight:600;padding:7px 16px;border-radius:8px;cursor:pointer;">Close</button>
+      <button id="modal-update-btn" onclick="openStatusModalFromDetail()" style="background:linear-gradient(135deg,#4f46e5,#06b6d4);color:#fff;font-size:.75rem;font-weight:700;padding:7px 16px;border-radius:8px;border:none;cursor:pointer;display:flex;align-items:center;gap:6px;">
+        <span class="material-symbols-outlined" style="font-size:.9rem;">edit_note</span> Update Status
+      </button>
+    </div>
+  </div>
+</div>
+
+
+<!-- MODAL: Status Update -->
+<div id="status-modal" class="modal-bg fixed inset-0 z-50 hidden flex items-center justify-center p-4">
+  <div class="rounded-2xl shadow-2xl w-full max-w-md overflow-hidden fade-up" style="background:#13131f;border:1px solid rgba(99,102,241,0.25);">
+    <div class="flex items-center justify-between p-4" style="background:linear-gradient(90deg,#17172a,#1c1c33);border-bottom:1px solid rgba(99,102,241,0.2);">
+      <div class="flex items-center gap-2">
+        <span class="material-symbols-outlined" style="color:#818cf8;">edit_square</span>
+        <span style="font-weight:700;font-size:.88rem;color:#e2e8f0;">Update Grievance Status</span>
+      </div>
+      <button onclick="closeStatusModal()" style="background:rgba(244,63,94,0.1);border:1px solid rgba(244,63,94,0.2);color:#fda4af;border-radius:8px;padding:4px 8px;cursor:pointer;">
+        <span class="material-symbols-outlined" style="font-size:1.1rem;">close</span>
+      </button>
+    </div>
+    <form onsubmit="handleStatusSubmit(event)" style="padding:20px;display:flex;flex-direction:column;gap:14px;font-size:.78rem;">
+      <div>
+        <label style="display:block;font-size:.67rem;color:#4e4e8a;font-weight:600;margin-bottom:5px;">REFERENCE ID</label>
+        <input id="update-ref-id" type="text" readonly class="dark-input w-full font-mono" style="color:#818cf8;font-weight:700;"/>
+      </div>
+      <div>
+        <label style="display:block;font-size:.67rem;color:#4e4e8a;font-weight:600;margin-bottom:5px;" for="update-status-select">NEW STATUS <span style="color:#f43f5e;">*</span></label>
+        <select id="update-status-select" required class="dark-input w-full">
+          <option value="Submitted">Submitted (Queue)</option>
+          <option value="Assigned">Assigned (Officer Dispatched)</option>
+          <option value="In Progress">In Progress (Under Action)</option>
+          <option value="Resolved">Resolved (Completed)</option>
+        </select>
+      </div>
+      <div>
+        <label style="display:block;font-size:.67rem;color:#4e4e8a;font-weight:600;margin-bottom:5px;" for="update-remark">OFFICER REMARK <span style="color:#f43f5e;">*</span></label>
+        <textarea id="update-remark" required minlength="3" rows="4" placeholder="Detail the official action taken or resolution notes…" class="dark-input w-full" style="resize:vertical;line-height:1.6;"></textarea>
+      </div>
+      <div id="update-status-error" class="hidden" style="font-size:.72rem;color:#fda4af;background:rgba(244,63,94,0.1);border:1px solid rgba(244,63,94,0.25);padding:8px 12px;border-radius:7px;"></div>
+      <div class="flex items-center justify-end gap-2">
+        <button type="button" onclick="closeStatusModal()" style="background:rgba(99,102,241,0.08);border:1px solid rgba(99,102,241,0.2);color:#818cf8;font-size:.75rem;font-weight:600;padding:7px 14px;border-radius:8px;cursor:pointer;">Cancel</button>
+        <button type="submit" id="update-status-submit-btn" style="background:linear-gradient(135deg,#4f46e5,#06b6d4);color:#fff;font-size:.75rem;font-weight:700;padding:7px 18px;border-radius:8px;border:none;cursor:pointer;display:flex;align-items:center;gap:6px;">
+          <span class="material-symbols-outlined" style="font-size:.9rem;">save</span> Save Update
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<!-- JAVASCRIPT -->
+<script type="module">
+  import { requireAuth, logout, authApi, getCurrentName, getCurrentRole } from "/auth.js";
+
+  if (!requireAuth(["officer", "admin"])) {
+    // redirect handled by requireAuth
+  }
+
+  window.currentPage = 1;
+  window.currentComplaints = [];
+  window.activeDetailComplaint = null;
+  let searchTimeout = null;
+  let statusChartInstance = null;
+  let deptChartInstance = null;
+
+  document.addEventListener("DOMContentLoaded", () => {
+    initUser();
+    loadStats();
+    loadComplaints(1);
+    loadCharts();
+    startUtcClock();
+  });
+
+  function startUtcClock() {
+    const el = document.getElementById("live-utc");
+    const tick = () => { if (el) el.textContent = new Date().toISOString().replace("T"," ").substring(0,19) + " Z"; };
+    tick(); setInterval(tick, 1000);
+  }
+
+  function initUser() {
+    const name = getCurrentName() || "Nodal Officer";
+    const role = getCurrentRole() || "officer";
+    document.getElementById("user-name-display").textContent = name;
+    document.getElementById("user-role-badge").textContent = role === "admin" ? "System Admin" : "Gazetted Officer";
+    if (role === "admin") document.getElementById("admin-officers-section")?.classList.remove("hidden");
+  }
+
+  window.handleLogout = () => logout("/login.html");
+
+  async function loadStats() {
+    try {
+      const s = await authApi("/api/admin/stats");
+      document.getElementById("stat-total").textContent       = s.total         ?? 0;
+      document.getElementById("stat-submitted").textContent   = (s.submitted ?? 0) + (s.assigned ?? 0);
+      document.getElementById("stat-in-progress").textContent = s.in_progress   ?? 0;
+      document.getElementById("stat-resolved").textContent    = s.resolved      ?? 0;
+      document.getElementById("stat-urgent").textContent      = s.high_priority ?? 0;
+    } catch(e) { console.error("Stats:", e); }
+  }
+
+  async function loadCharts() {
+    try {
+      const data = await authApi("/api/admin/complaints?page=1&per_page=200");
+      const complaints = data.complaints || [];
+      document.getElementById("chart-data-note").textContent =
+        `Based on ${complaints.length} of ${data.total} records`;
+
+      // --- Status Donut ---
+      const sc = { Submitted: 0, Assigned: 0, "In Progress": 0, Resolved: 0 };
+      complaints.forEach(c => { if (sc[c.status] !== undefined) sc[c.status]++; else sc.Submitted++; });
+
+      const sCtx = document.getElementById("statusChart").getContext("2d");
+      if (statusChartInstance) statusChartInstance.destroy();
+      statusChartInstance = new Chart(sCtx, {
+        type: "doughnut",
+        data: {
+          labels: ["Submitted", "Assigned", "In Progress", "Resolved"],
+          datasets: [{
+            data: [sc["Submitted"], sc["Assigned"], sc["In Progress"], sc["Resolved"]],
+            backgroundColor: ["rgba(99,102,241,.85)", "rgba(6,182,212,.85)", "rgba(245,158,11,.85)", "rgba(16,185,129,.85)"],
+            borderColor: ["#6366f1", "#06b6d4", "#f59e0b", "#10b981"],
+            borderWidth: 2,
+            hoverOffset: 6,
+          }]
+        },
+        options: {
+          cutout: "68%",
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              backgroundColor: "#17172a",
+              titleColor: "#818cf8",
+              bodyColor: "#e2e8f0",
+              borderColor: "rgba(99,102,241,.3)",
+              borderWidth: 1,
+              callbacks: { label: ctx => ` ${ctx.label}: ${ctx.parsed} complaints` }
+            }
+          }
+        }
+      });
+
+      // Legend
+      const legendData = [
+        { label: "Submitted", color: "#6366f1", count: sc["Submitted"] },
+        { label: "Assigned", color: "#06b6d4", count: sc["Assigned"] },
+        { label: "In Progress", color: "#f59e0b", count: sc["In Progress"] },
+        { label: "Resolved", color: "#10b981", count: sc["Resolved"] },
+      ];
+      document.getElementById("status-legend").innerHTML = legendData.map(item => `
+        <div style="display:flex;align-items:center;gap:6px;">
+          <span style="width:8px;height:8px;border-radius:50%;background:${item.color};flex-shrink:0;"></span>
+          <span style="color:#94a3b8;">${item.label}</span>
+          <span style="font-weight:700;color:#e2e8f0;font-family:monospace;">${item.count}</span>
+        </div>`).join("");
+
+      // --- Dept Bar ---
+      const dm = {};
+      complaints.forEach(c => { const d = c.department || "Nodal Desk"; dm[d] = (dm[d] || 0) + 1; });
+      const sorted = Object.entries(dm).sort((a,b) => b[1]-a[1]).slice(0,8);
+      const colors = [
+        "rgba(99,102,241,.8)","rgba(34,211,238,.8)","rgba(16,185,129,.8)","rgba(245,158,11,.8)",
+        "rgba(139,92,246,.8)","rgba(244,63,94,.8)","rgba(249,115,22,.8)","rgba(20,184,166,.8)"
+      ];
+
+      const dCtx = document.getElementById("deptChart").getContext("2d");
+      if (deptChartInstance) deptChartInstance.destroy();
+      deptChartInstance = new Chart(dCtx, {
+        type: "bar",
+        data: {
+          labels: sorted.map(([d]) => d.length > 22 ? d.slice(0,20)+"…" : d),
+          datasets: [{
+            label: "Complaints",
+            data: sorted.map(([,v]) => v),
+            backgroundColor: sorted.map((_,i) => colors[i % colors.length]),
+            borderRadius: 5,
+            borderSkipped: false,
+          }]
+        },
+        options: {
+          indexAxis: "y",
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              backgroundColor: "#17172a",
+              titleColor: "#818cf8",
+              bodyColor: "#e2e8f0",
+              borderColor: "rgba(99,102,241,.3)",
+              borderWidth: 1,
+            }
+          },
+          scales: {
+            x: {
+              ticks: { color: "#4e4e8a", font: { size: 10 }, stepSize: 1 },
+              grid: { color: "rgba(99,102,241,.08)" },
+              border: { color: "rgba(99,102,241,.15)" }
+            },
+            y: {
+              ticks: { color: "#94a3b8", font: { size: 10 } },
+              grid: { display: false },
+              border: { color: "rgba(99,102,241,.15)" }
+            }
+          }
+        }
+      });
+    } catch(e) {
+      console.error("Charts:", e);
+      document.getElementById("chart-data-note").textContent = "Chart unavailable";
+    }
+  }
+
+  window.loadComplaints = async (page = 1) => {
+    window.currentPage = page;
+    const tbody = document.getElementById("complaints-tbody");
+    tbody.innerHTML = `<tr><td colspan="8" style="text-align:center;padding:40px;color:#4e4e8a;">
+      <span class="material-symbols-outlined animate-spin" style="font-size:2rem;color:#6366f1;">hourglass_empty</span>
+      <p style="margin:8px 0 0;font-size:.75rem;">Loading queue…</p></td></tr>`;
+
+    const p = new URLSearchParams({ page: page.toString(), per_page: "15" });
+    const sf = document.getElementById("status-filter").value;
+    const pf = document.getElementById("priority-filter").value;
+    const s  = document.getElementById("search-input").value;
+    if (sf) p.append("status_filter", sf);
+    if (pf) p.append("priority_filter", pf);
+    if (s.trim()) p.append("search", s.trim());
+
+    try {
+      const data = await authApi(`/api/admin/complaints?${p}`);
+      window.currentComplaints = data.complaints || [];
+      renderTable(data);
+    } catch(err) {
+      tbody.innerHTML = `<tr><td colspan="8" style="text-align:center;padding:40px;color:#fda4af;">
+        <span class="material-symbols-outlined" style="font-size:2rem;">error</span>
+        <p style="margin:8px 0 0;font-size:.75rem;font-weight:600;">${err.message || "Failed to load queue."}</p></td></tr>`;
+    }
+  };
+
+  window.debounceSearch = () => {
+    clearTimeout(searchTimeout);
+    searchTimeout = setTimeout(() => loadComplaints(1), 350);
+  };
+
+  function renderTable(data) {
+    const tbody = document.getElementById("complaints-tbody");
+    const complaints = data.complaints || [];
+    const total = data.total || 0, perPage = data.per_page || 15, page = data.page || 1;
+
+    document.getElementById("queue-count-badge").textContent = `${total} items`;
+
+    if (!complaints.length) {
+      tbody.innerHTML = `<tr><td colspan="8" style="text-align:center;padding:48px;color:#4e4e8a;">
+        <span class="material-symbols-outlined" style="font-size:2.5rem;display:block;margin-bottom:8px;">inbox</span>
+        No complaints match the current filters.</td></tr>`;
+      ["page-start","page-end","page-total"].forEach(id => document.getElementById(id).textContent = "0");
+      document.getElementById("btn-prev-page").disabled = true;
+      document.getElementById("btn-next-page").disabled = true;
+      return;
+    }
+
+    const start = (page-1)*perPage+1, end = Math.min(page*perPage, total);
+    document.getElementById("page-start").textContent = start;
+    document.getElementById("page-end").textContent   = end;
+    document.getElementById("page-total").textContent = total;
+    document.getElementById("current-page-num").textContent = page;
+    document.getElementById("btn-prev-page").disabled = page <= 1;
+    document.getElementById("btn-next-page").disabled = end >= total;
+
+    tbody.innerHTML = complaints.map(c => {
+      const dateStr = new Date(c.created_at).toLocaleDateString("en-IN",{day:"2-digit",month:"short",year:"numeric"});
+      const isUrgent = c.priority && c.priority.toLowerCase().includes("high");
+      const pc = isUrgent ? "badge-high" : "badge-normal";
+      let sc = "badge-submitted";
+      if (c.status === "Assigned")    sc = "badge-assigned";
+      if (c.status === "In Progress") sc = "badge-progress";
+      if (c.status === "Resolved")    sc = "badge-resolved";
+      const badge = `font-size:.67rem;font-weight:700;padding:2px 8px;border-radius:4px;`;
+      return `
+        <tr class="trow" style="border-bottom:1px solid rgba(99,102,241,.08);">
+          <td style="padding:10px 14px;">
+            <button onclick="openDetailModal('${c.reference_id}')" class="font-mono"
+              style="color:#818cf8;font-weight:700;font-size:.75rem;background:none;border:none;cursor:pointer;"
+              onmouseover="this.style.color='#a5b4fc'" onmouseout="this.style.color='#818cf8'">
+              ${c.reference_id}</button></td>
+          <td style="padding:10px 14px;font-family:'JetBrains Mono',monospace;font-size:.68rem;color:#383862;white-space:nowrap;">${dateStr}</td>
+          <td style="padding:10px 14px;">
+            <div style="font-weight:600;color:#e2e8f0;">${escapeHtml(c.citizen_name)}</div>
+            <div style="font-size:.67rem;color:#4e4e8a;">${escapeHtml(c.location||"N/A")}</div></td>
+          <td style="padding:10px 14px;max-width:200px;">
+            <div style="font-weight:600;color:#e2e8f0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${escapeHtml(c.title)}">${escapeHtml(c.title)}</div>
+            <div style="font-size:.67rem;color:#22d3ee;">${escapeHtml(c.category||"General")}</div></td>
+          <td style="padding:10px 14px;font-size:.75rem;color:#a5b4fc;">${escapeHtml(c.department||"Nodal Desk")}</td>
+          <td style="padding:10px 14px;"><span class="${pc}" style="${badge}">${escapeHtml(c.priority)}</span></td>
+          <td style="padding:10px 14px;"><span class="${sc}" style="${badge}">${escapeHtml(c.status)}</span></td>
+          <td style="padding:10px 14px;text-align:right;white-space:nowrap;">
+            <button onclick="openDetailModal('${c.reference_id}')"
+              style="background:rgba(99,102,241,.1);border:1px solid rgba(99,102,241,.2);color:#818cf8;font-size:.7rem;font-weight:600;padding:4px 10px;border-radius:6px;cursor:pointer;margin-right:5px;"
+              onmouseover="this.style.background='rgba(99,102,241,.2)'" onmouseout="this.style.background='rgba(99,102,241,.1)'">Inspect</button>
+            <button onclick="openStatusModal('${c.reference_id}','${c.status}')"
+              style="background:linear-gradient(135deg,#4f46e5,#06b6d4);color:#fff;font-size:.7rem;font-weight:700;padding:4px 10px;border-radius:6px;border:none;cursor:pointer;"
+              onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">Update</button>
+          </td>
+        </tr>`;
+    }).join("");
+  }
+
+  window.changePage = delta => loadComplaints(window.currentPage + delta);
+
+  window.openDetailModal = refId => {
+    const c = window.currentComplaints.find(x => x.reference_id === refId);
+    if (!c) return;
+    window.activeDetailComplaint = c;
+
+    document.getElementById("modal-ref-id").textContent = c.reference_id;
+    document.getElementById("modal-date").textContent = new Date(c.created_at).toLocaleString();
+    document.getElementById("modal-citizen-name").textContent = c.citizen_name;
+    document.getElementById("modal-citizen-contact").textContent = [c.citizen_email,c.citizen_phone].filter(Boolean).join(" • ") || "Not provided";
+    document.getElementById("modal-location").textContent = c.location || "Not specified";
+    document.getElementById("modal-title").textContent = c.title;
+    document.getElementById("modal-description").textContent = c.description;
+    document.getElementById("modal-category").textContent = c.category;
+    document.getElementById("modal-department").textContent = c.department;
+    const confVal = Number(c.confidence ?? 0);
+    const confPercent = confVal > 1 ? confVal.toFixed(1) : (confVal * 100).toFixed(1);
+    document.getElementById("modal-confidence").textContent = `${confPercent}% confidence`;
+
+    const sb = document.getElementById("modal-status-badge");
+    sb.textContent = c.status;
+    sb.className = c.status === "Assigned" ? "badge-assigned" : c.status === "In Progress" ? "badge-progress" : c.status === "Resolved" ? "badge-resolved" : "badge-submitted";
+    sb.style.cssText = "font-size:.72rem;font-weight:700;padding:2px 8px;border-radius:5px;";
+
+    const pb = document.getElementById("modal-priority-badge");
+    pb.textContent = c.priority;
+    pb.className = (c.priority||"").toLowerCase().includes("high") ? "badge-high" : "badge-normal";
+    pb.style.cssText = "font-size:.72rem;font-weight:700;padding:2px 8px;border-radius:5px;";
+
+    const attEl = document.getElementById("modal-attachments-list");
+    attEl.innerHTML = c.attachments && c.attachments.length
+      ? c.attachments.map(a => `
+          <div style="display:flex;align-items:center;gap:8px;padding:8px 10px;background:#09090f;border:1px solid rgba(99,102,241,.12);border-radius:7px;margin-bottom:5px;">
+            <span class="material-symbols-outlined" style="font-size:1rem;color:#10b981;">file_present</span>
+            <span style="font-size:.73rem;font-weight:600;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${escapeHtml(a.name)}</span>
+            <a href="${a.url}" target="_blank" style="font-size:.7rem;color:#22d3ee;font-weight:600;text-decoration:none;">View &#8594;</a>
+          </div>`).join("")
+      : `<span style="color:#383862;font-style:italic;">No evidence attachment provided.</span>`;
+
+    const timeEl = document.getElementById("modal-timeline");
+    const line = `<div style="position:absolute;left:5px;top:4px;bottom:4px;width:1px;background:rgba(99,102,241,.2);"></div>`;
+    timeEl.innerHTML = line + (c.timeline && c.timeline.length
+      ? c.timeline.map(e => `
+          <div style="position:relative;padding-left:16px;">
+            <div style="position:absolute;left:-1px;top:3px;width:8px;height:8px;border-radius:50%;background:#6366f1;border:2px solid #09090f;"></div>
+            <div style="font-weight:700;color:#818cf8;font-size:.75rem;">${escapeHtml(e.status)}</div>
+            <div class="font-mono" style="font-size:.63rem;color:#383862;">${new Date(e.created_at).toLocaleString()}</div>
+            <div style="font-size:.73rem;color:#94a3b8;margin-top:4px;background:#09090f;border:1px solid rgba(99,102,241,.1);border-radius:6px;padding:8px;">${escapeHtml(e.remark)}</div>
+          </div>`).join("")
+      : `<div style="color:#383862;font-style:italic;">No timeline entries yet.</div>`);
+
+    const fb = document.getElementById("modal-feedback-card");
+    if (c.feedback) {
+      fb.classList.remove("hidden");
+      document.getElementById("modal-rating").textContent = `Rating: ${c.feedback.rating} / 5 Stars`;
+      document.getElementById("modal-comment").textContent = c.feedback.comment ? `"${c.feedback.comment}"` : "No comment provided.";
+    } else fb.classList.add("hidden");
+
+    document.getElementById("detail-modal").classList.remove("hidden");
+  };
+
+  window.closeDetailModal = () => {
+    document.getElementById("detail-modal").classList.add("hidden");
+    window.activeDetailComplaint = null;
+  };
+
+  window.openStatusModalFromDetail = () => {
+    if (window.activeDetailComplaint) {
+      const c = window.activeDetailComplaint;
+      closeDetailModal();
+      openStatusModal(c.reference_id, c.status);
+    }
+  };
+
+  window.openStatusModal = (refId, currentStatus) => {
+    document.getElementById("update-ref-id").value = refId;
+    document.getElementById("update-status-select").value = currentStatus || "Submitted";
+    document.getElementById("update-remark").value = "";
+    document.getElementById("update-status-error").classList.add("hidden");
+    document.getElementById("status-modal").classList.remove("hidden");
+  };
+
+  window.closeStatusModal = () => document.getElementById("status-modal").classList.add("hidden");
+
+  window.handleStatusSubmit = async e => {
+    e.preventDefault();
+    const refId   = document.getElementById("update-ref-id").value;
+    const status  = document.getElementById("update-status-select").value;
+    const remark  = document.getElementById("update-remark").value;
+    const errEl   = document.getElementById("update-status-error");
+    const btn     = document.getElementById("update-status-submit-btn");
+    errEl.classList.add("hidden"); btn.disabled = true;
+    try {
+      await authApi(`/api/complaints/${refId}/status`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ status, remark }),
+      });
+      closeStatusModal();
+      loadStats();
+      loadComplaints(window.currentPage);
+      loadCharts();
+    } catch(err) {
+      errEl.textContent = err.message || "Failed to update status.";
+      errEl.classList.remove("hidden");
+    } finally { btn.disabled = false; }
+  };
+
+  window.handleCreateOfficer = async e => {
+    e.preventDefault();
+    const msgEl = document.getElementById("create-officer-msg");
+    const btn   = document.getElementById("create-officer-btn");
+    msgEl.className = "hidden"; btn.disabled = true;
+    try {
+      const res = await authApi("/api/admin/officers", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name:     document.getElementById("off-name").value,
+          email:    document.getElementById("off-email").value,
+          password: document.getElementById("off-password").value,
+        }),
+      });
+      msgEl.textContent = `&#10003; Officer "${res.name}" provisioned (${res.email})`;
+      msgEl.style.cssText = "display:block;font-size:.72rem;font-weight:600;padding:6px 12px;border-radius:7px;background:rgba(16,185,129,.12);color:#6ee7b7;border:1px solid rgba(16,185,129,.25);";
+      document.getElementById("create-officer-form").reset();
+    } catch(err) {
+      msgEl.textContent = `&#10007; ${err.message || "Failed to create officer."}`;
+      msgEl.style.cssText = "display:block;font-size:.72rem;font-weight:600;padding:6px 12px;border-radius:7px;background:rgba(244,63,94,.1);color:#fda4af;border:1px solid rgba(244,63,94,.25);";
+    } finally { btn.disabled = false; }
+  };
+
+  function escapeHtml(str) {
+    if (!str) return "";
+    return str.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+  }
+</script>
+
+</body>
+</html>

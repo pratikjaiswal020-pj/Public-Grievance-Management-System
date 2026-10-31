@@ -67,10 +67,6 @@
     <nav class="flex items-center gap-2 sm:gap-3 text-xs sm:text-sm font-semibold">
       <a href="#file" class="hidden md:inline-block px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors">File Grievance</a>
       <a href="#track" class="hidden md:inline-block px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors">Track Status</a>
-      <a href="/dashboard.html" class="px-3 py-2 rounded-lg bg-slate-900 text-cyan-300 border border-cyan-500/30 hover:bg-slate-800 transition-colors flex items-center gap-1.5 shadow-sm">
-        <span class="material-symbols-outlined text-sm">dashboard</span>
-        <span>Officer Console</span>
-      </a>
       <div id="auth-nav-slot" class="flex items-center gap-2">
         <a href="/login.html" id="login-nav-btn" class="bg-primary hover:bg-primary-container text-white font-semibold px-4 py-2 rounded-lg transition-colors">Login / Register</a>
       </div>
@@ -247,10 +243,19 @@
   const token = getToken();
   const banner = document.getElementById("form-auth-banner");
 
+  // Officers and admins belong in the dashboard — redirect them immediately
+  if (token && isTokenValid(token)) {
+    const _earlyRole = parseToken(token)?.role;
+    if (_earlyRole === "admin" || _earlyRole === "officer") {
+      window.location.replace("/dashboard.html");
+    }
+  }
+
   if (token && isTokenValid(token)) {
     const payload = parseToken(token);
     const slot = document.getElementById("auth-nav-slot");
     if (payload) {
+
       if (payload.role === "admin" || payload.role === "officer") {
         slot.innerHTML = `
           <a href="/dashboard.html" class="bg-primary hover:bg-primary-container text-white font-semibold px-3 py-2 rounded-lg text-xs transition-colors flex items-center gap-1">

@@ -1,0 +1,485 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lodge Grievance — CivicPulse Citizen Redressal</title>
+  <meta name="description" content="Lodge your public service grievance with real-time automated AI department routing, evidence upload, and official tracking reference."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&family=Source+Sans+3:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#1E40AF",
+            "primary-hover": "#1D4ED8",
+            "primary-dark": "#1E3A8A",
+            "primary-light": "#EFF6FF",
+            "secondary": "#059669",
+            "secondary-hover": "#047857",
+            "surface": "#F8FAFC",
+            "surface-card": "#FFFFFF",
+            "surface-muted": "#F1F5F9",
+            "text-main": "#0F172A",
+            "text-muted": "#64748B",
+            "border": "#E2E8F0",
+            "error": "#DC2626",
+            "error-bg": "#FEF2F2",
+          },
+          fontFamily: {
+            "heading": ["Lexend", "system-ui", "sans-serif"],
+            "sans": ["Source Sans 3", "system-ui", "sans-serif"],
+            "mono": ["JetBrains Mono", "monospace"],
+          },
+        }
+      }
+    };
+  </script>
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/multi_issue.css">
+  <style>
+    body { margin: 0; font-family: "Source Sans 3", system-ui, sans-serif; }
+    h1, h2, h3, h4, h5, h6 { font-family: "Lexend", system-ui, sans-serif; }
+    .material-symbols-outlined { font-size: 1.15em; vertical-align: middle; }
+    input:focus, textarea:focus, select:focus { outline: 2px solid #1E40AF; outline-offset: 0; border-color: #1E40AF !important; }
+    .fade-in { animation: fadeIn 0.25s ease-out; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+  </style>
+</head>
+<body class="bg-surface min-h-screen text-text-main antialiased flex flex-col">
+
+<!-- ── Navigation Header ── -->
+<header class="bg-white border-b border-border sticky top-0 z-40">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between gap-4">
+    <a href="/" class="flex items-center gap-3 no-underline text-text-main hover:opacity-90">
+      <div class="w-10 h-10 rounded-xl bg-primary text-white flex items-center justify-center shadow-sm">
+        <span class="material-symbols-outlined text-2xl">account_balance</span>
+      </div>
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="font-bold text-lg text-primary tracking-tight">CivicPulse</span>
+          <span class="text-[11px] font-semibold bg-emerald-50 text-secondary px-2 py-0.5 rounded-full border border-emerald-200">Grievance Intake</span>
+        </div>
+        <p class="text-xs text-text-muted m-0">Department of Administrative Reforms &amp; Public Grievances</p>
+      </div>
+    </a>
+
+    <nav class="flex items-center gap-2 sm:gap-3 text-xs sm:text-sm font-semibold">
+      <a href="/" class="px-3 py-2 rounded-lg text-text-muted hover:bg-surface-muted transition-colors flex items-center gap-1.5">
+        <span class="material-symbols-outlined text-sm">home</span>
+        <span>Overview</span>
+      </a>
+      <a href="/#track" class="px-3 py-2 rounded-lg text-text-muted hover:bg-surface-muted transition-colors flex items-center gap-1.5">
+        <span class="material-symbols-outlined text-sm">search</span>
+        <span>Track Status</span>
+      </a>
+      <a href="/login.html" class="px-3.5 py-2 rounded-lg bg-surface-muted text-primary font-bold hover:bg-slate-200 transition-colors flex items-center gap-1.5 border border-border">
+        <span class="material-symbols-outlined text-sm">badge</span>
+        <span>Sign In</span>
+      </a>
+    </nav>
+  </div>
+</header>
+
+<!-- ── Header Banner ── -->
+<section class="bg-gradient-to-r from-primary to-primary-dark text-white py-8 border-b border-white/10">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center gap-2 text-xs text-blue-200 mb-2">
+      <a href="/" class="hover:underline">Home</a>
+      <span>›</span>
+      <span class="text-white font-semibold">Lodge Grievance</span>
+    </div>
+    <h1 class="text-2xl sm:text-3xl font-bold tracking-tight mb-2">Submit a Public Grievance</h1>
+    <p class="text-sm text-blue-100 opacity-90 max-w-2xl m-0 leading-relaxed font-normal">
+      Report municipal, utility, civil or civic concerns. Our system automatically categorizes and routes your complaint directly to the responsible department desk.
+    </p>
+  </div>
+</section>
+
+<!-- ── Main Intake Form ── -->
+<main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-1 w-full">
+
+  <!-- Feedback / Alert -->
+  <div id="form-alert" class="hidden mb-6 p-4 rounded-xl text-sm font-medium" role="alert"></div>
+
+  <!-- Intake Container -->
+  <div id="intake-card" class="bg-white rounded-2xl shadow-sm border border-border p-6 sm:p-10">
+
+    <form id="complaint-form" novalidate class="space-y-8">
+
+      <!-- ── SECTION 1: CITIZEN INFORMATION ── -->
+      <div>
+        <div class="flex items-center gap-2 pb-3 mb-5 border-b border-border">
+          <span class="w-6 h-6 rounded-full bg-primary text-white text-xs font-bold font-mono flex items-center justify-center">1</span>
+          <h2 class="text-base font-bold text-text-main m-0">Your Contact &amp; Location Details</h2>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          <div>
+            <label for="citizen_name" class="block text-xs font-bold uppercase tracking-wider text-text-muted mb-1.5">
+              Full Name <span class="text-error">*</span>
+            </label>
+            <div class="relative">
+              <span class="material-symbols-outlined absolute left-3 top-3 text-text-muted">person</span>
+              <input type="text" id="citizen_name" name="citizen_name" required placeholder="e.g. Ramesh Chandra"
+                class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-border bg-white text-sm text-text-main">
+            </div>
+          </div>
+
+          <div>
+            <label for="citizen_phone" class="block text-xs font-bold uppercase tracking-wider text-text-muted mb-1.5">
+              Mobile Number <span class="text-xs font-normal text-text-muted">(For SMS Updates)</span>
+            </label>
+            <div class="relative">
+              <span class="material-symbols-outlined absolute left-3 top-3 text-text-muted">call</span>
+              <input type="tel" id="citizen_phone" name="citizen_phone" placeholder="+91 98765 43210"
+                class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-border bg-white text-sm text-text-main">
+            </div>
+          </div>
+
+          <div>
+            <label for="citizen_email" class="block text-xs font-bold uppercase tracking-wider text-text-muted mb-1.5">
+              Email Address <span class="text-xs font-normal text-text-muted">(For Status Updates)</span>
+            </label>
+            <div class="relative">
+              <span class="material-symbols-outlined absolute left-3 top-3 text-text-muted">mail</span>
+              <input type="email" id="citizen_email" name="citizen_email" placeholder="ramesh@example.com"
+                class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-border bg-white text-sm text-text-main">
+            </div>
+          </div>
+
+          <div>
+            <label for="location" class="block text-xs font-bold uppercase tracking-wider text-text-muted mb-1.5">
+              Ward / Locality / Landmark
+            </label>
+            <div class="relative">
+              <span class="material-symbols-outlined absolute left-3 top-3 text-text-muted">location_on</span>
+              <input type="text" id="location" name="location" placeholder="e.g. Sector 4, Near Water Tank"
+                class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-border bg-white text-sm text-text-main">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── SECTION 2: GRIEVANCE PARTICULARS ── -->
+      <div>
+        <div class="flex items-center gap-2 pb-3 mb-5 border-b border-border">
+          <span class="w-6 h-6 rounded-full bg-primary text-white text-xs font-bold font-mono flex items-center justify-center">2</span>
+          <h2 class="text-base font-bold text-text-main m-0">Grievance Details &amp; Auto-Routing</h2>
+        </div>
+
+        <div class="space-y-5">
+          <div>
+            <label for="title" class="block text-xs font-bold uppercase tracking-wider text-text-muted mb-1.5">
+              Subject / Short Title <span class="text-error">*</span>
+            </label>
+            <input type="text" id="title" name="title" required minlength="5" maxlength="180"
+              placeholder="e.g. Drinking water supply disruption in Ward 12"
+              class="w-full px-4 py-2.5 rounded-xl border border-border bg-white text-sm text-text-main font-medium">
+          </div>
+
+          <div>
+            <div class="flex items-center justify-between mb-1.5">
+              <label for="description" class="block text-xs font-bold uppercase tracking-wider text-text-muted">
+                Detailed Description <span class="text-error">*</span>
+              </label>
+              <span class="text-[11px] font-mono text-secondary flex items-center gap-1 font-semibold">
+                <span class="material-symbols-outlined text-sm">auto_awesome</span> Smart Routing Active
+              </span>
+            </div>
+            <textarea id="description" name="description" required minlength="10" rows="5"
+              placeholder="Describe the problem clearly. Mention how long it has been an issue and exact street or area details…"
+              class="w-full p-4 rounded-xl border border-border bg-white text-sm text-text-main leading-relaxed"></textarea>
+            <p class="text-xs text-text-muted mt-1.5">
+              Tip: As you type (minimum 20 characters), our natural language classifier will recommend the assigned department below.
+            </p>
+          </div>
+
+          <!-- Real-time NLP Prediction Output Box -->
+          <div id="prediction" hidden class="fade-in p-4 rounded-xl border border-emerald-200 bg-emerald-50 text-emerald-950 text-xs sm:text-sm font-medium"></div>
+        </div>
+      </div>
+
+      <!-- ── SECTION 3: EVIDENCE ATTACHMENT ── -->
+      <div>
+        <div class="flex items-center gap-2 pb-3 mb-5 border-b border-border">
+          <span class="w-6 h-6 rounded-full bg-primary text-white text-xs font-bold font-mono flex items-center justify-center">3</span>
+          <h2 class="text-base font-bold text-text-main m-0">Supporting Evidence (Optional)</h2>
+        </div>
+
+        <div class="border-2 border-dashed border-border rounded-2xl p-6 text-center hover:border-primary transition-colors bg-surface-muted">
+          <span class="material-symbols-outlined text-4xl text-text-muted mb-2">upload_file</span>
+          <p class="text-sm font-semibold text-text-main mb-1">Upload Photo or Document Evidence</p>
+          <p class="text-xs text-text-muted mb-4">Supports JPG, PNG, and PDF files up to 5 MB.</p>
+          <input type="file" id="evidence" name="evidence" accept=".jpg,.jpeg,.png,.pdf" class="hidden">
+          <label for="evidence" class="cursor-pointer inline-flex items-center gap-2 bg-white hover:bg-slate-100 text-primary font-bold text-xs px-5 py-2.5 rounded-xl transition-colors border border-border shadow-sm">
+            <span class="material-symbols-outlined text-sm">attach_file</span> Choose File
+          </label>
+          <div id="file-name-preview" class="text-xs font-mono font-bold text-secondary mt-3 hidden"></div>
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="pt-4 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-xs text-text-muted m-0 flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-secondary">verified</span>
+          <span>You will receive an official reference ID immediately upon submission.</span>
+        </p>
+        <button type="submit" id="submit-btn"
+          class="w-full sm:w-auto px-8 py-3.5 bg-primary hover:bg-primary-hover text-white font-bold text-sm rounded-xl shadow transition-all flex items-center justify-center gap-2 active:scale-95">
+          <span>Submit Grievance</span>
+          <span class="material-symbols-outlined text-sm">send</span>
+        </button>
+      </div>
+
+    </form>
+  </div>
+
+  <!-- ── SUBMISSION RECEIPT / SUCCESS DOCKET ── -->
+  <div id="receipt-card" class="hidden fade-in bg-white rounded-2xl shadow-sm border border-emerald-300 p-8 sm:p-10 text-center">
+    <div class="w-14 h-14 rounded-full bg-emerald-100 text-secondary mx-auto flex items-center justify-center mb-4">
+      <span class="material-symbols-outlined text-3xl">task_alt</span>
+    </div>
+    <span class="inline-block bg-emerald-50 text-secondary font-mono text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-2 border border-emerald-200">
+      Grievance Registered Successfully
+    </span>
+    <h2 class="text-2xl font-bold text-text-main m-0">Reference Number Generated</h2>
+    <p class="text-sm text-text-muted max-w-lg mx-auto mt-1 mb-6">
+      Your grievance has been submitted and assigned to the relevant department desk. Please save your reference ID:
+    </p>
+
+    <div class="max-w-md mx-auto bg-surface-muted rounded-xl p-4 border border-border mb-6 flex items-center justify-between gap-3">
+      <div class="text-left">
+        <div class="text-[10px] font-mono uppercase tracking-wider text-text-muted">Your Reference ID</div>
+        <div id="receipt-ref-id" class="text-lg font-mono font-bold text-primary select-all">GRV-2026-XXXXXX</div>
+      </div>
+      <button type="button" onclick="copyRefId()" id="copy-btn" class="px-3 py-1.5 bg-white border border-border rounded-lg text-xs font-semibold text-primary hover:bg-slate-50 flex items-center gap-1 shadow-sm">
+        <span class="material-symbols-outlined text-sm">content_copy</span> Copy
+      </button>
+    </div>
+
+    <div id="receipt-details" class="max-w-md mx-auto text-xs text-left bg-white p-4 rounded-xl border border-border mb-8 space-y-2"></div>
+
+    <div class="flex flex-wrap items-center justify-center gap-3">
+      <a id="receipt-track-btn" href="/#track" class="px-6 py-3 bg-secondary hover:bg-secondary-hover text-white font-bold text-xs rounded-xl transition-all shadow flex items-center gap-2">
+        <span class="material-symbols-outlined text-sm">timeline</span> Track Status
+      </a>
+      <button type="button" onclick="window.location.reload()" class="px-5 py-3 bg-surface-muted text-primary font-bold text-xs rounded-xl hover:bg-slate-200 transition-colors border border-border">
+        File Another Grievance
+      </button>
+    </div>
+  </div>
+
+</main>
+
+<!-- ── Footer ── -->
+<footer class="bg-white border-t border-border text-text-muted text-xs text-center py-5 mt-10">
+  CivicPulse Grievance Redressal System &bull; Department of Administrative Reforms &amp; Public Grievances
+</footer>
+
+<script>
+  let predictionTimer;
+  let latestPrediction;
+  let createdRefId = "";
+
+  const descEl = document.getElementById("description");
+  const formEl = document.getElementById("complaint-form");
+  const evidenceEl = document.getElementById("evidence");
+  const filePreviewEl = document.getElementById("file-name-preview");
+
+  // Auto-populate logged in user info if available
+  document.addEventListener("DOMContentLoaded", () => {
+    try {
+      const token = localStorage.getItem("cgms_token");
+      if (token) {
+        const payload = JSON.parse(atob(token.split(".")[1]));
+        if (payload && payload.exp * 1000 > Date.now()) {
+          const nameInput = document.getElementById("citizen_name");
+          const emailInput = document.getElementById("citizen_email");
+          const phoneInput = document.getElementById("citizen_phone");
+          if (nameInput && payload.name) nameInput.value = payload.name;
+          if (emailInput && payload.email) emailInput.value = payload.email;
+        }
+      }
+    } catch (_) {}
+  });
+
+  // Evidence file input display
+  evidenceEl?.addEventListener("change", (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      filePreviewEl.textContent = `Attached: ${file.name} (${(file.size / 1024).toFixed(1)} KB)`;
+      filePreviewEl.classList.remove("hidden");
+    } else {
+      filePreviewEl.classList.add("hidden");
+    }
+  });
+
+  // Real-time NLP Triage Preview with Debounce
+  descEl?.addEventListener("input", (e) => {
+    clearTimeout(predictionTimer);
+    const text = e.target.value.trim();
+    const box = document.getElementById("prediction");
+    if (text.length < 20) {
+      if (box) box.hidden = true;
+      return;
+    }
+    predictionTimer = setTimeout(async () => {
+      try {
+        const response = await fetch("/api/predict", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ text }),
+        });
+        if (!response.ok) return;
+        const result = await response.json();
+        latestPrediction = result;
+        if (box) {
+          box.hidden = false;
+          let multiHtml = "";
+          if (result.multiple_issues_detected && result.issues?.length > 1) {
+            multiHtml = `
+              <div class="mt-2.5 pt-2 border-t border-emerald-200">
+                <p class="font-bold mb-1.5 text-emerald-900">⚡ Multiple distinct issues identified. Linked tickets will be created:</p>
+                <div class="space-y-1">
+                  ${result.issues.map(issue => `
+                    <label class="flex items-center gap-2 cursor-pointer">
+                      <input type="checkbox" name="issue_categories" value="${escapeHtml(issue.category)}" checked class="rounded text-primary">
+                      <span><strong>${escapeHtml(issue.category)}</strong> → ${escapeHtml(issue.department)}</span>
+                    </label>
+                  `).join("")}
+                </div>
+              </div>
+            `;
+          }
+          box.innerHTML = `
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="inline-flex items-center gap-1 font-bold text-primary bg-white px-2.5 py-1 rounded-lg border border-border shadow-sm">
+                <span class="material-symbols-outlined text-sm">route</span>
+                <span>${escapeHtml(result.department)}</span>
+              </span>
+              <span class="text-xs bg-emerald-100 text-emerald-900 font-semibold px-2 py-0.5 rounded">
+                ${escapeHtml(result.category)}
+              </span>
+              <span class="text-xs font-mono font-bold ${result.confidence >= 75 ? 'text-secondary' : 'text-amber-700'}">
+                ${result.confidence}% Match
+              </span>
+              ${result.priority === 'High' ? '<span class="text-xs bg-error text-white font-bold px-2 py-0.5 rounded">High Urgency</span>' : ''}
+            </div>
+            ${multiHtml}
+          `;
+        }
+      } catch (_) {}
+    }, 380);
+  });
+
+  // Complaint Submission
+  formEl?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const btn = document.getElementById("submit-btn");
+    const alertEl = document.getElementById("form-alert");
+    btn.disabled = true;
+    btn.innerHTML = `<span class="material-symbols-outlined animate-spin text-sm">progress_activity</span><span>Submitting…</span>`;
+    alertEl.classList.add("hidden");
+
+    try {
+      const formData = new FormData(formEl);
+      const evidence = formData.get("evidence");
+      formData.delete("evidence");
+
+      const values = Object.fromEntries(formData);
+      const selectedIssues = [...formEl.querySelectorAll('input[name="issue_categories"]:checked')].map(i => i.value);
+      if (selectedIssues.length) values.issue_categories = selectedIssues;
+
+      const token = localStorage.getItem("cgms_token");
+      const postHeaders = { "Content-Type": "application/json" };
+      if (token) postHeaders["Authorization"] = `Bearer ${token}`;
+
+      const response = await fetch("/api/complaints", {
+        method: "POST",
+        headers: postHeaders,
+        body: JSON.stringify(values),
+      });
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.detail || "Failed to submit grievance.");
+      }
+
+      createdRefId = data.reference_id;
+
+      // Handle evidence upload if attached
+      if (evidence && evidence.size > 0) {
+        const uploadData = new FormData();
+        uploadData.append("file", evidence);
+        const upHeaders = {};
+        if (token) upHeaders["Authorization"] = `Bearer ${token}`;
+        await fetch(`/api/complaints/${createdRefId}/attachments`, {
+          method: "POST",
+          headers: upHeaders,
+          body: uploadData,
+        }).catch(() => {});
+      }
+
+      // Render Receipt
+      document.getElementById("intake-card").classList.add("hidden");
+      const receiptCard = document.getElementById("receipt-card");
+      receiptCard.classList.remove("hidden");
+
+      document.getElementById("receipt-ref-id").textContent = createdRefId;
+      document.getElementById("receipt-track-btn").href = `/#track=${encodeURIComponent(createdRefId)}`;
+
+      const details = document.getElementById("receipt-details");
+      details.innerHTML = `
+        <div class="flex justify-between py-1 border-b border-border">
+          <span class="text-text-muted">Assigned Department:</span>
+          <span class="font-bold text-primary">${escapeHtml(data.department || "")}</span>
+        </div>
+        <div class="flex justify-between py-1 border-b border-border">
+          <span class="text-text-muted">Category:</span>
+          <span class="font-semibold text-text-main">${escapeHtml(data.category || "")}</span>
+        </div>
+        <div class="flex justify-between py-1 border-b border-border">
+          <span class="text-text-muted">Priority:</span>
+          <span class="font-bold ${data.priority === 'High' ? 'text-error' : 'text-secondary'}">${escapeHtml(data.priority || "Normal")}</span>
+        </div>
+        ${data.multiple_tickets_created ? `
+          <div class="pt-2 text-primary font-bold">Linked Service Tickets:</div>
+          ${data.related_complaints.map(t => `<div class="pl-2">• ${escapeHtml(t.category)} (${escapeHtml(t.reference_id)})</div>`).join("")}
+        ` : ""}
+      `;
+
+      receiptCard.scrollIntoView({ behavior: "smooth", block: "start" });
+    } catch (err) {
+      alertEl.className = "mb-6 p-4 rounded-xl text-sm font-medium bg-error-bg text-error border border-error/20 flex items-center gap-2";
+      alertEl.innerHTML = `<span class="material-symbols-outlined text-error">error</span><span>${escapeHtml(err.message)}</span>`;
+      alertEl.classList.remove("hidden");
+      alertEl.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    } finally {
+      btn.disabled = false;
+      btn.innerHTML = `<span>Submit Grievance</span><span class="material-symbols-outlined text-sm">send</span>`;
+    }
+  });
+
+  window.copyRefId = function() {
+    if (!createdRefId) return;
+    navigator.clipboard.writeText(createdRefId).then(() => {
+      const btn = document.getElementById("copy-btn");
+      btn.innerHTML = `<span class="material-symbols-outlined text-sm text-secondary">check</span> Copied!`;
+      setTimeout(() => {
+        btn.innerHTML = `<span class="material-symbols-outlined text-sm">content_copy</span> Copy`;
+      }, 2000);
+    });
+  };
+
+  function escapeHtml(str) {
+    if (!str) return "";
+    return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  }
+</script>
+
+</body>
+</html>

@@ -82,14 +82,22 @@ $("#complaint-form")?.addEventListener("submit", async (event) => {
     const ticketList = tickets.length > 1
       ? `<p><strong>Separate linked tickets were created:</strong></p><ul>${tickets.map(ticket => `<li><strong>${escapeHtml(ticket.category)}</strong> — ${escapeHtml(ticket.department)} (${escapeHtml(ticket.reference_id)})</li>`).join("")}</ul>`
       : `<p>It was routed to <strong>${escapeHtml(result.department)}</strong>.</p>`;
+    const emailNote = result.email_sent
+      ? `<p>A confirmation email was sent to <strong>${escapeHtml(result.email_to)}</strong>.</p>`
+      : `<p>The complaint was saved, but the confirmation email was not sent. ${escapeHtml(result.email_error || "Check the mail settings in the .env file.")}</p>`;
     
     if (submitted) {
       submitted.hidden = false;
-      submitted.innerHTML = `<h3>Complaint submitted</h3><p>Your main reference ID is:</p><p class="reference">${escapeHtml(result.reference_id)}</p>${ticketList}<p>Save this ID to track updates or attach evidence.</p>`;
+      submitted.innerHTML = `<h3>Complaint submitted</h3><p>Your main reference ID is:</p><p class="reference">${escapeHtml(result.reference_id)}</p>${ticketList}${emailNote}<p>Save this ID to track updates or attach evidence.</p>`;
     }
     
     if ($("#reference-id")) $("#reference-id").value = result.reference_id;
     form.reset(); latestPrediction = undefined; if ($("#prediction")) $("#prediction").hidden = true;
+    const emailInput = $("#citizen_email");
+    const nameInput = $("#citizen_name");
+    if (emailInput?.dataset.accountEmail) emailInput.value = emailInput.dataset.accountEmail;
+    if (nameInput?.dataset.accountName) nameInput.value = nameInput.dataset.accountName;
+    loadMyComplaints();
     if (submitted) submitted.scrollIntoView({behavior:"smooth", block:"center"});
   } catch (error) {
     if (error.message.includes("Authentication required") || error.message.includes("Invalid or expired token")) {
@@ -118,6 +126,34 @@ $("#track-form")?.addEventListener("submit", async (event) => {
     target.innerHTML = `<article class="card result"><span class="badge">${escapeHtml(item.status)}</span><h3>${escapeHtml(item.title)}</h3><p class="meta">${escapeHtml(item.reference_id)} · ${escapeHtml(item.category)} · ${escapeHtml(item.department)}</p><p>${escapeHtml(item.description)}</p>${related}<h4>Progress</h4><ol class="timeline">${item.timeline.map(event => `<li><strong>${escapeHtml(event.status)}</strong><p>${escapeHtml(event.remark)}</p><time>${displayDate(event.created_at)}</time></li>`).join("")}</ol>${item.attachments.length ? `<p><strong>Attachments:</strong> ${item.attachments.map(file => `<a href="${file.url}" target="_blank" rel="noopener">${escapeHtml(file.name)}</a>`).join(", ")}</p>` : ""}${item.status === "Resolved" && !item.feedback ? feedbackForm(item.reference_id) : ""}</article>`;
   } catch (error) { target.innerHTML = `<p class="error">${escapeHtml(error.message)}</p>`; }
 });
+
+async function loadMyComplaints() {
+  const section = $("#mine");
+  const target = $("#my-complaints");
+  if (!section || !target || !getStoredToken()) return;
+  try {
+    const data = await api("/api/my/complaints");
+    const items = data.complaints || [];
+    section.hidden = false;
+    target.innerHTML = items.length
+      ? `<ul class="space-y-3">${items.map(item => `<li class="border border-outline-variant rounded-lg p-3"><button type="button" class="text-left" data-open-ref="${escapeHtml(item.reference_id)}"><strong class="font-mono">${escapeHtml(item.reference_id)}</strong> · ${escapeHtml(item.status)}<br><span>${escapeHtml(item.title)}</span><br><span class="text-on-surface-variant">${escapeHtml(item.category)} — ${escapeHtml(item.department)}</span></button></li>`).join("")}</ul>`
+      : `<p>No complaints are linked to this account yet.</p>`;
+  } catch (_) {
+    section.hidden = true;
+  }
+}
+
+document.addEventListener("click", (event) => {
+  const button = event.target.closest("[data-open-ref]");
+  if (!button) return;
+  const input = $("#reference-id");
+  if (!input) return;
+  input.value = button.dataset.openRef;
+  $("#track-form")?.requestSubmit();
+  document.getElementById("track")?.scrollIntoView({behavior: "smooth", block: "start"});
+});
+
+loadMyComplaints();
 
 document.addEventListener("submit", async (event) => {
   if (!event.target.matches("[data-feedback]")) return;

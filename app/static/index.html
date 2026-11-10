@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>CivicPulse — Public Grievance Management System</title>
-  <meta name="description" content="Official Public Grievance Management System. Submit, track, and resolve citizen grievances with AI-powered automatic routing."/>
+  <title>CivicPulse — Public Grievance Redressal Platform</title>
+  <meta name="description" content="AI-powered public grievance management platform with real-time automated routing, public transparency ledger, and SLA tracking."/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800&family=Source+Sans+3:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
   <script src="https://cdn.tailwindcss.com"></script>
   <script id="tailwind-config">
@@ -15,306 +15,544 @@
       theme: {
         extend: {
           colors: {
-            "primary": "#00236f", "on-primary": "#ffffff",
-            "primary-container": "#1e3a8a", "on-primary-container": "#90a8ff",
-            "primary-fixed": "#dce1ff", "primary-fixed-dim": "#b6c4ff",
-            "secondary": "#006a61", "on-secondary": "#ffffff",
-            "secondary-container": "#86f2e4", "on-secondary-container": "#006f66",
-            "tertiary": "#d97706", "tertiary-container": "#fef3c7", "on-tertiary-container": "#92400e",
-            "surface": "#faf8ff", "on-surface": "#131b2e",
-            "surface-container-lowest": "#ffffff",
-            "surface-container-low": "#f2f3ff",
-            "surface-container": "#eaedff",
-            "surface-container-high": "#e2e7ff",
-            "on-surface-variant": "#444651",
-            "outline": "#757682", "outline-variant": "#c5c5d3",
-            "error": "#ba1a1a", "error-container": "#ffdad6", "on-error-container": "#93000a",
+            "primary": "#1E40AF",
+            "primary-hover": "#1D4ED8",
+            "primary-dark": "#1E3A8A",
+            "primary-light": "#EFF6FF",
+            "secondary": "#059669",
+            "secondary-hover": "#047857",
+            "secondary-light": "#ECFDF5",
+            "accent": "#F59E0B",
+            "surface": "#F8FAFC",
+            "surface-card": "#FFFFFF",
+            "surface-muted": "#F1F5F9",
+            "text-main": "#0F172A",
+            "text-muted": "#64748B",
+            "text-light": "#94A3B8",
+            "border": "#E2E8F0",
+            "border-strong": "#CBD5E1",
+            "error": "#DC2626",
+            "error-bg": "#FEF2F2",
           },
           fontFamily: {
-            "sans": ["Public Sans", "system-ui", "sans-serif"],
+            "heading": ["Lexend", "system-ui", "sans-serif"],
+            "sans": ["Source Sans 3", "system-ui", "sans-serif"],
             "mono": ["JetBrains Mono", "monospace"],
           },
         }
       }
     };
   </script>
-  <link rel="stylesheet" href="/styles.css">
-  <link rel="stylesheet" href="/multi_issue.css">
   <style>
-    body { margin: 0; font-family: "Public Sans", system-ui, sans-serif; }
-    .material-symbols-outlined { font-size: 1.15em; vertical-align: middle; }
-    input:focus, textarea:focus { outline: 2px solid #1e3a8a; outline-offset: 0; border-color: #00236f !important; }
-    .fade-in { animation: fadeIn .2s ease-out; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+    body { margin: 0; font-family: "Source Sans 3", system-ui, sans-serif; }
+    h1, h2, h3, h4, h5, h6 { font-family: "Lexend", system-ui, sans-serif; }
+    .material-symbols-outlined { font-size: 1.18em; vertical-align: middle; }
+    input:focus, select:focus { outline: 2px solid #1E40AF; outline-offset: 0; border-color: #1E40AF !important; }
+    .stat-card { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+    .stat-card:hover { transform: translateY(-2px); box-shadow: 0 10px 20px -5px rgba(30, 64, 175, 0.08); }
+    .fade-in { animation: fadeIn 0.25s ease-out; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
   </style>
 </head>
-<body class="bg-surface-container-low min-h-screen text-on-surface antialiased flex flex-col">
+<body class="bg-surface min-h-screen text-text-main antialiased flex flex-col">
 
-<!-- ── Header ── -->
-<header class="bg-white shadow-sm border-b border-outline-variant sticky top-0 z-40">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between gap-4">
-    <a href="/" class="flex items-center gap-3 no-underline text-on-surface hover:opacity-90">
-      <span class="material-symbols-outlined text-3xl text-primary" style="font-size:2.2rem">account_balance</span>
+<!-- ── Navigation Header ── -->
+<header class="bg-white border-b border-border sticky top-0 z-40">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between gap-4">
+    <a href="/" class="flex items-center gap-3 no-underline text-text-main hover:opacity-90">
+      <div class="w-10 h-10 rounded-xl bg-primary text-white flex items-center justify-center shadow-sm">
+        <span class="material-symbols-outlined text-2xl">account_balance</span>
+      </div>
       <div>
         <div class="flex items-center gap-2">
-          <span class="font-bold text-lg text-primary leading-tight">CivicPulse</span>
-          <span class="text-[0.65rem] font-bold uppercase bg-secondary-container text-on-secondary-container px-1.5 py-0.5 rounded">Public Redressal</span>
+          <span class="font-bold text-lg text-primary tracking-tight">CivicPulse</span>
+          <span class="text-[11px] font-semibold bg-primary-light text-primary px-2 py-0.5 rounded-full border border-blue-200">Public Portal</span>
         </div>
-        <p class="text-xs text-on-surface-variant m-0">Department of Administrative Reforms &amp; Public Oversight</p>
+        <p class="text-xs text-text-muted m-0">Department of Administrative Reforms &amp; Public Grievances</p>
       </div>
     </a>
 
     <nav class="flex items-center gap-2 sm:gap-3 text-xs sm:text-sm font-semibold">
-      <a href="#file" class="hidden md:inline-block px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors">File Grievance</a>
-      <a href="#track" class="hidden md:inline-block px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors">Track Status</a>
-      <div id="auth-nav-slot" class="flex items-center gap-2">
-        <a href="/login.html" id="login-nav-btn" class="bg-primary hover:bg-primary-container text-white font-semibold px-4 py-2 rounded-lg transition-colors">Login / Register</a>
+      <a href="/file-complaint.html" class="px-4 py-2 rounded-xl bg-primary hover:bg-primary-hover text-white font-bold transition-all shadow-sm flex items-center gap-1.5 active:scale-95">
+        <span class="material-symbols-outlined text-sm">edit_note</span>
+        <span>Lodge Grievance</span>
+      </a>
+      <a href="#track" class="hidden sm:inline-flex px-3 py-2 rounded-lg text-text-muted hover:bg-surface-muted transition-colors items-center gap-1">
+        <span class="material-symbols-outlined text-sm">search</span>
+        <span>Track Status</span>
+      </a>
+      <div id="auth-nav-slot">
+        <a href="/login.html" class="px-3.5 py-2 rounded-xl bg-surface-muted text-primary font-bold hover:bg-slate-200 transition-colors flex items-center gap-1.5 border border-border">
+          <span class="material-symbols-outlined text-sm">login</span>
+          <span>Sign In / Console</span>
+        </a>
       </div>
     </nav>
   </div>
 </header>
 
-<!-- ── Hero Banner ── -->
-<section class="bg-gradient-to-r from-primary via-primary-container to-blue-900 text-white py-12 lg:py-16">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="max-w-3xl">
-      <div class="inline-flex items-center gap-2 bg-blue-900/60 text-blue-200 text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full border border-blue-700/50 mb-4">
-        <span class="material-symbols-outlined text-sm text-secondary-container">auto_awesome</span> AI Auto-Categorized Citizen Redressal
+<!-- ── Hero Section ── -->
+<section class="bg-gradient-to-br from-primary via-blue-800 to-primary-dark text-white py-14 sm:py-20 relative">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+      <div class="lg:col-span-8">
+        <div class="inline-flex items-center gap-2 bg-white/10 text-blue-100 text-xs font-semibold px-3 py-1 rounded-full border border-white/20 mb-4 backdrop-blur-sm">
+          <span class="material-symbols-outlined text-sm text-emerald-300">verified</span>
+          <span>Official Public Redressal Service</span>
+        </div>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight tracking-tight mb-4">
+          Transparent Grievance Resolution for Every Citizen
+        </h1>
+        <p class="text-base sm:text-lg text-blue-100 opacity-90 leading-relaxed mb-8 max-w-2xl font-normal">
+          Lodge your service complaints online with automated department routing, clear SLA turnaround milestones, and live public transparency.
+        </p>
+
+        <div class="flex flex-wrap items-center gap-4">
+          <a href="/file-complaint.html" class="px-6 py-3.5 bg-secondary hover:bg-secondary-hover text-white font-bold text-sm sm:text-base rounded-xl shadow transition-all flex items-center gap-2 active:scale-95">
+            <span class="material-symbols-outlined text-lg">add_circle</span>
+            <span>Lodge a Grievance</span>
+          </a>
+          <a href="#overview-section" class="px-5 py-3.5 bg-white/10 hover:bg-white/20 text-white font-semibold text-sm rounded-xl border border-white/25 transition-all flex items-center gap-2 backdrop-blur-sm">
+            <span class="material-symbols-outlined text-lg">analytics</span>
+            <span>View Resolution Metrics</span>
+          </a>
+        </div>
       </div>
-      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight tracking-tight mb-4">
-        Make your public-service concern heard &amp; resolved.
-      </h1>
-      <p class="text-base sm:text-lg text-blue-100 opacity-90 leading-relaxed mb-6 max-w-2xl">
-        Lodge a public grievance, upload evidence, and receive real-time automated department routing with full audit tracking.
-      </p>
-      <div class="flex flex-wrap items-center gap-3">
-        <a href="#file" class="bg-secondary hover:opacity-95 text-on-secondary font-bold text-sm px-6 py-3 rounded-lg shadow-md transition-all flex items-center gap-2">
-          <span class="material-symbols-outlined text-base">edit_note</span> File a Complaint
-        </a>
-        <a href="#track" class="bg-white/10 hover:bg-white/20 text-white font-semibold text-sm px-5 py-3 rounded-lg border border-white/20 transition-all flex items-center gap-2">
-          <span class="material-symbols-outlined text-base">search</span> Track Existing Ticket
-        </a>
+
+      <!-- Quick Track Widget -->
+      <div class="lg:col-span-4 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 text-white shadow-lg">
+        <div class="flex items-center gap-2 mb-2">
+          <span class="material-symbols-outlined text-emerald-300 text-xl">search_check</span>
+          <h2 class="text-base font-bold text-white m-0">Quick Status Check</h2>
+        </div>
+        <p class="text-xs text-blue-100 mb-4">Check resolution progress with your reference number:</p>
+        <form onsubmit="handleQuickTrack(event)" class="space-y-3">
+          <input type="text" id="hero-track-input" required placeholder="e.g. GRV-2026-XXXXXX"
+            class="w-full px-4 py-2.5 rounded-xl bg-white text-text-main text-sm font-mono font-bold uppercase placeholder:normal-case placeholder:font-normal placeholder:text-text-light border border-transparent focus:border-primary">
+          <button type="submit"
+            class="w-full py-2.5 bg-secondary hover:bg-secondary-hover text-white font-bold text-xs rounded-xl shadow transition-all flex items-center justify-center gap-1.5">
+            <span class="material-symbols-outlined text-sm">timeline</span>
+            <span>Track Resolution</span>
+          </button>
+        </form>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── Main Workspace ── -->
-<main id="top" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-1 w-full flex flex-col gap-10">
+<!-- ── Main Content ── -->
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 flex-1 w-full space-y-12">
 
-  <!-- ── Step 1: File a Complaint ── -->
-  <section id="file" class="scroll-mt-20">
-    
-    <!-- Section Header -->
-    <div class="mb-6">
-      <div class="flex items-center gap-2 mb-1">
-        <span class="bg-primary text-white text-xs font-bold font-mono px-2 py-0.5 rounded">STEP 01</span>
-        <span class="text-xs font-bold uppercase tracking-wider text-secondary">Citizen Submission</span>
+  <!-- ── 1. PUBLIC KEY PERFORMANCE METRICS ── -->
+  <section id="overview-section">
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
+      <div>
+        <span class="text-xs font-bold text-primary tracking-wider uppercase">System Metrics</span>
+        <h2 class="text-2xl font-bold text-text-main m-0 mt-0.5">Platform Redressal Overview</h2>
       </div>
-      <h2 class="text-2xl font-bold text-primary m-0">Lodge a Public Grievance</h2>
-      <p class="text-sm text-on-surface-variant m-0 mt-1">Your complaint is automatically categorized by NLP and routed directly to the Nodal Desk.</p>
+      <div class="text-xs font-mono text-text-muted bg-white px-3 py-1.5 rounded-lg border border-border flex items-center gap-2 self-start sm:self-auto shadow-sm">
+        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+        <span>Updated: <span id="last-sync-time">Just now</span></span>
+      </div>
     </div>
 
-    <!-- Complaint Form Card -->
-    <div class="bg-white rounded-xl shadow-sm border border-outline-variant p-6 sm:p-8">
-      
-      <!-- Authentication Banner (Dynamic) -->
-      <div id="form-auth-banner" class="mb-6 p-4 rounded-xl border flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 transition-all">
-        <div class="flex items-center gap-3">
-          <span class="material-symbols-outlined text-2xl text-tertiary">lock</span>
-          <div>
-            <div class="font-bold text-sm text-on-surface">Authentication Required to Submit</div>
-            <div class="text-xs text-on-surface-variant">You must be logged in to submit a grievance. Guest tracking is available below.</div>
-          </div>
+    <!-- 4 KPI Cards (Clean, readable, no chart dependency) -->
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+      <!-- Total Grievances -->
+      <div class="stat-card bg-white rounded-2xl p-5 sm:p-6 border border-border shadow-sm flex flex-col justify-between">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-bold uppercase tracking-wider text-text-muted">Total Registered</span>
+          <span class="w-9 h-9 rounded-xl bg-blue-50 text-primary flex items-center justify-center">
+            <span class="material-symbols-outlined text-lg">receipt_long</span>
+          </span>
         </div>
-        <a href="/login.html" class="bg-primary hover:bg-primary-container text-white font-bold text-xs px-4 py-2.5 rounded-lg transition-colors whitespace-nowrap flex items-center gap-1">
-          <span class="material-symbols-outlined text-sm">login</span> Sign In / Register →
-        </a>
+        <div>
+          <div id="stat-total" class="text-2xl sm:text-3xl font-extrabold text-primary font-mono mb-1">--</div>
+          <p class="text-xs text-text-muted m-0">Cataloged in central registry</p>
+        </div>
       </div>
 
-      <form id="complaint-form" class="space-y-6">
-        
-        <!-- Contact Details Sub-Grid -->
+      <!-- Resolution Rate -->
+      <div class="stat-card bg-white rounded-2xl p-5 sm:p-6 border border-border shadow-sm flex flex-col justify-between">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-bold uppercase tracking-wider text-text-muted">Resolution Rate</span>
+          <span class="w-9 h-9 rounded-xl bg-emerald-50 text-secondary flex items-center justify-center">
+            <span class="material-symbols-outlined text-lg">task_alt</span>
+          </span>
+        </div>
         <div>
-          <h3 class="text-sm font-bold text-primary mb-3 flex items-center gap-1.5 border-b border-outline-variant pb-2">
-            <span class="material-symbols-outlined text-base">person</span> Complainant Contact Information
-          </h3>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label class="block text-xs font-semibold mb-1 text-on-surface" for="citizen_name">Full Name <span class="text-error">*</span></label>
-              <input id="citizen_name" name="citizen_name" required minlength="2" placeholder="e.g. Rajesh Sharma"
-                class="w-full border border-outline-variant rounded-lg px-3 py-2.5 text-sm bg-white focus:border-primary transition-colors"/>
-            </div>
-            <div>
-              <label class="block text-xs font-semibold mb-1 text-on-surface" for="citizen_email">Email Address <span class="text-on-surface-variant font-normal">(Optional)</span></label>
-              <input id="citizen_email" type="email" name="citizen_email" placeholder="you@example.com"
-                class="w-full border border-outline-variant rounded-lg px-3 py-2.5 text-sm bg-white focus:border-primary transition-colors"/>
-            </div>
-            <div>
-              <label class="block text-xs font-semibold mb-1 text-on-surface" for="citizen_phone">Mobile Number <span class="text-on-surface-variant font-normal">(Optional)</span></label>
-              <input id="citizen_phone" name="citizen_phone" inputmode="tel" placeholder="10-digit mobile number"
-                class="w-full border border-outline-variant rounded-lg px-3 py-2.5 text-sm bg-white focus:border-primary transition-colors"/>
-            </div>
-            <div>
-              <label class="block text-xs font-semibold mb-1 text-on-surface" for="location">Location / Ward <span class="text-on-surface-variant font-normal">(Optional)</span></label>
-              <input id="location" name="location" placeholder="e.g. Ward 12, Main Market, Patna"
-                class="w-full border border-outline-variant rounded-lg px-3 py-2.5 text-sm bg-white focus:border-primary transition-colors"/>
-            </div>
+          <div id="stat-rate" class="text-2xl sm:text-3xl font-extrabold text-secondary font-mono mb-1">--%</div>
+          <div class="w-full bg-surface-muted rounded-full h-1.5 overflow-hidden">
+            <div id="stat-rate-bar" class="bg-secondary h-1.5 rounded-full transition-all duration-1000" style="width: 0%"></div>
           </div>
         </div>
+      </div>
 
-        <!-- Issue Description Sub-Grid -->
-        <div>
-          <h3 class="text-sm font-bold text-primary mb-3 flex items-center gap-1.5 border-b border-outline-variant pb-2">
-            <span class="material-symbols-outlined text-base">report_problem</span> Grievance Particulars
-          </h3>
-          <div class="space-y-4">
-            <div>
-              <label class="block text-xs font-semibold mb-1 text-on-surface" for="title">Complaint Subject / Title <span class="text-error">*</span></label>
-              <input id="title" name="title" required minlength="5" placeholder="Briefly describe the public service failure or concern"
-                class="w-full border border-outline-variant rounded-lg px-3 py-2.5 text-sm bg-white focus:border-primary transition-colors"/>
-            </div>
-
-            <div>
-              <label class="block text-xs font-semibold mb-1 text-on-surface" for="description">Full Problem Description <span class="text-error">*</span></label>
-              <textarea id="description" name="description" required minlength="10" rows="5"
-                placeholder="Provide complete details: What happened, exact location, date/time, and previous complaints filed..."
-                class="w-full border border-outline-variant rounded-lg p-3 text-sm bg-white focus:border-primary transition-colors"></textarea>
-            </div>
-
-            <div>
-              <label class="block text-xs font-semibold mb-1 text-on-surface" for="evidence">
-                Evidence Attachment <span class="text-on-surface-variant font-normal">(Optional: JPG, PNG, or PDF; max 5 MB)</span>
-              </label>
-              <input id="evidence" type="file" name="evidence" accept="image/jpeg,image/png,application/pdf"
-                class="w-full text-xs text-on-surface border border-outline-variant rounded-lg p-2 bg-surface-container-low file:mr-3 file:py-1.5 file:px-3 file:rounded-md file:border-0 file:text-xs file:font-semibold file:bg-primary file:text-white hover:file:bg-primary-container"/>
-            </div>
-          </div>
+      <!-- Avg Turnaround -->
+      <div class="stat-card bg-white rounded-2xl p-5 sm:p-6 border border-border shadow-sm flex flex-col justify-between">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-bold uppercase tracking-wider text-text-muted">Avg. Turnaround</span>
+          <span class="w-9 h-9 rounded-xl bg-amber-50 text-amber-700 flex items-center justify-center">
+            <span class="material-symbols-outlined text-lg">speed</span>
+          </span>
         </div>
+        <div>
+          <div id="stat-turnaround" class="text-2xl sm:text-3xl font-extrabold text-amber-800 font-mono mb-1">-- Days</div>
+          <p class="text-xs text-text-muted m-0">Target SLA under 7 days</p>
+        </div>
+      </div>
 
-        <!-- Live NLP Prediction Preview Card -->
-        <div id="prediction" class="prediction full hidden bg-blue-50/70 border border-blue-200 rounded-lg p-4 text-xs text-on-surface"></div>
-
-        <!-- Submit Button -->
-        <button id="form-submit-btn" class="w-full bg-primary hover:bg-primary-container text-white font-bold py-3.5 rounded-lg text-sm transition-colors flex items-center justify-center gap-2 shadow-sm" type="submit">
-          <span class="material-symbols-outlined text-base">send</span> Submit Grievance
-        </button>
-      </form>
-
-      <!-- Submitted Confirmation Box -->
-      <div id="submitted" class="card success hidden bg-emerald-50 border border-emerald-200 rounded-xl p-6 mt-6 text-xs text-emerald-950 font-sans"></div>
+      <!-- SLA Compliance -->
+      <div class="stat-card bg-white rounded-2xl p-5 sm:p-6 border border-border shadow-sm flex flex-col justify-between">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-bold uppercase tracking-wider text-text-muted">SLA Compliance</span>
+          <span class="w-9 h-9 rounded-xl bg-purple-50 text-purple-700 flex items-center justify-center">
+            <span class="material-symbols-outlined text-lg">verified</span>
+          </span>
+        </div>
+        <div>
+          <div id="stat-sla" class="text-2xl sm:text-3xl font-extrabold text-purple-800 font-mono mb-1">96.8%</div>
+          <p class="text-xs text-text-muted m-0">Escalation protocol enabled</p>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- ── Step 2: Track Your Complaint ── -->
-  <section id="track" class="scroll-mt-20">
-    <div class="mb-6">
-      <div class="flex items-center gap-2 mb-1">
-        <span class="bg-secondary text-white text-xs font-bold font-mono px-2 py-0.5 rounded">STEP 02</span>
-        <span class="text-xs font-bold uppercase tracking-wider text-secondary">Public Oversight</span>
+  <!-- ── 2. PUBLIC RECENT ACTIVITY LEDGER ── -->
+  <section>
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-5">
+      <div>
+        <span class="text-xs font-bold text-secondary tracking-wider uppercase">Public Transparency</span>
+        <h2 class="text-2xl font-bold text-text-main m-0 mt-0.5">Recent Grievance Updates</h2>
       </div>
-      <h2 class="text-2xl font-bold text-primary m-0">Track Complaint Status</h2>
-      <p class="text-sm text-on-surface-variant m-0 mt-1">Enter your unique reference ID (e.g. <code>GRV-2026-ABC123</code>) to inspect live resolution milestones.</p>
+      <a href="/file-complaint.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-primary hover:text-primary-hover">
+        <span>Report an issue</span>
+        <span class="material-symbols-outlined text-sm">arrow_forward</span>
+      </a>
     </div>
 
-    <div class="bg-white rounded-xl shadow-sm border border-outline-variant p-6 sm:p-8">
-      <form id="track-form" class="flex flex-col sm:flex-row gap-3 max-w-xl">
-        <input id="reference-id" required placeholder="GRV-2026-XXXXXX"
-          class="flex-1 border border-outline-variant rounded-lg px-4 py-3 font-mono font-bold text-sm bg-white focus:border-primary uppercase tracking-wider"/>
-        <button type="submit" class="bg-primary hover:bg-primary-container text-white font-bold px-6 py-3 rounded-lg text-sm transition-colors flex items-center justify-center gap-1.5 whitespace-nowrap">
-          <span class="material-symbols-outlined text-base">search</span> Track Status
+    <div class="bg-white rounded-2xl border border-border shadow-sm overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs">
+          <thead class="bg-surface-muted text-text-muted uppercase font-mono border-b border-border">
+            <tr>
+              <th class="py-3 px-4 font-bold">Reference ID</th>
+              <th class="py-3 px-4 font-bold">Category</th>
+              <th class="py-3 px-4 font-bold">Assigned Department</th>
+              <th class="py-3 px-4 font-bold">Location</th>
+              <th class="py-3 px-4 font-bold">Priority</th>
+              <th class="py-3 px-4 font-bold">Status</th>
+            </tr>
+          </thead>
+          <tbody id="ledger-table-body" class="divide-y divide-border/60 font-medium">
+            <tr>
+              <td colspan="6" class="text-center py-6 text-text-muted">Loading grievance records…</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 3. TICKET TRACKER ── -->
+  <section id="track" class="scroll-mt-24">
+    <div class="bg-white rounded-2xl border border-border p-6 sm:p-10 shadow-sm">
+      <div class="max-w-2xl mx-auto text-center mb-8">
+        <span class="inline-flex items-center gap-1 bg-primary-light text-primary text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-2 border border-blue-200">
+          <span class="material-symbols-outlined text-sm">search</span>
+          <span>Citizen Tracker</span>
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-bold text-text-main mb-2">Track Your Grievance</h2>
+        <p class="text-xs sm:text-sm text-text-muted">
+          Enter your reference ID (e.g. <span class="font-mono font-bold text-primary">GRV-2026-XXXXXX</span>) to view assigned department, status, and remarks.
+        </p>
+      </div>
+
+      <form onsubmit="handleMainTrack(event)" class="max-w-xl mx-auto flex flex-col sm:flex-row gap-3 mb-6">
+        <input type="text" id="main-track-input" required placeholder="Enter Reference ID (GRV-2026-...)"
+          class="flex-1 px-4 py-3 rounded-xl border border-border bg-white text-sm font-mono font-bold uppercase text-text-main focus:border-primary">
+        <button type="submit" id="main-track-btn"
+          class="px-6 py-3 bg-primary hover:bg-primary-hover text-white font-bold text-xs sm:text-sm rounded-xl transition-all shadow flex items-center justify-center gap-2">
+          <span>Search</span>
+          <span class="material-symbols-outlined text-sm">arrow_forward</span>
         </button>
       </form>
 
-      <!-- Tracking Result Container -->
-      <div id="tracking-result" class="mt-6" aria-live="polite"></div>
+      <!-- Tracking Output Container -->
+      <div id="tracking-result-box" class="max-w-2xl mx-auto hidden fade-in"></div>
     </div>
   </section>
+
+  <!-- ── 4. OFFICER & ADMIN CONSOLE ACCESS ── -->
+  <section id="admin-gateway" class="scroll-mt-24">
+    <div class="bg-gradient-to-r from-primary to-primary-dark text-white rounded-2xl p-8 sm:p-10 shadow-md">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div class="lg:col-span-8">
+          <div class="flex items-center gap-2 text-xs font-bold text-blue-200 uppercase tracking-wider mb-2">
+            <span class="material-symbols-outlined text-base">badge</span>
+            <span>Staff Portal</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-bold text-white mb-2">Department Officers &amp; Administrators</h2>
+          <p class="text-sm text-blue-100 opacity-90 leading-relaxed mb-4 max-w-xl">
+            Access the staff console to view departmental grievance queues, review NLP classifications, update case statuses, and manage analytics.
+          </p>
+          <div class="text-xs text-blue-200">
+            <span>Detailed charts, metrics, and case logs are securely available within the officer console.</span>
+          </div>
+        </div>
+
+        <div class="lg:col-span-4 flex flex-col gap-3">
+          <button type="button" onclick="quickAdminLaunch()" id="admin-launch-btn"
+            class="w-full py-3 px-4 bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold text-xs sm:text-sm uppercase tracking-wider rounded-xl shadow transition-all flex items-center justify-center gap-2 active:scale-95">
+            <span class="material-symbols-outlined text-base">admin_panel_settings</span>
+            <span>1-Click Admin Login</span>
+          </button>
+          <a href="/login.html" class="w-full text-center py-2.5 px-4 bg-white/10 hover:bg-white/20 text-white font-semibold text-xs rounded-xl transition-colors border border-white/20">
+            Go to Staff Login Page →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
 </main>
 
 <!-- ── Footer ── -->
-<footer class="bg-primary text-white text-xs text-center py-4 mt-auto">
-  CivicPulse Public Grievance Management System · Department of Administrative Reforms &amp; Public Oversight
+<footer class="bg-white border-t border-border text-text-muted text-xs py-8 mt-12">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+    <div>
+      <div class="font-bold text-primary">CivicPulse Public Grievance Platform</div>
+      <p class="m-0 mt-0.5 text-text-muted">Department of Administrative Reforms &amp; Public Grievances</p>
+    </div>
+    <div class="flex items-center gap-4 text-xs font-semibold">
+      <a href="/file-complaint.html" class="hover:text-primary">Lodge Grievance</a>
+      <a href="#track" class="hover:text-primary">Track Status</a>
+      <a href="/login.html" class="hover:text-primary">Staff Console</a>
+    </div>
+  </div>
 </footer>
 
-<script type="module">
-  import { getToken, isTokenValid, parseToken, logout } from "/auth.js";
-  
-  const token = getToken();
-  const banner = document.getElementById("form-auth-banner");
+<!-- ── Scripts ── -->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // Render dynamic auth button
+    try {
+      const token = localStorage.getItem("cgms_token");
+      if (token) {
+        const payload = JSON.parse(atob(token.split(".")[1]));
+        if (payload && payload.exp * 1000 > Date.now()) {
+          const slot = document.getElementById("auth-nav-slot");
+          if (slot) {
+            const isStaff = payload.role === "admin" || payload.role === "officer";
+            slot.innerHTML = `
+              <div class="flex items-center gap-2">
+                <a href="${isStaff ? '/dashboard.html' : '/file-complaint.html'}" class="px-3 py-1.5 rounded-lg bg-surface-muted text-primary font-bold text-xs flex items-center gap-1.5 border border-border">
+                  <span class="material-symbols-outlined text-sm">${isStaff ? 'dashboard' : 'account_circle'}</span>
+                  <span>${escapeHtml(payload.name || payload.role)}</span>
+                </a>
+                <button type="button" onclick="localStorage.removeItem('cgms_token'); window.location.reload();" class="text-xs text-text-muted hover:text-error px-2 py-1 font-semibold">Sign Out</button>
+              </div>
+            `;
+          }
+        }
+      }
+    } catch (_) {}
 
-  // Officers and admins belong in the dashboard — redirect them immediately
-  if (token && isTokenValid(token)) {
-    const _earlyRole = parseToken(token)?.role;
-    if (_earlyRole === "admin" || _earlyRole === "officer") {
-      window.location.replace("/dashboard.html");
+    loadPublicStats();
+    loadPublicLedger();
+
+    // Check if URL has hash with ticket to track (e.g. #track=GRV-2026-...)
+    const hashParams = new URLSearchParams(window.location.hash.replace(/^#/, ""));
+    const trackId = hashParams.get("track") || (window.location.hash.startsWith("#track=") ? window.location.hash.split("=")[1] : null);
+    if (trackId) {
+      document.getElementById("main-track-input").value = decodeURIComponent(trackId);
+      triggerTrack(decodeURIComponent(trackId));
+      document.getElementById("track").scrollIntoView({ behavior: "smooth" });
+    }
+  });
+
+  async function loadPublicStats() {
+    try {
+      const response = await fetch("/api/public/stats");
+      if (!response.ok) return;
+      const data = await response.json();
+
+      // Animate KPI numbers
+      animateNumber("stat-total", data.total || 0);
+      document.getElementById("stat-rate").textContent = `${data.resolution_rate}%`;
+      document.getElementById("stat-rate-bar").style.width = `${Math.min(data.resolution_rate, 100)}%`;
+      document.getElementById("stat-turnaround").textContent = `${data.avg_turnaround_days} Days`;
+      document.getElementById("stat-sla").textContent = `${data.sla_compliance}%`;
+
+      document.getElementById("last-sync-time").textContent = new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+    } catch (e) {
+      console.warn("Public stats:", e);
     }
   }
 
-  if (token && isTokenValid(token)) {
-    const payload = parseToken(token);
-    const slot = document.getElementById("auth-nav-slot");
-    if (payload) {
+  async function loadPublicLedger() {
+    try {
+      const response = await fetch("/api/public/ledger?limit=6");
+      if (!response.ok) return;
+      const data = await response.json();
+      const tbody = document.getElementById("ledger-table-body");
+      if (!tbody) return;
 
-      if (payload.role === "admin" || payload.role === "officer") {
-        slot.innerHTML = `
-          <a href="/dashboard.html" class="bg-primary hover:bg-primary-container text-white font-semibold px-3 py-2 rounded-lg text-xs transition-colors flex items-center gap-1">
-            <span class="material-symbols-outlined text-sm">dashboard</span> Officer Console →
-          </a>
-          <div class="flex items-center gap-2 bg-surface-container border border-outline-variant px-2.5 py-1.5 rounded-lg text-xs font-semibold text-primary">
-            <span>👤 ${escapeHtml(payload.name)} (${escapeHtml(payload.role)})</span>
-            <button id="logout-btn" title="Logout" class="text-error font-bold hover:opacity-75">✕</button>
-          </div>
-        `;
-      } else {
-        slot.innerHTML = `
-          <a href="#track" class="bg-surface-container hover:bg-surface-container-high text-primary font-semibold px-3 py-2 rounded-lg text-xs transition-colors">Track Complaint</a>
-          <div class="flex items-center gap-2 bg-surface-container border border-outline-variant px-2.5 py-1.5 rounded-lg text-xs font-semibold text-primary">
-            <span>👤 ${escapeHtml(payload.name)}</span>
-            <button id="logout-btn" title="Logout" class="text-error font-bold hover:opacity-75">✕</button>
-          </div>
-        `;
+      if (!data.items || !data.items.length) {
+        tbody.innerHTML = `<tr><td colspan="6" class="text-center py-6 text-text-muted">No public records yet.</td></tr>`;
+        return;
       }
 
-      // Update Form Auth Banner for authenticated user
-      if (banner) {
-        banner.className = "mb-6 p-4 rounded-xl border border-emerald-300 bg-emerald-50 text-emerald-950 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 transition-all";
-        banner.innerHTML = `
-          <div class="flex items-center gap-3">
-            <span class="material-symbols-outlined text-2xl text-emerald-600">verified</span>
+      tbody.innerHTML = data.items.map(item => `
+        <tr class="hover:bg-surface-muted transition-colors">
+          <td class="py-3 px-4 font-mono font-bold text-primary select-all">${escapeHtml(item.reference_id)}</td>
+          <td class="py-3 px-4 font-semibold text-text-main">${escapeHtml(item.category)}</td>
+          <td class="py-3 px-4 text-text-muted">${escapeHtml(item.department)}</td>
+          <td class="py-3 px-4 text-text-muted">${escapeHtml(item.location)}</td>
+          <td class="py-3 px-4">
+            <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase ${item.priority === 'High' ? 'bg-red-100 text-red-800' : 'bg-slate-100 text-slate-700'}">
+              ${escapeHtml(item.priority)}
+            </span>
+          </td>
+          <td class="py-3 px-4">
+            <span class="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-bold ${
+              item.status === 'Resolved' ? 'bg-emerald-100 text-emerald-800' :
+              item.status === 'In Progress' ? 'bg-blue-100 text-blue-800' :
+              item.status === 'Assigned' ? 'bg-purple-100 text-purple-800' :
+              'bg-amber-100 text-amber-800'
+            }">
+              ${escapeHtml(item.status)}
+            </span>
+          </td>
+        </tr>
+      `).join("");
+    } catch (_) {}
+  }
+
+  function handleQuickTrack(e) {
+    e.preventDefault();
+    const id = document.getElementById("hero-track-input").value.trim().toUpperCase();
+    if (!id) return;
+    document.getElementById("main-track-input").value = id;
+    document.getElementById("track").scrollIntoView({ behavior: "smooth" });
+    triggerTrack(id);
+  }
+
+  function handleMainTrack(e) {
+    e.preventDefault();
+    const id = document.getElementById("main-track-input").value.trim().toUpperCase();
+    if (!id) return;
+    triggerTrack(id);
+  }
+
+  async function triggerTrack(refId) {
+    const box = document.getElementById("tracking-result-box");
+    box.classList.remove("hidden");
+    box.innerHTML = `<div class="p-6 text-center text-sm text-text-muted"><span class="material-symbols-outlined animate-spin mr-2">progress_activity</span> Fetching grievance timeline…</div>`;
+
+    try {
+      const response = await fetch(`/api/complaints/${encodeURIComponent(refId)}`);
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.detail || "No record found for this Reference ID.");
+      }
+
+      box.innerHTML = `
+        <div class="bg-surface-card rounded-2xl border border-border p-6 sm:p-8 shadow-sm">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 mb-4 border-b border-border gap-2">
             <div>
-              <div class="font-bold text-sm text-emerald-900">Authenticated Citizen Account</div>
-              <div class="text-xs text-emerald-800">Logged in as <strong>${escapeHtml(payload.name)}</strong> (${escapeHtml(payload.email || "Verified User")}). Your grievance will be linked to your profile.</div>
+              <span class="font-mono text-xs font-bold text-secondary uppercase tracking-wider">${escapeHtml(data.reference_id)}</span>
+              <h3 class="text-lg font-bold text-primary m-0 mt-0.5">${escapeHtml(data.title)}</h3>
+            </div>
+            <span class="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase ${
+              data.status === 'Resolved' ? 'bg-emerald-100 text-emerald-800' :
+              data.status === 'In Progress' ? 'bg-blue-100 text-blue-800' :
+              data.status === 'Assigned' ? 'bg-purple-100 text-purple-800' :
+              'bg-amber-100 text-amber-800'
+            }">
+              ${escapeHtml(data.status)}
+            </span>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs mb-6">
+            <div class="bg-surface-muted p-3 rounded-xl border border-border">
+              <span class="text-text-muted block mb-0.5">Assigned Department</span>
+              <span class="font-bold text-primary">${escapeHtml(data.department)}</span>
+            </div>
+            <div class="bg-surface-muted p-3 rounded-xl border border-border">
+              <span class="text-text-muted block mb-0.5">Category</span>
+              <span class="font-bold text-text-main">${escapeHtml(data.category)}</span>
             </div>
           </div>
-        `;
-      }
 
-      // Autofill citizen name & email if available
-      const nameInput = document.getElementById("citizen_name");
-      const emailInput = document.getElementById("citizen_email");
-      if (nameInput && payload.name) nameInput.value = payload.name;
-      if (emailInput && payload.email) emailInput.value = payload.email;
+          <div class="mb-6">
+            <div class="text-xs font-bold uppercase tracking-wider text-text-muted mb-1">Grievance Description</div>
+            <p class="text-xs text-text-main leading-relaxed bg-white p-3 rounded-xl border border-border m-0">${escapeHtml(data.description)}</p>
+          </div>
 
-      document.getElementById("logout-btn")?.addEventListener("click", () => logout());
-    }
-  } else {
-    // Unauthenticated user banner
-    if (banner) {
-      banner.className = "mb-6 p-4 rounded-xl border border-amber-300 bg-amber-50 text-amber-950 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 transition-all";
-      banner.innerHTML = `
-        <div class="flex items-center gap-3">
-          <span class="material-symbols-outlined text-2xl text-amber-700">lock</span>
           <div>
-            <div class="font-bold text-sm text-amber-900">Authentication Required to Submit Grievances</div>
-            <div class="text-xs text-amber-800">You must sign in or register an account before filing a complaint.</div>
+            <div class="text-xs font-bold uppercase tracking-wider text-primary mb-3">Timeline &amp; Updates</div>
+            <div class="space-y-3 relative pl-6 before:content-[''] before:absolute before:left-2 before:top-2 before:bottom-2 before:w-0.5 before:bg-border">
+              ${(data.timeline || []).map(e => `
+                <div class="relative">
+                  <div class="absolute -left-6 top-1 w-3 h-3 rounded-full bg-primary border-2 border-white shadow-sm"></div>
+                  <div class="text-xs font-bold text-primary">${escapeHtml(e.status)}</div>
+                  <div class="text-[11px] text-text-muted font-mono">${new Date(e.created_at).toLocaleString()}</div>
+                  <div class="text-xs text-text-main bg-surface-muted p-2 rounded-lg mt-1 border border-border">${escapeHtml(e.remark || "Status updated.")}</div>
+                </div>
+              `).join("")}
+            </div>
           </div>
         </div>
-        <a href="/login.html" class="bg-primary hover:bg-primary-container text-white font-bold text-xs px-4 py-2.5 rounded-lg transition-colors whitespace-nowrap flex items-center gap-1 shadow-sm">
-          <span class="material-symbols-outlined text-sm">login</span> Sign In / Register →
-        </a>
+      `;
+    } catch (err) {
+      box.innerHTML = `
+        <div class="p-5 rounded-2xl bg-error-bg text-error border border-error/20 text-xs font-medium flex items-center gap-2">
+          <span class="material-symbols-outlined text-error">error</span>
+          <span>${escapeHtml(err.message)}</span>
+        </div>
       `;
     }
+  }
+
+  async function quickAdminLaunch() {
+    const btn = document.getElementById("admin-launch-btn");
+    btn.disabled = true;
+    btn.innerHTML = `<span class="material-symbols-outlined animate-spin text-sm">progress_activity</span><span>Authenticating…</span>`;
+    try {
+      const response = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: "admin@grievance.gov", password: "Admin@1234" }),
+      });
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.detail || "Authentication failed.");
+      localStorage.setItem("cgms_token", data.access_token);
+      window.location.href = "/dashboard.html";
+    } catch (err) {
+      alert(err.message);
+      btn.disabled = false;
+      btn.innerHTML = `<span class="material-symbols-outlined text-base">admin_panel_settings</span><span>1-Click Admin Login</span>`;
+    }
+  }
+
+  function animateNumber(id, end) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    let start = 0;
+    const duration = 1000;
+    const stepTime = 30;
+    const steps = duration / stepTime;
+    const increment = end / steps;
+    const timer = setInterval(() => {
+      start += increment;
+      if (start >= end) {
+        el.textContent = end.toLocaleString();
+        clearInterval(timer);
+      } else {
+        el.textContent = Math.floor(start).toLocaleString();
+      }
+    }, stepTime);
   }
 
   function escapeHtml(str) {
@@ -322,7 +560,6 @@
     return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
   }
 </script>
-<script src="/app.js"></script>
 
 </body>
 </html>

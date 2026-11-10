@@ -2,6 +2,10 @@
 import os
 from datetime import datetime, timedelta, timezone
 
+from dotenv import load_dotenv
+
+load_dotenv()
+
 from fastapi import Depends, HTTPException, status
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from jose import JWTError, jwt
@@ -75,6 +79,20 @@ def get_current_user(
     if not user or not user.is_active:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="User not found or inactive.")
     return user
+
+
+def get_optional_current_user(
+    credentials: HTTPAuthorizationCredentials | None = Depends(bearer_scheme),
+    db: Session = Depends(get_db),
+) -> User | None:
+    if not credentials:
+        return None
+    try:
+        payload = decode_token(credentials.credentials)
+        user = db.get(User, int(payload["sub"]))
+        return user if user and user.is_active else None
+    except Exception:
+        return None
 
 
 def require_officer(current_user: User = Depends(get_current_user)) -> User:

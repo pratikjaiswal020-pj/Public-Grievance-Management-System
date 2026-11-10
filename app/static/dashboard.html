@@ -9,9 +9,18 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    (function () {
+      var hash = new URLSearchParams(window.location.hash.replace(/^#/, ""));
+      var token = hash.get("access_token");
+      if (!token) return;
+      localStorage.setItem("cgms_token", token);
+      history.replaceState(null, "", window.location.pathname + window.location.search);
+    })();
+  </script>
+  <link rel="stylesheet" href="/tailwind.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
-  <script id="tailwind-config">
+  <script id="tailwind-config" type="application/json">
     tailwind.config = {
       darkMode: 'class',
       theme: {
@@ -130,12 +139,8 @@
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
     <div class="flex items-center gap-2" style="font-size:.7rem;color:#4e4e8a;">
       <span class="live-dot"></span>
-      <span style="font-weight:600;color:#6366f1;letter-spacing:.08em;">LIVE CONSOLE</span>
-      <span>— Gazetted Officer Dashboard</span>
-    </div>
-    <div class="flex items-center gap-2" style="font-size:.72rem;color:#383862;font-family:'JetBrains Mono',monospace;">
-      <span class="material-symbols-outlined" style="font-size:.85rem;color:#4e4e8a;">schedule</span>
-      <span id="live-utc" style="color:#6366f1;font-weight:700;">--:--:-- Z</span>
+      <span style="font-weight:600;color:#6366f1;letter-spacing:.08em;">OFFICER CONSOLE</span>
+      <span>— Grievance Management Dashboard</span>
     </div>
   </div>
 </div>
@@ -225,7 +230,7 @@
         <span class="material-symbols-outlined" style="color:#6366f1;">admin_panel_settings</span>
         <div>
           <div style="font-weight:700;font-size:.88rem;color:#e2e8f0;">Officer Provisioning Panel</div>
-          <div style="font-size:.67rem;color:#4e4e8a;">Create credentials for departmental officers. Admin use only.</div>
+          <div style="font-size:.67rem;color:#4e4e8a;">Provision officer access with official email and security password. Admin use only.</div>
         </div>
       </div>
       <span style="font-size:.6rem;font-weight:700;letter-spacing:.08em;background:rgba(99,102,241,0.15);color:#a5b4fc;border:1px solid rgba(99,102,241,0.3);padding:2px 8px;border-radius:4px;">ADMIN ONLY</span>
@@ -240,8 +245,8 @@
         <input id="off-email" type="email" name="email" required placeholder="officer@dept.gov.in" class="dark-input w-full"/>
       </div>
       <div>
-        <label style="display:block;font-size:.7rem;font-weight:600;color:#818cf8;margin-bottom:5px;" for="off-password">Password <span style="color:#f43f5e;">*</span></label>
-        <input id="off-password" type="password" name="password" required minlength="8" placeholder="Min 8 characters" class="dark-input w-full"/>
+        <label style="display:block;font-size:.7rem;font-weight:600;color:#818cf8;margin-bottom:5px;" for="off-password">Password <span style="font-size:.65rem;color:#4e4e8a;">(Optional)</span></label>
+        <input id="off-password" type="password" name="password" placeholder="Default Officer@1234" class="dark-input w-full"/>
       </div>
       <div class="sm:col-span-3 flex items-center justify-between">
         <div id="create-officer-msg" class="hidden"></div>
@@ -480,7 +485,7 @@
 <script type="module">
   import { requireAuth, logout, authApi, getCurrentName, getCurrentRole } from "/auth.js";
 
-  if (!requireAuth(["officer", "admin"])) {
+  if (!requireAuth("admin", "/login.html?error=Only+administrators+can+access+the+portal")) {
     // redirect handled by requireAuth
   }
 
@@ -496,20 +501,13 @@
     loadStats();
     loadComplaints(1);
     loadCharts();
-    startUtcClock();
   });
-
-  function startUtcClock() {
-    const el = document.getElementById("live-utc");
-    const tick = () => { if (el) el.textContent = new Date().toISOString().replace("T"," ").substring(0,19) + " Z"; };
-    tick(); setInterval(tick, 1000);
-  }
 
   function initUser() {
     const name = getCurrentName() || "Nodal Officer";
     const role = getCurrentRole() || "officer";
     document.getElementById("user-name-display").textContent = name;
-    document.getElementById("user-role-badge").textContent = role === "admin" ? "System Admin" : "Gazetted Officer";
+    document.getElementById("user-role-badge").textContent = role === "admin" ? "System Admin" : "Nodal Officer";
     if (role === "admin") document.getElementById("admin-officers-section")?.classList.remove("hidden");
   }
 
@@ -855,7 +853,7 @@
         body: JSON.stringify({
           name:     document.getElementById("off-name").value,
           email:    document.getElementById("off-email").value,
-          password: document.getElementById("off-password").value,
+          password: document.getElementById("off-password")?.value || null,
         }),
       });
       msgEl.textContent = `&#10003; Officer "${res.name}" provisioned (${res.email})`;

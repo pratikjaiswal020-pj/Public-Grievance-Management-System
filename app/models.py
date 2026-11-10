@@ -12,7 +12,9 @@ class User(Base):
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str] = mapped_column(String(120))
     email: Mapped[str] = mapped_column(String(255), unique=True, index=True)
+    phone: Mapped[str | None] = mapped_column(String(20), unique=True, nullable=True, index=True)
     hashed_password: Mapped[str] = mapped_column(String(255))
+    google_sub: Mapped[str | None] = mapped_column(String(255), unique=True, nullable=True, index=True)
     # role: citizen | officer | admin
     role: Mapped[str] = mapped_column(String(20), default="citizen")
     is_active: Mapped[bool] = mapped_column(Boolean, default=True)
@@ -26,6 +28,7 @@ class Complaint(Base):
     reference_id: Mapped[str] = mapped_column(String(32), unique=True, index=True)
     # Child tickets created from one multi-issue submission point to its first ticket.
     parent_reference_id: Mapped[str | None] = mapped_column(String(32), nullable=True, index=True)
+    user_id: Mapped[int | None] = mapped_column(ForeignKey("users.id"), nullable=True, index=True)
     citizen_name: Mapped[str] = mapped_column(String(120))
     citizen_email: Mapped[str | None] = mapped_column(String(255), nullable=True)
     citizen_phone: Mapped[str | None] = mapped_column(String(32), nullable=True)
